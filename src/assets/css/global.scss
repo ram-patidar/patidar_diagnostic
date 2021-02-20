@@ -1,0 +1,101 @@
+@import "./fonts.scss";
+@import "./custom.scss";
+body {
+    margin: 0;
+    background: #F5F5F5;
+    font-family: 'Proxima Nova';
+}
+
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    padding: 0;
+    margin: 0 !important;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+*:hover {
+    transition: 300ms all;
+    text-decoration: none !important;
+}
+
+*:focus {
+    outline: none !important;
+    text-decoration: none !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.inp-label {
+    font-size: 18px;
+    line-height: 22px;
+    display: block;
+    color: #000;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.input,
+.select,
+.textarea {
+    width: 100%;
+    background: #FAFAFA;
+    height: 55px;
+    border-radius: 5px;
+    border: 1px solid #C9C9C9;
+    padding: 15px 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 55px;
+    font-family: 'Proxima Nova';
+}
+
+.textarea {
+    line-height: 20px;
+    resize: none;
+    height: 110px;
+    font-family: 'Proxima Nova';
+}
+
+.custom-btn {
+    padding: 15px 30px;
+    border: 0;
+    border-radius: 5px;
+    height: 55px;
+    color: #fff;
+    font-size: 20px;
+    background-image: linear-gradient(to right, #2d2668, #03a39b);
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    min-width: 150px;
+    max-width: 100%;
+    transition: 300ms all;
+}
+
+.custom-btn:hover {
+    opacity: 0.9;
+}

@@ -1,0 +1,100 @@
+.active .default-img {
+    display: none;
+}
+
+.active-img {
+    display: none;
+}
+
+.active .active-img {
+    display: inline;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #000;
+}
+
+.sidebar-menu .active a {
+    color: #04a29b;
+    background: hsl(177deg 95% 33% / 5%);
+}
+
+.sidebar-menu a span {
+    padding-left: 20px;
+}
+
+.sidebar-menu img {
+    max-width: 30px;
+    min-width: 30px;
+}
+
+.sidebar-head {
+    padding: 10px 10px 30px;
+    text-align: center;
+}
+
+.sidebar-head img {
+    max-width: 200px;
+}
+
+.sidebar-inr {
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+// @media(max-width:1024px) {
+//     div#nav-icon {
+//         top: 10px;
+//         min-width: 20px;
+//         -webkit-transition: 0.5s ease-in-out;
+//         -moz-transition: 0.5s ease-in-out;
+//         -o-transition: 0.5s ease-in-out;
+//         transition: 0.5s ease-in-out;
+//         cursor: pointer;
+//         position: absolute;
+//         right: -30px;
+//         z-index: 9999999;
+//         background: #fff !important;
+//         display: block;
+//     }
+//     #nav-icon span {
+//         display: block;
+//         position: absolute;
+//         height: 2px;
+//         width: 100%;
+//         background: #059e99;
+//         -webkit-border-radius: 9px;
+//         -moz-border-radius: 9px;
+//         border-radius: 9px;
+//         opacity: 1;
+//         left: 0;
+//         -webkit-transform: rotate( 0deg);
+//         -moz-transform: rotate(0deg);
+//         -o-transform: rotate(0deg);
+//         -ms-transform: rotate(0deg);
+//         transform: rotate( 0deg);
+//         -webkit-transition: 0.25s ease-in-out;
+//         -moz-transition: 0.25s ease-in-out;
+//         -o-transition: 0.25s ease-in-out;
+//         transition: 0.25s ease-in-out;
+//     }
+//     #nav-icon span:nth-child(1) {
+//         top: 0;
+//     }
+//     #nav-icon span:nth-child(2) {
+//         top: 6px;
+//         -webkit-animation: nav-icon-bg 3s infinite;
+//         -moz-animation: nav-icon-bg 3s infinite;
+//         -o-animation: nav-icon-bg 3s infinite;
+//         animation: nav-icon-bg 3s infinite;
+//     }
+//     #nav-icon span:nth-child(3) {
+//         top: 12px;
+//     }
+// }
