@@ -11,6 +11,9 @@ import { AddNewPatientComponent } from './modules/patient/add-new-patient/add-ne
 import { EditPatientComponent } from './modules/patient/edit-patient/edit-patient.component';
 import { ReportListComponent } from './modules/report/report-list/report-list.component';
 import { BillingComponent } from './modules/patient/billing/billing.component';
+import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +25,16 @@ import { BillingComponent } from './modules/patient/billing/billing.component';
     AddNewPatientComponent,
     EditPatientComponent,
     ReportListComponent,
-    BillingComponent
+    BillingComponent,
+    RegisterComponent,
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

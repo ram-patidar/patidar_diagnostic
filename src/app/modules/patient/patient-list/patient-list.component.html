@@ -6,7 +6,7 @@
         <div class="dashboard-body page-body">
             <div class="page-head">
                 <h2>Patient <b>List</b></h2>
-                <button class="custom-btn">Add New Patient</button>
+                <button class="custom-btn" (click)="toggleDisplayAddPatient()">Add New Patient</button>
             </div>
             <div class="page-inr">
                 <div class="patient-list-sec">
@@ -22,6 +22,8 @@
         </div>
     </div>
 </main>
-<app-add-new-patient class="custom-temp"></app-add-new-patient>
-<app-edit-patient class="custom-temp"></app-edit-patient>
-<app-billing class="custom-temp"></app-billing>
+
+<app-add-new-patient *ngIf="displayAddPatient" class="custom-temp"></app-add-new-patient>
+
+<app-edit-patient *ngIf="displayEditPatient" class="custom-temp"></app-edit-patient>
+<app-billing *ngIf="displayBillingPatient" class="custom-temp"></app-billing>

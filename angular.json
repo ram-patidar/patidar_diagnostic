@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "patidat-diagnostic"
+  "defaultProject": "patidat-diagnostic",
+  "cli": {
+    "analytics": "68ef8d3e-d3b4-43e8-b265-6ad602e1615a"
+  }
 }

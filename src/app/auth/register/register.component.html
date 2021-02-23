@@ -1,0 +1,74 @@
+<section>
+    <div class="login-main">
+        <div class="container">
+            <div class="login-inr">
+                <div class="login-header">
+                    <a routerLink="register">
+                        <img src="assets/images/register.svg" alt="logo">
+                    </a>
+                </div>
+                <div class="login-form">
+
+                    <form [formGroup]="registerForm" (submit)="register()" novalidate>
+                        <ul>
+                            <div>
+                                <small class="alert-danger">{{message}}</small>
+                            </div>
+                            <li>
+                                <label class="inp-label">Name</label>
+                                <input type="text" formControlName="name" name="name" placeholder="Enter your username" class="input" required>
+                                <div *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)" class="alert alert-danger">
+                                    <div *ngIf="registerForm.controls['name'].errors && registerForm.controls['name'].errors.required">
+                                        Name is required
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="inp-label">Email</label>
+                                <input type="email" formControlName="email" name="email" placeholder="Enter your username" class="input" required>
+                                <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)" class="alert alert-danger">
+                                    <div *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].errors.required">
+                                        Email is required.
+                                    </div>
+                                    <div *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].errors.email">
+                                        Email is Invalid.
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="inp-label"> password</label>
+                                <input type="password" formControlName="password" name="password" placeholder="******" class="input">
+                                <div *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)" class="alert alert-danger">
+                                    <div *ngIf="registerForm.controls['password'].errors && registerForm.controls['password'].errors.required">
+                                        Password is required.
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="inp-label">Confirm Password</label>
+                                <input type="password" formControlName="password_confirmation" name="password_confirmation" placeholder="******" class="input">
+                                <div *ngIf="registerForm.controls['password_confirmation'].invalid && (registerForm.controls['password_confirmation'].dirty || registerForm.controls['password_confirmation'].touched)" class="alert alert-danger">
+
+                                    <div *ngIf="registerForm.controls['password_confirmation'].errors && registerForm.controls['password_confirmation'].errors.required">
+                                        Confirm Password is required.
+                                    </div>
+                                    <div *ngIf="registerForm.controls['password_confirmation'].errors &&  registerForm.controls['password_confirmation'].errors.notEquivalent">
+                                        Password and confirm password does not match.
+                                    </div>
+
+
+
+                                </div>
+
+
+                            </li>
+                            <li>
+                                <button type="submit" class="custom-btn" [disabled]="registerForm.invalid">Register</button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

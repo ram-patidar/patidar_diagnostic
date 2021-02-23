@@ -4,18 +4,19 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { AddNewPatientComponent } from './modules/patient/add-new-patient/add-new-patient.component';
 import { PatientListComponent } from './modules/patient/patient-list/patient-list.component';
 import { ReportListComponent } from './modules/report/report-list/report-list.component';
+import { AuthserviceService } from 'src/app/services/authservice.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
-  { path: 'dashboard', component:DashboardComponent, pathMatch: 'full' },
-  { path: 'patient', component:PatientListComponent, pathMatch: 'full' },
+  { path: 'dashboard', component:DashboardComponent, canActivate: [AuthserviceService], pathMatch: 'full' },
+  { path: 'patient', component:PatientListComponent,  canActivate: [AuthserviceService], pathMatch: 'full' },
   // { path: 'add-patient', component:AddNewPatientComponent, pathMatch: 'full' },
-  { path: 'report', component:ReportListComponent, pathMatch: 'full' },
+  { path: 'report', component:ReportListComponent, canActivate: [AuthserviceService], pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
-})
+}) 
 export class AppRoutingModule { }

@@ -8,18 +8,35 @@
                     </a>
                 </div>
                 <div class="login-form">
-                    <form>
+                    <div *ngIf="message != ''" class="alert alert-success">{{message}}</div>
+                    <form [formGroup]="loginForm" (submit)="login()" novalidate>
                         <ul>
+                            <div>
+                                <small class="alert-danger"></small>
+                            </div>
                             <li>
                                 <label class="inp-label">Username</label>
-                                <input type="text" placeholder="Enter your username" class="input">
+                                <input type="email" formControlName="email" name="email" placeholder="Enter your username" class="input" required>
+                                <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)" class="alert alert-danger">
+                                    <div *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].errors.required">
+                                        Name is required.
+                                    </div>
+                                    <div *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].errors.email">
+                                        Email is Invalid.
+                                    </div>
+                                </div>
                             </li>
                             <li>
                                 <label class="inp-label">Password</label>
-                                <input type="password" placeholder="******" class="input">
+                                <input type="password" formControlName="password" name="password" placeholder="******" class="input">
+                                <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="alert alert-danger">
+                                    <!-- <div *ngIf="loginForm.controls['username'].errors.required"> -->
+                                    Password is required.
+                                    <!-- </div> -->
+                                </div>
                             </li>
                             <li>
-                                <button type="submit" class="custom-btn">Login</button>
+                                <button type="submit" class="custom-btn" [disabled]="loginForm.invalid">Login</button>
                             </li>
                         </ul>
                     </form>

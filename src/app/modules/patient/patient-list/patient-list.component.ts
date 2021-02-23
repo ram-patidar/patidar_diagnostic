@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-patient-list',
@@ -11,11 +11,17 @@ export class PatientListComponent implements OnInit {
   // public rows: any;
   // public columns: any;
 
-  isShowDiv = false;
-   
-  toggleDisplayDiv() {
-    this.isShowDiv = !this.isShowDiv;
+
+  displayAddPatient = false;
+  displayEditPatient = false;
+  displayBillingPatient = false;
+
+  toggleDisplayAddPatient (){
+    this.displayAddPatient  = !this.displayAddPatient;
   }
+ 
+ 
+  
 
   constructor() {}
 
