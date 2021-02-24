@@ -4,11 +4,10 @@
             <div class="login-inr">
                 <div class="login-header">
                     <a routerLink="register">
-                        <img src="assets/images/register.svg" alt="logo">
+                        <img src="assets/images/logo.svg" alt="logo">
                     </a>
                 </div>
                 <div class="login-form">
-
                     <form [formGroup]="registerForm" (submit)="register()" novalidate>
                         <ul>
                             <div>
@@ -55,12 +54,7 @@
                                     <div *ngIf="registerForm.controls['password_confirmation'].errors &&  registerForm.controls['password_confirmation'].errors.notEquivalent">
                                         Password and confirm password does not match.
                                     </div>
-
-
-
                                 </div>
-
-
                             </li>
                             <li>
                                 <button type="submit" class="custom-btn" [disabled]="registerForm.invalid">Register</button>

@@ -6,8 +6,8 @@
         </a>
     </div>
     <div class="page-inr">
-        <div class="add-patient-form">
-            <form>
+        <div class="billing-form">
+            <form [formGroup]="billingForm">
                 <div class="patient-name-sec">
                     <div class="name-sec-inr">
                         <div class="name-sec-left">
@@ -17,18 +17,34 @@
                             <div class="patient-name">
                                 <h3>Mr Ashrof Khan</h3>
                                 <div class="patient-dtl">
-                                    <p><span></span> 55</p>
-                                    <p><span></span> Male</p>
+                                    <p>
+                                        <span>
+                                        <img src="assets/images/feather-calendar.svg" alt="">
+                                    </span> 55
+                                    </p>
+                                    <p>
+                                        <span>
+                                            <img src="assets/images/feather-user.svg" alt="">
+                                        </span> Male
+                                    </p>
                                 </div>
                             </div>
                         </div>
                         <div class="name-sec-right">
-                            <p><span></span> 15 Feb 2021</p>
-                            <p><span></span> 9876543210</p>
+                            <p>
+                                <span>
+                                    <img src="assets/images/feather-clock.svg" alt=""> 
+                                </span> 15 Feb 2021
+                            </p>
+                            <p>
+                                <span>
+                                    <img src="assets/images/feather-phone-call.svg" alt=""> 
+                                </span> 9876543210
+                            </p>
                         </div>
                     </div>
                 </div>
-                <ul>
+                <ul class="test-sec">
                     <li class="width-50">
                         <label class="inp-label">Referred By:</label>
                         <select class="select">
@@ -37,13 +53,15 @@
                     </li>
                     <li class="width-50">
                         <label class="inp-label">Tests:</label>
-                        <select class="select">
-                            <option>Select Test</option>
-                        </select>
+                        <ng-multiselect-dropdown name="tests" [placeholder]="'Select City'" [data]="tests" formControlName="tests" [disabled]="disabled" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)">
+                        </ng-multiselect-dropdown>
                     </li>
                 </ul>
                 <div class="select-test-sec">
                     <ul>
+                        <li>
+
+                        </li>
                         <li>
                             <h4><span></span> Complete Blood Count (CBC)</h4>
                             <p>₹ 100</p>
@@ -53,6 +71,12 @@
                             <p>₹ 100</p>
                         </li>
                     </ul>
+                </div>
+                <div class="total-sec">
+                    <h4>Total: <span class="total">₹ 200</span></h4>
+                </div>
+                <div class="billing-btn">
+                    <button type="submit" class="custom-btn">Save</button>
                 </div>
             </form>
         </div>

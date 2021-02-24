@@ -1,0 +1,100 @@
+.patient-name-sec {
+    background: rgb(4 162 155 / 5%);
+    border: 1px dashed #04A29B;
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+.name-sec-inr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name-sec-left {
+    display: flex;
+}
+
+.name-icon {
+    background: #04A29B;
+    width: 53px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.name-icon h3 {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.patient-name h3 {
+    color: #04A29B;
+    line-height: 32px;
+    font-weight: 600;
+}
+
+.patient-name {
+    padding: 0 10px;
+}
+
+.patient-dtl {
+    display: flex;
+}
+
+.patient-dtl p {
+    margin-right: 15px;
+}
+
+.name-sec-right p {
+    line-height: 28px;
+}
+
+.test-sec {
+    padding: 40px 0 0;
+}
+
+.select-test-sec li {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    position: relative;
+    border-bottom: 1px dashed rgb(0 0 0 / 10%);
+    padding-left: 40px;
+}
+
+.select-test-sec li:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    background: url(../../../../assets/images/check-mark.svg);
+    background-size: contain;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+}
+
+.select-test-sec {
+    margin: 15px 0;
+}
+
+.total-sec h4 {
+    color: #04a29b;
+    font-size: 20px;
+}
+
+.total-sec {
+    text-align: right;
+    padding: 15px 0;
+}
+
+.billing-btn {
+    margin: 40px 0 0 0;
+    .custom-btn {
+        width: 100%;
+    }
+}

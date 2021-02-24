@@ -11,10 +11,12 @@ import { AddNewPatientComponent } from './modules/patient/add-new-patient/add-ne
 import { EditPatientComponent } from './modules/patient/edit-patient/edit-patient.component';
 import { ReportListComponent } from './modules/report/report-list/report-list.component';
 import { BillingComponent } from './modules/patient/billing/billing.component';
-import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './auth/register/register.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { EditReportComponent } from './modules/report/edit-report/edit-report.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ReportListComponent,
     BillingComponent,
     RegisterComponent,
+    EditReportComponent,
   
   ],
   imports: [
@@ -36,7 +39,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
