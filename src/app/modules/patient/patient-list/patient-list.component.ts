@@ -10,7 +10,7 @@ import { PatientServiceService } from 'src/app/services/patient-service.service'
 })
 
 export class PatientListComponent implements OnInit {
-  public medicinedata:any;
+  public dataall:any;
   
   @ViewChild('search', { static: false }) search: any;
 
@@ -18,6 +18,7 @@ export class PatientListComponent implements OnInit {
   public temp:any;
   public selected = [];
   public testdata = [];
+  public editData:any;
   // rows = [
   //   { name: 'Austin', gender: 'Male', company: 'Swimlane' },
   //   { name: 'Dany', gender: 'Male', company: 'KFC' },
@@ -40,6 +41,7 @@ export class PatientListComponent implements OnInit {
 
   toggleDisplayAddPatient(v:boolean){
     this.displayAddPatient = v ;
+   
     console.log(v);
   }
  
@@ -96,7 +98,7 @@ updateFilter(val: any) {
   const keys = Object.keys(this.temp[0]);
   // assign filtered matches to the active datatable
 
-  this.medicinedata = this.temp.filter(item => {
+  this.dataall = this.temp.filter(item => {
     // iterate through each row's column data
     for (let i = 0; i < count; i++) {
       // check for a match
@@ -131,11 +133,23 @@ get_data(){
 
   this.patService.getPatient().subscribe(data => {
     this.temp = data;
-    this.medicinedata = [...this.temp];
+    this.dataall = [...this.temp];
     console.log(data);
   });
     
  
+}
+
+editPatient(row:any){
+  console.log(row);
+  this.displayEditPatient = true;
+  this.editData = row;
+}
+
+
+
+toggleeditPatient(e:boolean){
+  this.displayEditPatient = e;
 }
 
 

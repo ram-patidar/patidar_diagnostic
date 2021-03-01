@@ -30,16 +30,16 @@
                                     <option [value]="9">9</option>
                                   </select>
 
-                                        <!-- <a csvLink [data]="medicinedata">Export as csv</a> -->
+                                        <!-- <a csvLink [data]="dataall">Export as csv</a> -->
                                     </div>
                                 </div>
                             </div>
                             <div>
-                                <ngx-datatable [rows]="medicinedata" class="material expandable" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="limit" [count]="count" [offset]="offset" [selected]="selected" [selectAllRowsOnPage]="false" (activate)="onActivate($event)"
+                                <ngx-datatable [rows]="dataall" class="material expandable" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="limit" [count]="count" [offset]="offset" [selected]="selected" [selectAllRowsOnPage]="false" (activate)="onActivate($event)"
                                     (select)='onSelect($event)' (page)="onPage($event)">
-                                    <ngx-datatable-column name="Sr no">
+                                    <ngx-datatable-column name="#" [width]="30">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{medicinedata.indexOf(row)+1}}
+                                            {{dataall.indexOf(row)+1}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <!-- <ngx-datatable-column *ngFor="let col of columns" [name]="col.name" [prop]="col.prop" [width]="col.width"></ngx-datatable-column> -->
@@ -48,7 +48,7 @@
                                             Name
                                         </ng-template>
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{row.prefix + row.first_name + row.last_name}}
+                                            {{row.prefix +' '+ row.first_name}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column>
@@ -64,7 +64,7 @@
                                             Registered On
                                         </ng-template>
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{row.created_at}}
+                                            {{ row.created_at | date: 'dd/MM/yyyy' }} {{ row.created_at | date: 'shortTime' }}
                                         </ng-template>
                                     </ngx-datatable-column>
 
@@ -91,7 +91,8 @@
                                             Actions
                                         </ng-template>
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            Edit
+                                            <span class="edit" (click)="editPatient(row)">Edit</span>
+                                            <span class="billing">Billing</span>
                                         </ng-template>
                                     </ngx-datatable-column>
 
@@ -111,7 +112,7 @@
 
 <app-add-new-patient (onTogglePatient)="toggleDisplayAddPatient($event)" *ngIf="displayAddPatient" class="custom-temp" [class.extra-sparkle]="displayAddPatient == true"></app-add-new-patient>
 
-<app-edit-patient *ngIf="displayEditPatient" class="custom-temp"></app-edit-patient>
+<app-edit-patient (onToggleEditPatient)="toggleeditPatient($event)" *ngIf="displayEditPatient" class="custom-temp" [receivedEditdata]="editData"></app-edit-patient>
 <app-billing *ngIf="displayBillingPatient" class="custom-temp"></app-billing>
 
 <!-- <app-add-new-patient class="custom-temp"></app-add-new-patient> -->
