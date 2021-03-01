@@ -1,0 +1,116 @@
+.patient-name-sec {
+    background: rgb(4 162 155 / 5%);
+    border: 1px dashed #04A29B;
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+.name-sec-inr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name-sec-left {
+    display: flex;
+}
+
+.name-icon {
+    background: #04A29B;
+    width: 53px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.name-icon h3 {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.patient-name h3 {
+    color: #04A29B;
+    line-height: 32px;
+    font-weight: 600;
+}
+
+.patient-name {
+    padding: 0 10px;
+}
+
+.patient-dtl {
+    display: flex;
+}
+
+.patient-dtl p {
+    margin-right: 15px;
+}
+
+.name-sec-right p {
+    line-height: 28px;
+}
+
+.profile-btn {
+    background: #04A29B;
+}
+
+.report-list-head {
+    border-bottom: 1px solid rgba(112, 112, 112, 0.2);
+    padding: 40px 0;
+}
+
+.tab-list-body {
+    padding: 0 20px;
+}
+
+.authorised-sec {
+    padding: 20px 0;
+}
+
+.test-list table {
+    width: 100%;
+}
+
+.test-list th {
+    text-align: left;
+    padding: 15px 0;
+    min-width: 220px;
+}
+
+.test-list td {
+    padding: 10px 0;
+}
+
+.result-value input {
+    border: 1px solid #04A29B;
+    border-radius: 5px;
+    background: rgba(4, 164, 156, 0.05);
+    padding: 6px 10px;
+    max-width: 60px;
+    color: #04a29b;
+    text-align: center;
+}
+
+.save-btn {
+    margin-top: 30px;
+}
+
+.save-btn .custom-btn {
+    margin: auto;
+}
+
+.test-list {
+    max-height: calc(100vh - 400px);
+    overflow: auto;
+}
+
+.auth-inp {
+    padding: 12px 15px;
+    border: 1px solid #707070;
+    width: 150px;
+    margin-left: auto;
+    border-radius: 5px;
+}

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
@@ -17,6 +16,15 @@ import { RegisterComponent } from './auth/register/register.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { EditReportComponent } from './modules/report/edit-report/edit-report.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ProfileComponent } from './modules/admin/profile/profile.component';
+import { DoctorComponent } from './modules/admin/doctor/doctor.component';
+import { TestComponent } from './modules/admin/test/test.component';
+import { EditProfileComponent } from './modules/admin/edit-profile/edit-profile.component';
+import { EditDoctorComponent } from './modules/admin/edit-doctor/edit-doctor.component';
+import { AddNewDoctorComponent } from './modules/admin/add-new-doctor/add-new-doctor.component';
+import { AddNewTestComponent } from './modules/admin/add-new-test/add-new-test.component';
+import { EditTestComponent } from './modules/admin/edit-test/edit-test.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +39,14 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     BillingComponent,
     RegisterComponent,
     EditReportComponent,
-  
+    ProfileComponent,
+    DoctorComponent,
+    TestComponent,
+    EditProfileComponent,
+    EditDoctorComponent,
+    AddNewDoctorComponent,
+    AddNewTestComponent,
+    EditTestComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +55,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ReactiveFormsModule,
     HttpClientModule,
     NgxDatatableModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

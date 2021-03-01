@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./billing.component.scss']
 })
 export class BillingComponent implements OnInit {
+  
+  @Output() onToggleBilling = new EventEmitter<boolean>();
+ onToggle(addPatient: boolean){
+  this.onToggleBilling.emit(addPatient);
+}
+
   billingForm: FormGroup;
   disabled = true;
   ShowFilter = true;

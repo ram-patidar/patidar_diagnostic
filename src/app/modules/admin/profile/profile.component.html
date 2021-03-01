@@ -1,0 +1,67 @@
+<main class="wrapper-main">
+    <div class="sidebar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="content-main">
+        <div class="dashboard-body page-body">
+            <div class="page-head">
+                <h2>Manage your <b>Lab</b></h2>
+                <button class="custom-btn" (click)="goBack()"><img src="/assets/images/left-arrow-white.svg" alt=""> Back</button>
+            </div>
+            <div class="page-inr page-border">
+                <div class="report-list-sec">
+                    <div class="test-list-sec">
+                        <div class="test-list-inr">
+                            <div class="tab-list-head">
+                                <ul class="nav-tabs">
+                                    <li>
+                                        <a class="nav-link active" routerLink="/profile">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" routerLink="/doctor">Doctor</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" routerLink="/test">Test</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-list-body">
+                                <div class="tab-body-inr">
+                                    <form class="profile-form">
+                                        <ul>
+                                            <li>
+                                                <label class="inp-label">Name</label>
+                                                <input type="text" placeholder="Name" value="Ashrof Khan" class="input" disabled>
+                                            </li>
+                                            <li>
+                                                <label class="inp-label">Occupation</label>
+                                                <input type="text" placeholder="Occupation" value="Radiologist" class="input" disabled>
+                                            </li>
+                                            <li>
+                                                <label class="inp-label">Contact No.</label>
+                                                <input type="text" placeholder="Enter Contact No." value="9876543210" class="input" disabled>
+                                            </li>
+                                            <li>
+                                                <label class="inp-label">Date of Birth</label>
+                                                <input type="date" class="input" disabled>
+                                            </li>
+                                            <li>
+                                                <label class="inp-label">Date of Birth</label>
+                                                <input type="email" class="input" placeholder="patidarnilesh@gmail.com" disabled>
+                                            </li>
+                                        </ul>
+                                        <div class="save-btn">
+                                            <input type="submit" value="Edit" class="custom-btn" (click)="displayProfile()">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<app-edit-profile class="custom-temp" (onToggleProfile)="toggleDisplayEditProfile($event)" [class.extra-sparkle]="displayEditProfile == true"></app-edit-profile>

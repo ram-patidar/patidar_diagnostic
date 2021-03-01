@@ -1,0 +1,18 @@
+.profile-form ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -20px 0 -10px !important;
+}
+
+.profile-form li {
+    width: calc(33% - 20px);
+    margin: 0 10px;
+}
+
+.save-btn {
+    margin-top: 20px;
+}
+
+.save-btn .custom-btn {
+    margin: auto;
+}

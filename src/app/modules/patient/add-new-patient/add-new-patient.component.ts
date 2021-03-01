@@ -15,11 +15,11 @@ export class AddNewPatientComponent implements OnInit {
 
   //  @Output() onDatePicked = new EventEmitter<any>();
    @Output() onTogglePatient = new EventEmitter<boolean>();
-  
    onToggle(addPatient: boolean){
     this.onTogglePatient.emit(addPatient);
-  
 }
+
+
 addPatientForm:FormGroup;
 
   constructor(private PatService:PatientServiceService, private fb:FormBuilder) {

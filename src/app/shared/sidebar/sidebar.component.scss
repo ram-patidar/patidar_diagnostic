@@ -1,4 +1,4 @@
-.active .default-img {
+.active-link .default-img {
     display: none;
 }
 
@@ -6,7 +6,7 @@
     display: none;
 }
 
-.active .active-img {
+.active-link .active-img {
     display: inline;
 }
 
@@ -20,7 +20,7 @@
     color: #000;
 }
 
-.sidebar-menu .active a {
+.sidebar-menu .active-link a {
     color: #04a29b;
     background: hsl(177deg 95% 33% / 5%);
 }

@@ -1,0 +1,97 @@
+<div class="dashboard-body page-body patient-inr-page">
+    <div class="page-head">
+        <h2>Add <b>Test</b></h2>
+        <a (click)="onToggle(false)">
+            <img src="assets/images/remove.svg" alt="">
+        </a>
+    </div>
+    <div class="page-inr">
+        <div class="edit-profile-form">
+            <form>
+                <ul>
+                    <li>
+                        <label class="inp-label">Test Name</label>
+                        <input type="text" placeholder="Test Name" class="input">
+                    </li>
+                    <li>
+                        <label class="inp-label">Test Price</label>
+                        <input type="text" placeholder="Test Price" class="input">
+                    </li>
+                    <li class="parameter-field">
+                        <div class="para-name">
+                            <label class="inp-label">Parameter Name</label>
+                            <input type="text" placeholder="Enter Test Parameter" class="input">
+                        </div>
+                        <div class="param-dtl">
+                            <div>
+                                <select class="select">
+                                    <option>Unit</option>
+                                    <option>mg/dl</option>
+                                    <option>IU/L</option>
+                                </select>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Min" class="input">
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Max" class="input">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="add-para">
+                    <button type="submit" class="custom-btn">Add</button>
+                </div>
+                <div class="add-test-sec">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parameters</th>
+                                <th>Unit</th>
+                                <th>Range</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Bilirubin:
+                                </td>
+                                <td>
+                                    <span class="reg-span time">mg/dl</span>
+                                </td>
+                                <td>
+                                    0.1-1.2
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Bilirubin:
+                                </td>
+                                <td>
+                                    <span class="reg-span time">mg/dl</span>
+                                </td>
+                                <td>
+                                    0.1-1.2
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Bilirubin:
+                                </td>
+                                <td>
+                                    <span class="reg-span time">mg/dl</span>
+                                </td>
+                                <td>
+                                    0.1-1.2
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="add-test-btn">
+                    <button type="submit" class="custom-btn">Add Test</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

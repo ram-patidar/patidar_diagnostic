@@ -1,0 +1,40 @@
+.table-filter .col-md-4 select {
+    margin: 0 10px;
+    width: 70px;
+}
+
+.table-filter .col-md-4 {
+    display: flex;
+    align-items: center;
+}
+
+.edit-icon {
+    background: rgb(247 160 0 / 10%);
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #F7A000;
+    margin: 5px;
+}
+
+.billing-icon {
+    background: rgb(28 162 0 / 10%);
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #1CA200;
+    margin: 5px;
+}
+
+::ng-deep .ngx-datatable .datatable-body {
+    max-height: calc(100vh - 400px) !important;
+    overflow: hidden auto;
+    border-left: 1px solid #Ddd;
+    border-right: 1px solid #Ddd;
+}

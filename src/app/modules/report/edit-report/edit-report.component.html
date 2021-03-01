@@ -1,1 +1,195 @@
-<p>edit-report works!</p>
+<main class="wrapper-main">
+    <div class="sidebar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="content-main">
+        <div class="dashboard-body page-body">
+            <div class="page-head">
+                <h2>Edit <b>Report</b></h2>
+            </div>
+            <div class="page-inr page-border">
+                <div class="report-list-sec">
+                    <div class="report-list-head">
+                        <div class="patient-name-sec">
+                            <div class="name-sec-inr">
+                                <div class="name-sec-left">
+                                    <div class="name-icon">
+                                        <h3>Ak</h3>
+                                    </div>
+                                    <div class="patient-name">
+                                        <h3>Mr Ashrof Khan</h3>
+                                        <div class="patient-dtl">
+                                            <p>
+                                                <span>
+                                            <img src="assets/images/feather-calendar.svg" alt="">
+                                        </span> 55
+                                            </p>
+                                            <p>
+                                                <span>
+                                                <img src="assets/images/feather-user.svg" alt="">
+                                            </span> Male
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name-sec-right">
+                                    <p>
+                                        <span>
+                                        <img src="assets/images/feather-clock.svg" alt=""> 
+                                    </span> 15 Feb 2021
+                                    </p>
+                                    <p>
+                                        <span>
+                                        <img src="assets/images/feather-phone-call.svg" alt=""> 
+                                    </span> 9876543210
+                                    </p>
+                                </div>
+                                <div class="name-sec-right">
+                                    <a href="" class="custom-btn profile-btn">Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-list-sec">
+                        <div class="test-list-inr">
+                            <div class="tab-list-head">
+                                <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                                    <li ngbNavItem>
+                                        <a ngbNavLink>Lipid Profile</a>
+                                        <ng-template ngbNavContent>
+                                            <div class="tab-body-inr">
+                                                <form>
+                                                    <div class="authorised-sec">
+                                                        <div class="auth-inp">
+                                                            <input type="checkbox" id="check-box">
+                                                            <label for="check-box"> Authorised</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="test-list">
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Parameter Name</th>
+                                                                    <th>Result</th>
+                                                                    <th>Normal Range</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Total Cholesterol:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>150-250</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>HDL Cholesterol:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Men -40-50 Women- 50-59</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Triglycerides:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Normal -Less than 150 Boderline High-150-199 High Value- 200-499 Very High- 500 or above </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>VLDL Cholesterol:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Normal- 2 to 30</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>HDL Cholesterol:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Men -40-50 Women- 50-59</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Triglycerides:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Normal -Less than 150 Boderline High-150-199 High Value- 200-499 Very High- 500 or above </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>VLDL Cholesterol:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Normal- 2 to 30</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="save-btn">
+                                                        <input type="submit" value="Save" class="custom-btn">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </ng-template>
+                                    </li>
+                                    <li ngbNavItem>
+                                        <a ngbNavLink>Glucose Random</a>
+                                        <ng-template ngbNavContent>
+                                            <div class="tab-body-inr">
+                                                <form>
+                                                    <div class="authorised-sec">
+                                                        <div class="auth-inp">
+                                                            <input type="checkbox" id="check-box">
+                                                            <label for="check-box"> Authorised</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="test-list">
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Parameter Name</th>
+                                                                    <th>Result</th>
+                                                                    <th>Normal Range</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>HDL Cholesterol:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Men -40-50 Women- 50-59</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Triglycerides:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Normal -Less than 150 Boderline High-150-199 High Value- 200-499 Very High- 500 or above </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>VLDL Cholesterol:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Normal- 2 to 30</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>HDL Cholesterol:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Men -40-50 Women- 50-59</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Triglycerides:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Normal -Less than 150 Boderline High-150-199 High Value- 200-499 Very High- 500 or above </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>VLDL Cholesterol:</td>
+                                                                    <td><span class="result-value"><input type="text" placeholder="0.00"></span> Mg/Dl</td>
+                                                                    <td>Normal- 2 to 30</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="save-btn">
+                                                        <input type="submit" value="Save" class="custom-btn">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </ng-template>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-list-body">
+                                <div [ngbNavOutlet]="nav"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

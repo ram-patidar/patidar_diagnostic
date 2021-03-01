@@ -43,6 +43,22 @@ p {
     margin: 0;
 }
 
+
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 .container {
     max-width: 1400px;
     margin: auto;
@@ -62,13 +78,12 @@ p {
 .select,
 .textarea {
     width: 100%;
-    background: #FAFAFA;
+    background-color: #FAFAFA;
     height: 55px;
     border-radius: 5px;
     border: 1px solid #C9C9C9;
     padding: 15px 20px;
     font-size: 16px;
-    margin-bottom: 20px;
     line-height: 55px;
     font-family: 'Proxima Nova';
 }
@@ -78,6 +93,15 @@ p {
     resize: none;
     height: 110px;
     font-family: 'Proxima Nova';
+}
+
+select {
+    appearance: none;
+    background-image: url(../images/ionic-ios-arrow-forward.svg);
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    padding-right: 10px !important;
 }
 
 .custom-btn {
@@ -98,4 +122,8 @@ p {
 
 .custom-btn:hover {
     opacity: 0.9;
+}
+
+form li {
+    padding-bottom: 20px;
 }

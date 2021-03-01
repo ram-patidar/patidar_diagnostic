@@ -1,0 +1,104 @@
+<main class="wrapper-main">
+    <div class="sidebar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="content-main">
+        <div class="dashboard-body page-body">
+            <div class="page-head">
+                <h2>Patient <b>List</b></h2>
+                <button class="custom-btn" (click)="DisplayPatient()">Add New Patient</button>
+            </div>
+            <div class="page-inr page-border">
+                <div class="patient-list-sec">
+                    <div class="datatable">
+                        <div class="datatable-inr">
+                            <div class="table-filter">
+                                <div class="col-md-8">
+                                    <input #search id="search" type="text" class="input" placeholder="Search Patient" />
+                                </div>
+                                <div class="col-md-4">
+                                    Show
+                                    <select id="position-select" (change)="changeLimit($event)" class="select">
+                                    <option [value]="5">5</option>
+                                    <option [value]="10">10</option>
+                                    <option [value]="20">20</option>
+                                    <option [value]="50">50</option>
+                                  </select> Patient
+                                    <!-- <a csvLink [data]="medicinedata">Export as csv</a> -->
+                                </div>
+                            </div>
+                            <div class="datable-body">
+                                <ngx-datatable [rows]="dataall" [columnMode]="'force'" class="material expandable res-datatable" [headerHeight]="80" [footerHeight]="80" [rowHeight]="'auto'" [limit]="limit" [offset]="offset" [selected]="selected" [scrollbarH]="true" [selectAllRowsOnPage]="false"
+                                    (activate)="onActivate($event)" (select)='onSelect($event)' (page)="onPage($event)">
+                                    <ngx-datatable-column name="#" [minWidth]="40" [maxWidth]="40">
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{dataall.indexOf(row)+1}}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column [flexGrow]="1" [sortable]="true" prop="first_name">
+                                        <ng-template let-column="column" ngx-datatable-header-template>Name
+                                        </ng-template>
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{row.prefix +' '+ row.first_name}}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column [flexGrow]="1" [minWidth]="130" [maxWidth]="130">
+                                        <ng-template let-column="column" ngx-datatable-header-template>
+                                            Gender/age
+                                        </ng-template>
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{row.gender +'/'+ row.age}}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column [flexGrow]="1" [minWidth]="150" [maxWidth]="150">
+                                        <ng-template let-column="column" ngx-datatable-header-template>
+                                            Registered On
+                                        </ng-template>
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            <span class="reg-span date"><img src="assets/images/icon-feather-calendar.svg" alt=""> {{row.created_at | date: 'dd/MM/yyyy' }}</span> <span class="reg-span time"><img src="assets/images/icon-feather-clock.svg" alt=""> {{ row.created_at | date: 'shortTime' }}</span>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column [flexGrow]="1">
+                                        <ng-template let-column="column" ngx-datatable-header-template>
+                                            Patient ID
+                                        </ng-template>
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{'PDP'+row.id}}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column [flexGrow]="1">
+                                        <ng-template let-column="column" ngx-datatable-header-template>
+                                            Contact No.
+                                        </ng-template>
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            {{row.contact}}
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                    <ngx-datatable-column [flexGrow]="1">
+                                        <ng-template let-column="column" ngx-datatable-header-template>
+                                            Actions
+                                        </ng-template>
+                                        <ng-template let-row="row" ngx-datatable-cell-template>
+                                            <!-- <span class="edit" (click)="editPatient(row)">Edit</span>
+                                            <span class="billing">Billing</span> -->
+                                            <span class="edit-icon" (click)="editPatient(row)">
+                                                <img src="../../../../assets/images/pencil.svg" alt="">
+                                            </span>
+                                            <span class="billing-icon" (click)="DisplayBillingPatient()">
+                                                <img src="../../../../assets/images/billing.svg" alt="">
+                                            </span>
+                                        </ng-template>
+                                    </ngx-datatable-column>
+                                </ngx-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- *ngIf="displayAddPatient" -->
+<app-add-new-patient (onTogglePatient)="toggleDisplayAddPatient($event)" class="custom-temp" [class.extra-sparkle]="displayAddPatient == true"></app-add-new-patient>
+<app-edit-patient (onToggleEditPatient)="toggleeditPatient($event)" class="custom-temp" [class.extra-sparkle]="displayEditPatient == true"></app-edit-patient>
+<!-- <app-billing (onToggleBilling)="toggleDisplaybilling($event)" class="custom-temp" [class.extra-sparkle]="displayBillingPatient == true"></app-billing> -->
