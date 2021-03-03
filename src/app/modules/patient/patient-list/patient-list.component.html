@@ -7,6 +7,7 @@
             <div class="page-head">
                 <h2>Patient <b>List</b></h2>
                 <button class="custom-btn" (click)="DisplayPatient()">Add New Patient</button>
+
             </div>
             <div class="page-inr page-border">
                 <div class="patient-list-sec">
@@ -39,7 +40,7 @@
                                             Name
                                         </ng-template>
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            {{row.prefix +' '+ row.first_name}}
+                                            {{row.prefix +' '+ row.first_name +' '+row.last_name}}
                                         </ng-template>
                                     </ngx-datatable-column>
                                     <ngx-datatable-column>
@@ -83,7 +84,7 @@
                                             <span class="edit-icon" (click)="editPatient(row)">
                                                 <img src="../../../../assets/images/pencil.svg" alt="">
                                             </span>
-                                            <span class="billing-icon" (click)="DisplayBillingPatient()">
+                                            <span class="billing-icon" (click)="DisplayBillingPatient(row)">
                                                 <img src="../../../../assets/images/billing.svg" alt="">
                                             </span>
                                         </ng-template>
@@ -96,8 +97,9 @@
             </div>
         </div>
     </div>
+
 </main>
 
-<app-add-new-patient (onTogglePatient)="toggleDisplayAddPatient($event)" class="custom-temp" [class.extra-sparkle]="displayAddPatient == true"></app-add-new-patient>
-<app-edit-patient (onToggleEditPatient)="toggleeditPatient($event)" class="custom-temp" [receivedEditdata]="editData" [class.extra-sparkle]="displayEditPatient == true"></app-edit-patient>
-<app-billing (onToggleBilling)="toggleDisplaybilling($event)" class="custom-temp" [class.extra-sparkle]="displayBillingPatient == true"></app-billing>
+<app-add-new-patient (onTogglePatient)="toggleDisplayAddPatient($event)" (onPatientAdded)="get_data($event)" class="custom-temp" [class.extra-sparkle]="displayAddPatient == true"></app-add-new-patient>
+<app-edit-patient (onToggleEditPatient)="toggleeditPatient($event)" (displayPatientData)="get_data(false)" class="custom-temp" [events]="eventsSubject.asObservable()" [class.extra-sparkle]="displayEditPatient == true"></app-edit-patient>
+<app-billing [events]="eventsBilling.asObservable()" (onToggleBilling)="toggleDisplaybilling($event)" [receivedBillingData]="billingData" class="custom-temp" [class.extra-sparkle]="displayBillingPatient == true"></app-billing>

@@ -1,3 +1,4 @@
+<lib-toastify-toast-container></lib-toastify-toast-container>
 <div class="dashboard-body page-body patient-inr-page">
     <div class="page-head">
         <h2>Add <b>Doctor</b></h2>
@@ -7,22 +8,40 @@
     </div>
     <div class="page-inr">
         <div class="edit-profile-form">
-            <form>
+            <form [formGroup]="addDoctorForm" (submit)="addDoctor()">
                 <ul>
                     <li>
                         <label class="inp-label">Name</label>
-                        <input type="text" placeholder="Enter Your Name" class="input">
+                        <input type="text" formControlName="name" placeholder="Enter Your Name" class="input">
+                        <div *ngIf="addDoctorForm.controls['name'].errors && addDoctorForm.controls['name'].invalid && (addDoctorForm.controls['name'].dirty || addDoctorForm.controls['name'].touched)" class="alert alert-danger">
+                            <div *ngIf="addDoctorForm.controls['name'].errors.required">
+                                Doctor name is required.
+                            </div>
+
+                        </div>
                     </li>
                     <li>
                         <label class="inp-label">Occupation</label>
-                        <input type="text" placeholder="Your Occupation" class="input">
+                        <input type="text" formControlName="ocupation" placeholder="Your occupation" class="input">
+                        <div *ngIf="addDoctorForm.controls['ocupation'].errors && addDoctorForm.controls['ocupation'].invalid && (addDoctorForm.controls['ocupation'].dirty || addDoctorForm.controls['ocupation'].touched)" class="alert alert-danger">
+                            <div *ngIf="addDoctorForm.controls['ocupation'].errors.required">
+                                ocupation is required.
+                            </div>
+
+                        </div>
                     </li>
                     <li>
                         <label class="inp-label">Contact No.</label>
-                        <input placeholder="Enter Your Number" class="input">
+                        <input type="number" placeholder="Enter Your Number" formControlName="contact" class="input">
+                        <div *ngIf="addDoctorForm.controls['contact'].errors && addDoctorForm.controls['contact'].invalid && (addDoctorForm.controls['contact'].dirty || addDoctorForm.controls['contact'].touched)" class="alert alert-danger">
+                            <div *ngIf="addDoctorForm.controls['contact'].errors.required">
+                                Contact is required.
+                            </div>
+
+                        </div>
                     </li>
                     <li>
-                        <button type="submit" class="custom-btn">Update</button>
+                        <button type="submit" class="custom-btn" [disabled]="addDoctorForm.invalid">Add</button>
                     </li>
                 </ul>
             </form>

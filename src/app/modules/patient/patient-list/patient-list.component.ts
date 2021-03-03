@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { PatientServiceService } from 'src/app/services/patient-service.service';
 
@@ -11,17 +11,22 @@ import { PatientServiceService } from 'src/app/services/patient-service.service'
 
 export class PatientListComponent implements OnInit {
   public dataall: any;
+  eventsSubject: Subject<void> = new Subject<void>();
+  eventsBilling: Subject<void> = new Subject<void>();
+ 
+  
 
   @ViewChild('search', { static: false }) search: any;
   public temp: any;
   public selected = [];
   public testdata = [];
-  public editData: any;
+  public editData = [];
   public count = 100;
   public pageSize = 1;
   public limit = 5;
   public offset = 0;
   public rowdata = [];
+  billingData = [];
   columns = [{ name: 'Prefix', prop: 'prefix', width: 100 }, { name: 'fName', prop: 'first_name', width: 100 }, { name: 'LName', prop: 'last_name', width: 100 }, { name: 'Gender/age', prop: 'gender', width: 100 }, { name: 'age', prop: 'age', width: 100 }, { name: 'Registered On', prop: 'created_at', width: 100 }, { name: 'Patient Id', prop: 'id', width: 100 }, { name: 'Contact No', prop: 'contact', width: 100 }];
   displayAddPatient = false;
   displayEditPatient = false;
@@ -40,8 +45,10 @@ export class PatientListComponent implements OnInit {
   }
 
   // Billing 
-  DisplayBillingPatient() {
+  DisplayBillingPatient(row:any) {
+    console.log(row);
     this.displayBillingPatient = true;
+    this.eventsBilling.next(row);
   }
 
   toggleDisplaybilling(v) {
@@ -52,7 +59,7 @@ export class PatientListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.get_data();
+    this.get_data(false);
   }
 
   onActivate(event: any) {
@@ -119,20 +126,30 @@ export class PatientListComponent implements OnInit {
     this.selected.push(...selected);
   }
 
-  get_data() {
+  get_data(rb:any) {
     this.patService.getPatient().subscribe(data => {
       this.temp = data;
       this.dataall = [...this.temp];
-      console.log(data);
+     
+      if(rb){
+        this.displayBillingPatient = true;
+        this.displayAddPatient = false;
+        this.billingData = rb;
+        this.eventsBilling.next(rb);
+      }
     });
   }
 
   // Edit Patient
   editPatient(row: any) {
-    console.log(row);
+    
     this.displayEditPatient = true;
     this.editData = row;
+    this.eventsSubject.next(row);
+   
   }
+
+  
 
   toggleeditPatient(e: boolean) {
     this.displayEditPatient = e;

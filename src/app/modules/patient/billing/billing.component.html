@@ -5,41 +5,53 @@
             <img src="assets/images/remove.svg" alt="">
         </a>
     </div>
+
     <div class="page-inr">
         <div class="billing-form">
             <form [formGroup]="billingForm">
-                <div class="patient-name-sec">
+                <div class="patient-name-sec" *ngIf="receivedBillingData.length != 0">
                     <div class="name-sec-inr">
                         <div class="name-sec-left">
                             <div class="name-icon">
-                                <h3>Ak</h3>
+                                <h3>{{receivedBillingData.first_name[0]+receivedBillingData.last_name[0]}}</h3>
                             </div>
                             <div class="patient-name">
-                                <h3>Mr Ashrof Khan</h3>
+                                <h3>{{receivedBillingData.prefix+' '+receivedBillingData.first_name+' '+receivedBillingData.last_name}}</h3>
                                 <div class="patient-dtl">
                                     <p>
                                         <span>
                                         <img src="assets/images/feather-calendar.svg" alt="">
-                                    </span> 55
+                                    </span> {{receivedBillingData.age}}
                                     </p>
                                     <p>
                                         <span>
                                             <img src="assets/images/feather-user.svg" alt="">
-                                        </span> Male
+                                        </span> {{receivedBillingData.gender}}
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="name-sec-right">
-                            <p>
-                                <span>
-                                    <img src="assets/images/feather-clock.svg" alt=""> 
-                                </span> 15 Feb 2021
-                            </p>
+                            <div *ngIf="receivedBillingData.created_at != undefined; else elseBlock">
+                                <p>
+                                    <span>
+                                        <img src="assets/images/feather-clock.svg" alt=""> 
+                                    </span> {{receivedBillingData.created_at | date: 'dd/MM/yyyy' }}
+                                </p>
+                            </div>
+                            <ng-template #elseBlock>
+                                <p>
+                                    <span>
+                                        <img src="assets/images/feather-clock.svg" alt=""> 
+                                    </span> {{todayDate | date: 'dd/MM/yyyy' }}
+                                </p>
+                            </ng-template>
+
+
                             <p>
                                 <span>
                                     <img src="assets/images/feather-phone-call.svg" alt=""> 
-                                </span> 9876543210
+                                </span> {{receivedBillingData.contact}}
                             </p>
                         </div>
                     </div>

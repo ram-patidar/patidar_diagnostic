@@ -9,20 +9,25 @@ export class PatientServiceService {
 
 
   constructor(private http:HttpClient) { }
+appKey = 'ABCDEFGHJK';
+PatientmainApi = 'http://nextige.com/patidarlab/api/patients?APP_KEY=';
+  PatientApi = 'http://nextige.com/patidarlab/api/patients/';
 
-  PatientApi = 'http://nextige.com/patidarlab/api/patients?APP_KEY=ABCDEFGHJK';
-  EditPatient = 'http://nextige.com/patidarlab/api/patients/id?APP_KEY=ABCDEFGHJK';
 
   getPatient(){
-    return this.http.get(this.PatientApi);
+    return this.http.get(this.PatientmainApi+this.appKey);
   }
 
   addPatient(pdata:any){
-    return this.http.post(this.PatientApi, pdata);
+    return this.http.post(this.PatientmainApi+this.appKey, pdata);
   }
 
-  updatePatient(pdata:any){
-    return this.http.put(this.EditPatient, pdata);
+  updatePatient(id:any,pdata:any){
+    return this.http.put(this.PatientApi+id+'?APP_KEY='+this.appKey, pdata);
+  }
+
+  deletePatient(id:any){
+    return this.http.delete(this.PatientApi+id+'?APP_KEY='+this.appKey);
   }
  
 

@@ -25,6 +25,10 @@ import { EditDoctorComponent } from './modules/admin/edit-doctor/edit-doctor.com
 import { AddNewDoctorComponent } from './modules/admin/add-new-doctor/add-new-doctor.component';
 import { AddNewTestComponent } from './modules/admin/add-new-test/add-new-test.component';
 import { EditTestComponent } from './modules/admin/edit-test/edit-test.component';
+import { AngularToastifyModule, ToastService } from 'angular-toastify';
+
+
+
 
 @NgModule({
   declarations: [
@@ -56,7 +60,8 @@ import { EditTestComponent } from './modules/admin/edit-test/edit-test.component
     HttpClientModule,
     NgxDatatableModule,
     NgMultiSelectDropDownModule,
-    NgbModule
+    NgbModule,
+    AngularToastifyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

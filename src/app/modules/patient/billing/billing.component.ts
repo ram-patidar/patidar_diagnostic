@@ -1,5 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable, Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-billing',
@@ -7,7 +9,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./billing.component.scss']
 })
 export class BillingComponent implements OnInit {
-  
+  todayDate = new Date();
+  @Input() events: Observable<void>;
+  private eventsSubscription: Subscription;
+  @Input() receivedBillingData:any;
   @Output() onToggleBilling = new EventEmitter<boolean>();
  onToggle(addPatient: boolean){
   this.onToggleBilling.emit(addPatient);
@@ -21,6 +26,7 @@ export class BillingComponent implements OnInit {
   selectedItems: any;
   dropdownSettings = {};
   idField: any;
+ 
 
   constructor(private fb: FormBuilder) {
     this.billingForm = this.fb.group({
@@ -29,6 +35,7 @@ export class BillingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.eventsSubscription = this.events.subscribe((row) => this.billing_data(row));
     this.tests = [
       { item_text: 'Mumbai' },
       { item_text: 'Bangaluru' },
@@ -49,6 +56,7 @@ export class BillingComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+    console.log(this.receivedBillingData);
   }
   onItemSelect(item: any) {
     console.log(item);
@@ -56,5 +64,13 @@ export class BillingComponent implements OnInit {
   onSelectAll(items: any) {
     console.log(items);
   }
+
+  billing_data(row:any){
+this.receivedBillingData = row;
+
+
+  }
+
+
   
 }

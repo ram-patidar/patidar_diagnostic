@@ -1,3 +1,4 @@
+<lib-toastify-toast-container *ngIf="displaytoast"></lib-toastify-toast-container>
 <div class="dashboard-body page-body patient-inr-page">
     <div class="page-head">
         <h2>Add New <b>Patient</b></h2>
@@ -11,8 +12,9 @@
                 <ul>
                     <li>
                         <label class="inp-label">Prefix<span class="required">*</span></label>
-                        <select class="select" formControlName="prefix" name="prefix">
-                           <option>Mr</option>
+                        <select class="select" formControlName="prefix" name="prefix" (change)="getPrefix(this)">
+                           <option value="Mr.">Mr.</option>
+                           <option value="Mrs.">Mrs.</option>
                        </select>
                         <div *ngIf="addPatientForm.controls['prefix'].errors && addPatientForm.controls['prefix'].invalid && (addPatientForm.controls['prefix'].dirty || addPatientForm.controls['prefix'].touched)" class="alert alert-danger">
                             <div *ngIf="addPatientForm.controls['prefix'].errors.required">
@@ -22,20 +24,30 @@
                         </div>
                     </li>
                     <li class="width-85">
-                        <label class="inp-label">Full Name</label>
-                        <input type="text" placeholder="Full Name" class="input" formControlName="first_name" name="first_name">
+                        <label class="inp-label">First Name</label>
+                        <input type="text" placeholder="First Name" class="input" formControlName="first_name" name="first_name">
                         <div *ngIf="addPatientForm.controls['first_name'].errors && addPatientForm.controls['first_name'].invalid && (addPatientForm.controls['first_name'].dirty || addPatientForm.controls['first_name'].touched)" class="alert alert-danger">
                             <div *ngIf="addPatientForm.controls['first_name'].errors.required">
-                                Name is required.
+                                First name is required.
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="width-85">
+                        <label class="inp-label">Last Name</label>
+                        <input type="text" placeholder="Last Name" class="input" formControlName="last_name" name="last_name">
+                        <div *ngIf="addPatientForm.controls['last_name'].errors && addPatientForm.controls['last_name'].invalid && (addPatientForm.controls['last_name'].dirty || addPatientForm.controls['last_name'].touched)" class="alert alert-danger">
+                            <div *ngIf="addPatientForm.controls['last_name'].errors.required">
+                                Last Name is required.
                             </div>
 
                         </div>
                     </li>
                     <li class="width-50">
                         <label class="inp-label">Gender<span class="required" >*</span></label>
-                        <select class="select" formControlName="gender" name="gender">
-                            <option>Male</option>
-                            <option>Female</option>
+                        <select class="select" formControlName="gender" name="gender" (change)="getPrefix(this)">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
                         </select>
                         <div *ngIf="addPatientForm.controls['gender'].errors && addPatientForm.controls['gender'].invalid && (addPatientForm.controls['gender'].dirty || addPatientForm.controls['gender'].touched)" class="alert alert-danger">
                             <div *ngIf="addPatientForm.controls['gender'].errors.required">
