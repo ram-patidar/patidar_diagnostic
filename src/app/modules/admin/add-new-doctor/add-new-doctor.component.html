@@ -17,7 +17,6 @@
                             <div *ngIf="addDoctorForm.controls['name'].errors.required">
                                 Doctor name is required.
                             </div>
-
                         </div>
                     </li>
                     <li>
@@ -27,7 +26,6 @@
                             <div *ngIf="addDoctorForm.controls['ocupation'].errors.required">
                                 ocupation is required.
                             </div>
-
                         </div>
                     </li>
                     <li>
@@ -37,11 +35,10 @@
                             <div *ngIf="addDoctorForm.controls['contact'].errors.required">
                                 Contact is required.
                             </div>
-
                         </div>
                     </li>
                     <li>
-                        <button type="submit" class="custom-btn" [disabled]="addDoctorForm.invalid">Add</button>
+                        <button type="submit" class="custom-btn" [disabled]="addDoctorForm.invalid">Add Doctor</button>
                     </li>
                 </ul>
             </form>

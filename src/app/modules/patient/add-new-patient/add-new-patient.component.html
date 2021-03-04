@@ -13,14 +13,14 @@
                     <li>
                         <label class="inp-label">Prefix<span class="required">*</span></label>
                         <select class="select" formControlName="prefix" name="prefix" (change)="getPrefix(this)">
-                           <option value="Mr.">Mr.</option>
-                           <option value="Mrs.">Mrs.</option>
+                            <option selected value>Select</option>
+                            <option value="Mr.">Mr.</option>
+                            <option value="Mrs.">Mrs.</option>
                        </select>
                         <div *ngIf="addPatientForm.controls['prefix'].errors && addPatientForm.controls['prefix'].invalid && (addPatientForm.controls['prefix'].dirty || addPatientForm.controls['prefix'].touched)" class="alert alert-danger">
                             <div *ngIf="addPatientForm.controls['prefix'].errors.required">
                                 Prefix is required.
                             </div>
-
                         </div>
                     </li>
                     <li class="width-85">
@@ -30,30 +30,28 @@
                             <div *ngIf="addPatientForm.controls['first_name'].errors.required">
                                 First name is required.
                             </div>
-
                         </div>
                     </li>
-                    <li class="width-85">
+                    <li>
                         <label class="inp-label">Last Name</label>
                         <input type="text" placeholder="Last Name" class="input" formControlName="last_name" name="last_name">
                         <div *ngIf="addPatientForm.controls['last_name'].errors && addPatientForm.controls['last_name'].invalid && (addPatientForm.controls['last_name'].dirty || addPatientForm.controls['last_name'].touched)" class="alert alert-danger">
                             <div *ngIf="addPatientForm.controls['last_name'].errors.required">
                                 Last Name is required.
                             </div>
-
                         </div>
                     </li>
                     <li class="width-50">
                         <label class="inp-label">Gender<span class="required" >*</span></label>
                         <select class="select" formControlName="gender" name="gender" (change)="getPrefix(this)">
-                            <option value="M">Male</option>
+                            <option selected value>Select Gender</option>
+                             <option value="M">Male</option>
                             <option value="F">Female</option>
                         </select>
                         <div *ngIf="addPatientForm.controls['gender'].errors && addPatientForm.controls['gender'].invalid && (addPatientForm.controls['gender'].dirty || addPatientForm.controls['gender'].touched)" class="alert alert-danger">
                             <div *ngIf="addPatientForm.controls['gender'].errors.required">
                                 Gender is required.
                             </div>
-
                         </div>
                     </li>
                     <li class="width-50">
@@ -63,7 +61,6 @@
                             <div *ngIf="addPatientForm.controls['age'].errors.required">
                                 Age is required.
                             </div>
-
                         </div>
                     </li>
                     <li>
@@ -73,7 +70,6 @@
                             <div *ngIf="addPatientForm.controls['contact'].errors.required">
                                 Contact is required.
                             </div>
-
                         </div>
                     </li>
                     <li>

@@ -46,8 +46,6 @@
                                     </span> {{todayDate | date: 'dd/MM/yyyy' }}
                                 </p>
                             </ng-template>
-
-
                             <p>
                                 <span>
                                     <img src="assets/images/feather-phone-call.svg" alt=""> 
@@ -61,36 +59,31 @@
                         <label class="inp-label">Referred By:</label>
                         <select class="select">
                             <option>Select Doctor</option>
+                            <option *ngFor="let doctors of allDoctor">{{doctors.name}}</option>
                         </select>
                     </li>
                     <li class="width-50">
                         <label class="inp-label">Tests:</label>
-                        <ng-multiselect-dropdown name="tests" [placeholder]="'Select City'" [data]="tests" formControlName="tests" [disabled]="disabled" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)">
+                        <ng-multiselect-dropdown [settings]="dropdownSettings" name="tests" [placeholder]="'Select Test'" [data]="tests" formControlName="tests" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">>
                         </ng-multiselect-dropdown>
                     </li>
                 </ul>
                 <div class="select-test-sec">
                     <ul>
-                        <li>
-
-                        </li>
-                        <li>
-                            <h4><span></span> Complete Blood Count (CBC)</h4>
-                            <p>₹ 100</p>
-                        </li>
-                        <li>
-                            <h4><span></span> Complete Blood Count (CBC)</h4>
-                            <p>₹ 100</p>
+                        <li *ngFor="let tests of selectedTests">
+                            <h4><span>{{tests.test_name}}</span></h4>
+                            <p>₹ {{tests.test_price}}</p>
                         </li>
                     </ul>
                 </div>
                 <div class="total-sec">
-                    <h4>Total: <span class="total">₹ 200</span></h4>
+                    <h4>Total: <span class="total">₹ 1250</span></h4>
                 </div>
                 <div class="billing-btn">
-                    <button type="submit" class="custom-btn">Save</button>
+                    <button type="submit" class="custom-btn" (click)="DisplayBilling()">Save</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<app-billing-modal (onToggleBilling)="toggleDisplayBillingPopup($event)" class="custom-temp" [class.extra-sparkle1]="displayBillingPopup == true"></app-billing-modal>

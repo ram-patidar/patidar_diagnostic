@@ -31,7 +31,14 @@ export class PatientListComponent implements OnInit {
   displayAddPatient = false;
   displayEditPatient = false;
   displayBillingPatient = false;
+  displayBillingPopup = false;
   data: any;
+
+
+  myOptions = {
+    'show-delay': 300,
+    // 'theme': 'light'
+  }
 
   // Add Patient
   DisplayPatient() {
@@ -40,7 +47,6 @@ export class PatientListComponent implements OnInit {
 
   toggleDisplayAddPatient(v: boolean) {
     this.displayAddPatient = v;
-
     console.log(v);
   }
 
@@ -142,14 +148,11 @@ export class PatientListComponent implements OnInit {
 
   // Edit Patient
   editPatient(row: any) {
-    
     this.displayEditPatient = true;
     this.editData = row;
     this.eventsSubject.next(row);
    
   }
-
-  
 
   toggleeditPatient(e: boolean) {
     this.displayEditPatient = e;

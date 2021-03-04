@@ -7,20 +7,35 @@
     </div>
     <div class="page-inr">
         <div class="edit-profile-form">
-            <form>
+            <form [formGroup]="addTestForm" (submit)="addTest()">
                 <ul>
                     <li>
                         <label class="inp-label">Test Name</label>
-                        <input type="text" placeholder="Test Name" class="input">
+                        <input type="text" formControlName="name" placeholder="Test Name" class="input">
+                        <div *ngIf="addTestForm.controls['name'].errors && addTestForm.controls['name'].invalid && (addTestForm.controls['name'].dirty || addTestForm.controls['name'].touched)" class="alert alert-danger">
+                            <div *ngIf="addTestForm.controls['name'].errors.required">
+                                Test name is required.
+                            </div>
+                        </div>
                     </li>
                     <li>
                         <label class="inp-label">Test Price</label>
-                        <input type="text" placeholder="Test Price" class="input">
+                        <input type="text" formControlName="test_price" placeholder="Test Price" class="input">
+                        <div *ngIf="addTestForm.controls['test_price'].errors && addTestForm.controls['test_price'].invalid && (addTestForm.controls['test_price'].dirty || addTestForm.controls['test_price'].touched)" class="alert alert-danger">
+                            <div *ngIf="addTestForm.controls['test_price'].errors.required">
+                                Test Price is required.
+                            </div>
+                        </div>
                     </li>
                     <li class="parameter-field">
                         <div class="para-name">
                             <label class="inp-label">Parameter Name</label>
-                            <input type="text" placeholder="Enter Test Parameter" class="input">
+                            <input type="text" formControlName="parameter_name" placeholder="Enter Test Parameter" class="input">
+                            <div *ngIf="addTestForm.controls['parameter_name'].errors && addTestForm.controls['parameter_name'].invalid && (addTestForm.controls['parameter_name'].dirty || addTestForm.controls['parameter_name'].touched)" class="alert alert-danger">
+                                <div *ngIf="addTestForm.controls['parameter_name'].errors.required">
+                                    Parameter name is required.
+                                </div>
+                            </div>
                         </div>
                         <div class="param-dtl">
                             <div>
@@ -29,12 +44,27 @@
                                     <option>mg/dl</option>
                                     <option>IU/L</option>
                                 </select>
+                                <div *ngIf="addTestForm.controls['name'].errors && addTestForm.controls['name'].invalid && (addTestForm.controls['name'].dirty || addTestForm.controls['name'].touched)" class="alert alert-danger">
+                                    <div *ngIf="addTestForm.controls['name'].errors.required">
+                                        Doctor name is required.
+                                    </div>
+                                </div>
                             </div>
                             <div>
                                 <input type="text" placeholder="Min" class="input">
+                                <div *ngIf="addTestForm.controls['name'].errors && addTestForm.controls['name'].invalid && (addTestForm.controls['name'].dirty || addTestForm.controls['name'].touched)" class="alert alert-danger">
+                                    <div *ngIf="addTestForm.controls['name'].errors.required">
+                                        Doctor name is required.
+                                    </div>
+                                </div>
                             </div>
                             <div>
                                 <input type="text" placeholder="Max" class="input">
+                                <div *ngIf="addTestForm.controls['name'].errors && addTestForm.controls['name'].invalid && (addTestForm.controls['name'].dirty || addTestForm.controls['name'].touched)" class="alert alert-danger">
+                                    <div *ngIf="addTestForm.controls['name'].errors.required">
+                                        Doctor name is required.
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </li>

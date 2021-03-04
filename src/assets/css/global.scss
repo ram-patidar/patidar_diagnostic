@@ -1,5 +1,6 @@
 @import "./fonts.scss";
 @import "./custom.scss";
+@import "./responsive.scss";
 body {
     margin: 0;
     background: #F5F5F5;
@@ -75,7 +76,6 @@ input[type=number] {
 }
 
 .input,
-.select,
 .textarea {
     width: 100%;
     background-color: #FAFAFA;
@@ -101,7 +101,20 @@ select {
     background-position: center right;
     background-repeat: no-repeat;
     background-origin: content-box;
+    width: 100%;
+    background-color: #FAFAFA;
+    height: 55px;
+    border-radius: 5px;
+    border: 1px solid #C9C9C9;
+    padding: 0px 20px;
+    font-size: 16px;
+    line-height: 55px;
+    font-family: 'Proxima Nova';
     padding-right: 10px !important;
+}
+
+.alert-danger {
+    color: #ff1515;
 }
 
 .custom-btn {
@@ -126,4 +139,32 @@ select {
 
 form li {
     padding-bottom: 20px;
+}
+
+body.open {
+    height: 100vh;
+    overflow: hidden;
+}
+
+@media(max-width:1500px) {
+    .custom-btn {
+        padding: 12px 25px;
+        height: 45px;
+        font-size: 15px;
+    }
+    .input,
+    .textarea,
+    select {
+        height: 45px;
+        font-size: 15px;
+        line-height: 45px;
+    }
+    .textarea {
+        line-height: 20px;
+        height: 110px;
+    }
+    .inp-label {
+        font-size: 15px;
+        line-height: 20px;
+    }
 }

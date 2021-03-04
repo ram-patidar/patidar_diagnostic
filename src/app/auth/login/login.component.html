@@ -8,6 +8,7 @@
                     </a>
                 </div>
                 <div class="login-form">
+                    <h2>Login</h2>
                     <div *ngIf="message != ''" class="alert alert-success">{{message}}</div>
                     <form [formGroup]="loginForm" (submit)="login()" novalidate>
                         <ul>

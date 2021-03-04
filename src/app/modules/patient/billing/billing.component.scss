@@ -98,3 +98,49 @@
         width: 100%;
     }
 }
+
+::ng-deep {
+    .multiselect-item-checkbox input[type=checkbox]:checked+div:before {
+        background: #04a29b !important;
+    }
+    .multiselect-item-checkbox input[type=checkbox]+div:before {
+        color: #04a29b !important;
+        border: 2px solid #04a29b !important;
+    }
+    .multiselect-dropdown .dropdown-btn .selected-item {
+        border: 1px solid #04a29b !important;
+        background: #04a29b !important;
+        line-height: 30px;
+    }
+    .multiselect-dropdown .dropdown-btn {
+        background-color: #FAFAFA;
+        height: 55px;
+        border-radius: 5px !important;
+        border: 1px solid #C9C9C9 !important;
+        padding: 0px 20px !important;
+        font-size: 16px;
+        line-height: 55px !important;
+        font-family: "Proxima Nova";
+        padding-right: 10px !important;
+        display: flex !important;
+        align-items: center;
+    }
+    .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret {
+        background-image: url(../../../../assets/images/ionic-ios-arrow-forward.svg);
+        background-position: center right;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        height: 55px !important;
+        right: 3px !important;
+    }
+    .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret:before {
+        display: none;
+    }
+    .multiselect-dropdown .dropdown-btn .dropdown-multiselect--active .dropdown-multiselect__caret {
+        transform: rotate(0) !important;
+    }
+    .dropdown-list {
+        margin-top: 0 !important;
+        box-shadow: none !important;
+    }
+}

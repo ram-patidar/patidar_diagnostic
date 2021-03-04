@@ -26,9 +26,8 @@ import { AddNewDoctorComponent } from './modules/admin/add-new-doctor/add-new-do
 import { AddNewTestComponent } from './modules/admin/add-new-test/add-new-test.component';
 import { EditTestComponent } from './modules/admin/edit-test/edit-test.component';
 import { AngularToastifyModule, ToastService } from 'angular-toastify';
-
-
-
+import { TooltipModule } from 'ng2-tooltip-directive';
+import { BillingModalComponent } from './modules/patient/billing-modal/billing-modal.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +49,8 @@ import { AngularToastifyModule, ToastService } from 'angular-toastify';
     EditDoctorComponent,
     AddNewDoctorComponent,
     AddNewTestComponent,
-    EditTestComponent
+    EditTestComponent,
+    BillingModalComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +61,8 @@ import { AngularToastifyModule, ToastService } from 'angular-toastify';
     NgxDatatableModule,
     NgMultiSelectDropDownModule,
     NgbModule,
-    AngularToastifyModule
+    AngularToastifyModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

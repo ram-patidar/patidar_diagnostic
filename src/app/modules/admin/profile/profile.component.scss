@@ -16,3 +16,9 @@
 .save-btn .custom-btn {
     margin: auto;
 }
+
+@media(max-width:767px) {
+    .profile-form li {
+        width: calc(100% - 20px);
+    }
+}

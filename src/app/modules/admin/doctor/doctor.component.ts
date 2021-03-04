@@ -45,8 +45,6 @@ export class DoctorComponent implements OnInit {
     this.displayAddDoctor = true;
   }
 
-  
-
   toggleDisplayAddDoctor(v){
     this.displayAddDoctor = v ;
   }
@@ -155,8 +153,6 @@ export class DoctorComponent implements OnInit {
     this.docService.getDoctor().subscribe(data => {
       this.temp = data;
       this.dataall = [...this.temp];
-     
-  
     });
   }
 

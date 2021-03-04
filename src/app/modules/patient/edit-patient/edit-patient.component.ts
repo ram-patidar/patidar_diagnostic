@@ -88,8 +88,6 @@ this.id = row.id;
     }
     if(e.EditPatientForm.value.prefix == 'Mrs.'){
       this.EditPatientForm.controls['gender'].setValue('F');
-      
-
     }
   }
  
@@ -113,13 +111,5 @@ this.id = row.id;
         });
       }
     })
-
-
-
-
-
-
-
-
 }
 }

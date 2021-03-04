@@ -25,15 +25,12 @@ this.addDoctorForm = this.fb.group({
   name:['',Validators.required],
   ocupation:['',Validators.required],
   contact:['',Validators.required]
-
-
 })
    }
 
   ngOnInit(): void {
   }
 
- 
   addDoctor(){
     this.docservice.addDoctor(this.addDoctorForm.value).subscribe(data => {
       this.data = data;
@@ -45,7 +42,7 @@ this.addDoctorForm.reset();
 this.onAddedDoctor.emit(true);
       }
     })
-    
   }
 
 }
+
