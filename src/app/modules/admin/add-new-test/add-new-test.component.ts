@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TestServiceService } from 'src/app/services/test-service.service';
 
 @Component({
   selector: 'app-add-new-test',
@@ -17,7 +16,7 @@ export class AddNewTestComponent implements OnInit {
 
  addTestForm:FormGroup;
 
-  constructor(private fb:FormBuilder, private testservice:TestServiceService) {
+  constructor(private fb:FormBuilder) {
     this.addTestForm = this.fb.group({
       name:['',Validators.required],
       test_price:['',Validators.required],
@@ -29,8 +28,6 @@ export class AddNewTestComponent implements OnInit {
   }
 
   addTest(){
-    this.testservice.addTest(this.addTestForm.value).subscribe(data => {
-      this.data = data;
-    })
+    
   }
 }
