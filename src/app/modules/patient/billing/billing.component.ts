@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { DoctorserviceService } from 'src/app/services/doctorservice.service';
+import { TestServiceService } from 'src/app/services/test-service.service';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { DoctorserviceService } from 'src/app/services/doctorservice.service';
 })
 export class BillingComponent implements OnInit {
   todayDate = new Date();
+  
   @Input() events: Observable<void>;
   private eventsSubscription: Subscription;
   @Input() receivedBillingData: any;
@@ -19,6 +21,9 @@ export class BillingComponent implements OnInit {
   @Output() onToggleBilling = new EventEmitter<boolean>();
   onToggle(addPatient: boolean) {
     this.onToggleBilling.emit(addPatient);
+    this.billingForm.reset();
+    this.selectedTests = [];
+    this.total = 0;
   }
 
   allDoctor: any;
@@ -28,10 +33,13 @@ export class BillingComponent implements OnInit {
   ShowFilter = true;
   limitSelection = true;
   tests: any;
-  selectedTests: any;
+  selectedTests = [];
   dropdownSettings = {};
   idField: any;
+  textField1:any;
+  testallData:any;
   displayBillingPopup = false;
+  total = 0;
 
   // Billing Popup
   DisplayBilling() {
@@ -43,34 +51,24 @@ export class BillingComponent implements OnInit {
     console.log(v);
   }
 
-  constructor(private fb: FormBuilder, private docService: DoctorserviceService) {
+  constructor(private fb: FormBuilder, private docService: DoctorserviceService, private testService:TestServiceService) {
     this.billingForm = this.fb.group({
       tests: [this.selectedTests]
     });
   }
 
   ngOnInit() {
+    this.testData();
     this.eventsSubscription = this.events.subscribe((row) => this.billing_data(row));
     this.eventsSubscription = this.events.subscribe((row) => this.get_doctor());
 
-    this.tests = [
-      { "test_id": 1, "test_name": "Blood Sugar test", "test_price": "100" },
-      { "test_id": 2, "test_name": "ANA (Antinuclear Antibody)", "test_price": "100" },
-      { "test_id": 3, "test_name": "Amylase Test", "test_price": "100" },
-      { "test_id": 4, "test_name": "CBC (Complete Blood Count)", "test_price": "100" },
-      { "test_id": 5, "test_name": "CRP (C – Reactive protein)", "test_price": "250" },
-      { "test_id": 6, "test_name": "Hemoglobin A1C (HbA1c)", "test_price": "100" },
-      { "test_id": 7, "test_name": "MRI Scans", "test_price": "100" },
-      { "test_id": 8, "test_name": "CT Scans", "test_price": "1000" }
-    ];
-    this.selectedTests = [
-      { "test_id": 8, "test_name": "CT Scans", "test_price": "1000" },
-      { "test_id": 5, "test_name": "CRP (C – Reactive protein)", "test_price": "250" }
-    ];
+   
+    
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'test_id',
+      idField: 'id',
       textField: 'test_name',
+      textField1: 'price',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
@@ -80,16 +78,49 @@ export class BillingComponent implements OnInit {
   }
 
   onItemSelect(item: any) {
-    console.log(item);
+   
+    // this.selectedTests.push(item);
+    
+  this.testallData.forEach(element => {
+      if(item.id == element.id){
+        console.log(element);
+         this.selectedTests.push(element);
+         this.total = this.total+parseInt(element.price);
+      }
+    });
+   
+    console.log(this.testallData);
   }
   OnItemDeSelect(item: any) {
-    console.log(item);
+    
+    this.testallData.forEach(element => {
+      if(item.id == element.id){
+        this.selectedTests.splice(this.selectedTests.indexOf(element),1);
+        this.total = this.total - parseInt(element.price);
+      }
+    });
+  
+   
+  }
+  testData(){
+    this.testService.getTest().subscribe( data => {
+this.testallData = data;
+this.tests = data;
+    });
   }
   onSelectAll(items: any) {
-    console.log(items);
+    
+    this.testallData.forEach((element,i) => {
+ if(items[i].id == element.id){
+  this.selectedTests.push(element);
+        this.total = this.total + parseInt(element.price);
+      }
+    });
   }
   onDeSelectAll(items: any) {
-    console.log(items);
+    this.selectedTests = [];
+   this.total = 0;
+   
   }
 
   billing_data(row: any) {

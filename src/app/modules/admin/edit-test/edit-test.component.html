@@ -7,28 +7,104 @@
     </div>
     <div class="page-inr">
         <div class="edit-profile-form">
-            <form>
+            <form [formGroup]="editTestForm" (submit)="updateTest()">
                 <ul>
                     <li>
-                        <label class="inp-label">Name</label>
-                        <input type="text" placeholder="Enter Your Name" class="input">
+                        <label class="inp-label">Test Name</label>
+                        <input type="text" formControlName="test_name" placeholder="Test Name" class="input">
+                        <div *ngIf="editTestForm.controls['test_name'].errors && editTestForm.controls['test_name'].invalid && (editTestForm.controls['test_name'].dirty || editTestForm.controls['test_name'].touched)" class="alert alert-danger">
+                            <div *ngIf="editTestForm.controls['test_name'].errors.required">
+                                Test name is required.
+                            </div>
+                        </div>
                     </li>
                     <li>
-                        <label class="inp-label">Occupation</label>
-                        <input type="text" placeholder="Your Occupation" class="input">
+                        <label class="inp-label">Test Price</label>
+                        <input type="text" formControlName="price" placeholder="Test Price" class="input">
+                        <div *ngIf="editTestForm.controls['price'].errors && editTestForm.controls['price'].invalid && (editTestForm.controls['price'].dirty || editTestForm.controls['price'].touched)" class="alert alert-danger">
+                            <div *ngIf="editTestForm.controls['price'].errors.required">
+                                Test Price is required.
+                            </div>
+                        </div>
                     </li>
-                    <li>
-                        <label class="inp-label">Contact No.</label>
-                        <input placeholder="Enter Your Number" class="input">
-                    </li>
-                    <li>
-                        <label class="inp-label">Email</label>
-                        <input placeholder="Enter Your Email" class="input">
-                    </li>
-                    <li>
-                        <button type="submit" class="custom-btn">Update</button>
+                    <li class="parameter-field">
+                        <div class="para-name">
+                            <label class="inp-label">Parameter Name</label>
+                            <input type="text" formControlName="parameter_name" placeholder="Enter Test Parameter" class="input">
+                            <div *ngIf="editTestForm.controls['parameter_name'].errors && editTestForm.controls['parameter_name'].invalid && (editTestForm.controls['parameter_name'].dirty || editTestForm.controls['parameter_name'].touched)" class="alert alert-danger">
+                                <div *ngIf="editTestForm.controls['parameter_name'].errors.required">
+                                    Parameter name is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="param-dtl">
+                            <div>
+                                <select class="select" formControlName="unit">
+                                    <option>Unit</option>
+                                    <option>mg/dl</option>
+                                    <option>IU/L</option>
+                                </select>
+                                <div *ngIf="editTestForm.controls['unit'].errors && editTestForm.controls['unit'].invalid && (editTestForm.controls['unit'].dirty || editTestForm.controls['unit'].touched)" class="alert alert-danger">
+                                    <div *ngIf="editTestForm.controls['unit'].errors.required">
+                                        Unit is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Min" class="input" formControlName="min">
+                                <div *ngIf="editTestForm.controls['min'].errors && editTestForm.controls['min'].invalid && (editTestForm.controls['min'].dirty || editTestForm.controls['min'].touched)" class="alert alert-danger">
+                                    <div *ngIf="editTestForm.controls['min'].errors.required">
+                                        Min is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Max" class="input" formControlName="max">
+                                <div *ngIf="editTestForm.controls['max'].errors && editTestForm.controls['max'].invalid && (editTestForm.controls['max'].dirty || editTestForm.controls['max'].touched)" class="alert alert-danger">
+                                    <div *ngIf="editTestForm.controls['max'].errors.required">
+                                        Max is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 </ul>
+
+                <div class="add-para">
+                    <button type="button" (click)="addParameter()" [disabled]="editTestForm.invalid" class="custom-btn">Add Parameter</button>
+                </div>
+                <div class="add-test-sec">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parameters</th>
+                                <th>Unit</th>
+                                <th>Range</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let datapara of parameterAllData; index as i">
+                                <td>
+                                    {{datapara.parameter_name}}
+                                </td>
+                                <td>
+                                    <span class="reg-span time">{{datapara.unit}}</span>
+                                </td>
+                                <td>
+                                    {{datapara.min_range}}-{{datapara.max_range}}
+                                </td>
+                                <td>
+                                    <span (click)="removeParameter(i,datapara)">X</span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="add-test-btn">
+                    <button type="submit" class="custom-btn" [disabled]="editTestForm.controls['test_name'].errors || editTestForm.controls['price'].errors">Update Test</button>
+                </div>
             </form>
         </div>
     </div>

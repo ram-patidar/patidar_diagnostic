@@ -1,3 +1,4 @@
+<lib-toastify-toast-container></lib-toastify-toast-container>
 <div class="dashboard-body page-body patient-inr-page">
     <div class="page-head">
         <h2>Add <b>Test</b></h2>
@@ -11,18 +12,18 @@
                 <ul>
                     <li>
                         <label class="inp-label">Test Name</label>
-                        <input type="text" formControlName="name" placeholder="Test Name" class="input">
-                        <div *ngIf="addTestForm.controls['name'].errors && addTestForm.controls['name'].invalid && (addTestForm.controls['name'].dirty || addTestForm.controls['name'].touched)" class="alert alert-danger">
-                            <div *ngIf="addTestForm.controls['name'].errors.required">
+                        <input type="text" formControlName="test_name" placeholder="Test Name" class="input">
+                        <div *ngIf="addTestForm.controls['test_name'].errors && addTestForm.controls['test_name'].invalid && (addTestForm.controls['test_name'].dirty || addTestForm.controls['test_name'].touched)" class="alert alert-danger">
+                            <div *ngIf="addTestForm.controls['test_name'].errors.required">
                                 Test name is required.
                             </div>
                         </div>
                     </li>
                     <li>
                         <label class="inp-label">Test Price</label>
-                        <input type="text" formControlName="test_price" placeholder="Test Price" class="input">
-                        <div *ngIf="addTestForm.controls['test_price'].errors && addTestForm.controls['test_price'].invalid && (addTestForm.controls['test_price'].dirty || addTestForm.controls['test_price'].touched)" class="alert alert-danger">
-                            <div *ngIf="addTestForm.controls['test_price'].errors.required">
+                        <input type="text" formControlName="price" placeholder="Test Price" class="input">
+                        <div *ngIf="addTestForm.controls['price'].errors && addTestForm.controls['price'].invalid && (addTestForm.controls['price'].dirty || addTestForm.controls['price'].touched)" class="alert alert-danger">
+                            <div *ngIf="addTestForm.controls['price'].errors.required">
                                 Test Price is required.
                             </div>
                         </div>
@@ -39,38 +40,39 @@
                         </div>
                         <div class="param-dtl">
                             <div>
-                                <select class="select">
+                                <select class="select" formControlName="unit">
                                     <option>Unit</option>
                                     <option>mg/dl</option>
                                     <option>IU/L</option>
                                 </select>
-                                <div *ngIf="addTestForm.controls['name'].errors && addTestForm.controls['name'].invalid && (addTestForm.controls['name'].dirty || addTestForm.controls['name'].touched)" class="alert alert-danger">
-                                    <div *ngIf="addTestForm.controls['name'].errors.required">
-                                        Doctor name is required.
+                                <div *ngIf="addTestForm.controls['unit'].errors && addTestForm.controls['unit'].invalid && (addTestForm.controls['unit'].dirty || addTestForm.controls['unit'].touched)" class="alert alert-danger">
+                                    <div *ngIf="addTestForm.controls['unit'].errors.required">
+                                        Unit is required.
                                     </div>
                                 </div>
                             </div>
                             <div>
-                                <input type="text" placeholder="Min" class="input">
-                                <div *ngIf="addTestForm.controls['name'].errors && addTestForm.controls['name'].invalid && (addTestForm.controls['name'].dirty || addTestForm.controls['name'].touched)" class="alert alert-danger">
-                                    <div *ngIf="addTestForm.controls['name'].errors.required">
-                                        Doctor name is required.
+                                <input type="text" placeholder="Min" class="input" formControlName="min">
+                                <div *ngIf="addTestForm.controls['min'].errors && addTestForm.controls['min'].invalid && (addTestForm.controls['min'].dirty || addTestForm.controls['min'].touched)" class="alert alert-danger">
+                                    <div *ngIf="addTestForm.controls['min'].errors.required">
+                                        Min is required.
                                     </div>
                                 </div>
                             </div>
                             <div>
-                                <input type="text" placeholder="Max" class="input">
-                                <div *ngIf="addTestForm.controls['name'].errors && addTestForm.controls['name'].invalid && (addTestForm.controls['name'].dirty || addTestForm.controls['name'].touched)" class="alert alert-danger">
-                                    <div *ngIf="addTestForm.controls['name'].errors.required">
-                                        Doctor name is required.
+                                <input type="text" placeholder="Max" class="input" formControlName="max">
+                                <div *ngIf="addTestForm.controls['max'].errors && addTestForm.controls['max'].invalid && (addTestForm.controls['max'].dirty || addTestForm.controls['max'].touched)" class="alert alert-danger">
+                                    <div *ngIf="addTestForm.controls['max'].errors.required">
+                                        Max is required.
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
                 </ul>
+
                 <div class="add-para">
-                    <button type="submit" class="custom-btn">Add</button>
+                    <button type="button" (click)="addParameter()" [disabled]="addTestForm.invalid" class="custom-btn">Add Parameter</button>
                 </div>
                 <div class="add-test-sec">
                     <table>
@@ -79,47 +81,30 @@
                                 <th>Parameters</th>
                                 <th>Unit</th>
                                 <th>Range</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr *ngFor="let datapara of parameterAllData; index as i">
                                 <td>
-                                    Bilirubin:
+                                    {{datapara.parameter_name}}
                                 </td>
                                 <td>
-                                    <span class="reg-span time">mg/dl</span>
+                                    <span class="reg-span time">{{datapara.unit}}</span>
                                 </td>
                                 <td>
-                                    0.1-1.2
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Bilirubin:
+                                    {{datapara.min_range}}-{{datapara.max_range}}
                                 </td>
                                 <td>
-                                    <span class="reg-span time">mg/dl</span>
-                                </td>
-                                <td>
-                                    0.1-1.2
+                                    <span (click)="removeParameter(i)">X</span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    Bilirubin:
-                                </td>
-                                <td>
-                                    <span class="reg-span time">mg/dl</span>
-                                </td>
-                                <td>
-                                    0.1-1.2
-                                </td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>
                 <div class="add-test-btn">
-                    <button type="submit" class="custom-btn">Add Test</button>
+                    <button type="submit" class="custom-btn" [disabled]="addTestForm.controls['test_name'].errors || addTestForm.controls['price'].errors">Add Test</button>
                 </div>
             </form>
         </div>

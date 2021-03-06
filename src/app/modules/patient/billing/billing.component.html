@@ -71,13 +71,18 @@
                 <div class="select-test-sec">
                     <ul>
                         <li *ngFor="let tests of selectedTests">
+
+
                             <h4><span>{{tests.test_name}}</span></h4>
-                            <p>₹ {{tests.test_price}}</p>
+
+                            <p>₹ {{tests.price}}</p>
+
+
                         </li>
                     </ul>
                 </div>
-                <div class="total-sec">
-                    <h4>Total: <span class="total">₹ 1250</span></h4>
+                <div *ngIf="selectedTests.length != 0" class="total-sec">
+                    <h4>Total: <span class="total">₹ {{total}}</span></h4>
                 </div>
                 <div class="billing-btn">
                     <button type="submit" class="custom-btn" (click)="DisplayBilling()">Save</button>
