@@ -24,23 +24,15 @@
                         </div>
                     </li>
                     <li class="width-85">
-                        <label class="inp-label">First Name</label>
+                        <label class="inp-label">Full Name</label>
                         <input type="text" placeholder="First Name" class="input" formControlName="first_name" name="first_name">
                         <div *ngIf="addPatientForm.controls['first_name'].errors && addPatientForm.controls['first_name'].invalid && (addPatientForm.controls['first_name'].dirty || addPatientForm.controls['first_name'].touched)" class="alert alert-danger">
                             <div *ngIf="addPatientForm.controls['first_name'].errors.required">
-                                First name is required.
+                                Full name is required.
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <label class="inp-label">Last Name</label>
-                        <input type="text" placeholder="Last Name" class="input" formControlName="last_name" name="last_name">
-                        <div *ngIf="addPatientForm.controls['last_name'].errors && addPatientForm.controls['last_name'].invalid && (addPatientForm.controls['last_name'].dirty || addPatientForm.controls['last_name'].touched)" class="alert alert-danger">
-                            <div *ngIf="addPatientForm.controls['last_name'].errors.required">
-                                Last Name is required.
-                            </div>
-                        </div>
-                    </li>
+
                     <li class="width-50">
                         <label class="inp-label">Gender<span class="required" >*</span></label>
                         <select class="select" formControlName="gender" name="gender" (change)="getPrefix(this)">

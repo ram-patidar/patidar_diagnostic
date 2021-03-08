@@ -31,7 +31,6 @@ addPatientForm:FormGroup;
     this.addPatientForm = this.fb.group({
       prefix:['', [Validators.required]],
       first_name:['', [Validators.required]],
-      last_name:['', [Validators.required]],
       gender:['', [Validators.required]],
       age:['', [Validators.required]],
       contact:['', [Validators.required]],
