@@ -168,3 +168,21 @@ body.open {
         line-height: 20px;
     }
 }
+
+@media(max-width:767px) {
+    .custom-btn {
+        min-width: 100px;
+        padding: 10px 20px;
+        height: 38px;
+    }
+    .input,
+    .textarea,
+    select {
+        height: 40px;
+        font-size: 14px;
+        line-height: 40px;
+    }
+    form li {
+        padding-bottom: 10px;
+    }
+}

@@ -13,7 +13,7 @@
                     <li>
                         <label class="inp-label">Prefix<span class="required">*</span></label>
                         <select class="select" formControlName="prefix" name="prefix" (change)="getPrefix(this)">
-                            <option selected value>Select</option>
+                            <option selected value="">Select</option>
                             <option value="Mr.">Mr.</option>
                             <option value="Mrs.">Mrs.</option>
                        </select>
@@ -44,7 +44,7 @@
                     <li class="width-50">
                         <label class="inp-label">Gender<span class="required" >*</span></label>
                         <select class="select" formControlName="gender" name="gender" (change)="getPrefix(this)">
-                            <option selected value>Select Gender</option>
+                            <option selected value="">Select Gender</option>
                              <option value="M">Male</option>
                             <option value="F">Female</option>
                         </select>
@@ -74,12 +74,11 @@
                     </li>
                     <li>
                         <label class="inp-label">Patient Address.</label>
-                        <textarea placeholder="Enter Patient Address" class="input textarea" formControlName="address" name="address"></textarea>
+                        <input placeholder="Enter Patient Address" class="input" formControlName="address" name="address">
                         <div *ngIf="addPatientForm.controls['address'].errors && addPatientForm.controls['address'].invalid && (addPatientForm.controls['address'].dirty || addPatientForm.controls['address'].touched)" class="alert alert-danger">
                             <div *ngIf="addPatientForm.controls['address'].errors.required">
                                 Address is required.
                             </div>
-
                         </div>
                     </li>
                     <li>

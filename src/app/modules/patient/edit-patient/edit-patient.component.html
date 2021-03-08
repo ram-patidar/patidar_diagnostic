@@ -81,8 +81,7 @@
                     </li>
                     <li>
                         <label class="inp-label ">Adddress</label>
-                        <textarea placeholder="Enter Patient Address" formControlName="address" name="address" class="input textarea" name>
-                            </textarea>
+                        <input placeholder="Enter Patient Address" formControlName="address" name="address" class="input">
                         <div *ngIf="EditPatientForm.controls['address'].invalid && (EditPatientForm.controls['address'].dirty || EditPatientForm.controls['address'].touched)" class="alert alert-danger">
                             <div *ngIf="EditPatientForm.controls['address'].errors && EditPatientForm.controls['address'].errors.required">
                                 Address is required.

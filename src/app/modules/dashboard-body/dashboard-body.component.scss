@@ -3,76 +3,18 @@
     color: #2E2367;
 }
 
-.report-box {
-    background-image: linear-gradient(to right, #2d2668, #03a39b);
-    padding: 20px;
-    border-radius: 10px;
-    min-width: calc(33.33% - 20px);
-    margin: 10px;
-    position: relative;
-}
-
-.report-box.second {
-    background-image: linear-gradient(to right, rgb(255 192 0 / 80%), rgb(255 202 39 / 80%));
-}
-
-.report-box.third {
-    background-image: linear-gradient(to right, #99CC94, #CEF6C9);
-}
-
-.report-sec {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -10px;
-}
-
-.report-box:after {
-    content: "";
-    position: absolute;
-    right: -20px;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(/assets/images/blood-test.svg);
-    background-size: 120px;
-    background-repeat: no-repeat;
-    background-position: right;
-}
-
-.report-box.second:after {
-    background-image: url(/assets/images/pending.svg);
-    right: 20px;
-    background-size: 90px;
-}
-
-.report-box.third:after {
-    background-image: url(/assets/images/approval.svg);
-    right: 20px;
-    background-size: 80px;
-}
-
-.report-value {
-    font-size: 70px;
-    line-height: 60px;
-    padding-top: 25px;
-}
-
-.report-box h4 {
-    font-size: 25px;
-    font-weight: 500;
-}
-
-.first .report-value {
-    color: #fff;
-}
-
-.report-box.first h4 {
-    color: #fff;
-}
-
 .page-inr h3 {
     font-weight: 300;
     color: #2E2367;
     padding-bottom: 15px;
     font-size: 20px;
+}
+
+@media(max-width:767px) {
+    .page-head h2 {
+        font-size: 20px;
+    }
+    .page-inr h3 {
+        font-size: 17px;
+    }
 }

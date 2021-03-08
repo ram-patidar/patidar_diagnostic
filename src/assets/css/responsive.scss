@@ -21,7 +21,28 @@
     }
     .login-form {
         padding: 40px;
-        min-width: 430px;
+        max-width: 430px;
+    }
+    .report-box h4 {
+        font-size: 20px;
+    }
+    .report-value {
+        font-size: 50px;
+    }
+    .report-box.second:after {
+        background-size: 70px;
+    }
+    .report-box:after {
+        background-size: 100px;
+    }
+    .report-box.third:after {
+        background-size: 60px;
+    }
+    .dashboard-body.page-body.patient-inr-page {
+        width: 400px;
+    }
+    .add-patient-form {
+        padding: 20px 0 0;
     }
 }
 
@@ -65,13 +86,9 @@
     .dashboard-body {
         padding: 20px;
     }
-    .param-dtl div {
+    .param-dtl>div {
         width: 100%;
         margin: 10px;
-    }
-    .login-form {
-        padding: 20px;
-        min-width: 280px;
     }
     .login-form .custom-btn {
         margin-top: 0;
@@ -80,6 +97,34 @@
         font-size: 14px;
     }
     p {
+        font-size: 14px;
+    }
+    .report-box {
+        min-width: calc(100% - 20px);
+    }
+    .report-value {
+        font-size: 30px;
+        line-height: 40px;
+        padding-top: 10px;
+    }
+    .test-list-sec {
+        margin-top: 15px;
+    }
+    .add-patient-form {
+        padding: 5px 0 0;
+    }
+    .select-test-sec h4 {
+        font-size: 14px;
+    }
+    input[type=checkbox]+label:before {
+        height: 15px;
+        width: 15px;
+    }
+    input[type=checkbox]:checked+label:after {
+        width: 3px;
+        height: 8px;
+    }
+    .auth-inp label {
         font-size: 14px;
     }
 }

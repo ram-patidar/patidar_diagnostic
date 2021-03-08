@@ -9,10 +9,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .name-sec-left {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .name-icon {
@@ -80,6 +83,8 @@
 
 .select-test-sec {
     margin: 15px 0;
+    max-height: 250px;
+    overflow: auto;
 }
 
 .total-sec h4 {
@@ -142,5 +147,53 @@
     .dropdown-list {
         margin-top: 0 !important;
         box-shadow: none !important;
+    }
+}
+
+@media(max-width:1500px) {
+    .name-sec-right {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+    .name-sec-right div {
+        margin-right: 8px;
+    }
+    .name-sec-left {
+        width: 100%;
+    }
+     ::ng-deep {
+        .multiselect-dropdown .dropdown-btn {
+            height: 45px;
+            line-height: 45px !important;
+        }
+        .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret {
+            height: 45px !important;
+        }
+    }
+}
+
+@media(max-width:767px) {
+    .name-icon {
+        width: 40px;
+        height: 40px;
+    }
+    .name-icon h3 {
+        font-size: 15px;
+    }
+    .patient-name h3 {
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .billing-btn {
+        margin: 10px 0 0 0;
+    }
+    .total-sec h4 {
+        font-size: 16px;
+    }
+    .multiselect-dropdown .dropdown-btn {
+        height: 40px;
+        line-height: 40px !important;
     }
 }

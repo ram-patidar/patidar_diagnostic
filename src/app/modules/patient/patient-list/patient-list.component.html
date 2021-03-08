@@ -29,7 +29,7 @@
                             <div class="datable-body">
                                 <ngx-datatable [rows]="dataall" [columnMode]="'force'" class="material expandable res-datatable" [headerHeight]="80" [footerHeight]="80" [rowHeight]="'auto'" [limit]="limit" [offset]="offset" [selected]="selected" [scrollbarH]="true" [selectAllRowsOnPage]="false"
                                     (activate)="onActivate($event)" (select)='onSelect($event)' (page)="onPage($event)">
-                                    <ngx-datatable-column name="#" [width]="20">
+                                    <ngx-datatable-column name="#" [width]="15">
                                         <ng-template let-row="row" ngx-datatable-cell-template>
                                             {{dataall.indexOf(row)+1}}
                                         </ng-template>
@@ -50,7 +50,7 @@
                                             {{row.gender +'/'+ row.age}}
                                         </ng-template>
                                     </ngx-datatable-column>
-                                    <ngx-datatable-column [width]="120">
+                                    <ngx-datatable-column>
                                         <ng-template let-column="column" ngx-datatable-header-template>
                                             Registered On
                                         </ng-template>

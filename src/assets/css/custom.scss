@@ -85,8 +85,8 @@ input[type=checkbox]:checked+label:before {
     background: #fff;
     padding: 70px;
     margin: 20px 0;
+    width: 100%;
     max-width: 550px;
-    min-width: 550px;
     border-radius: 10px;
     overflow: auto;
 }
@@ -162,6 +162,7 @@ input[type=checkbox]:checked+label:before {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 91;
     width: 100%;
     height: 100%;
     background: rgb(0 0 0 / 30%);
@@ -170,6 +171,74 @@ input[type=checkbox]:checked+label:before {
 .add-patient-form .custom-btn {
     width: 100%;
     margin-top: 20px;
+}
+
+// dashboard css
+.report-box {
+    background-image: linear-gradient(to right, #2d2668, #03a39b);
+    padding: 20px;
+    border-radius: 10px;
+    min-width: calc(33.33% - 20px);
+    margin: 10px;
+    position: relative;
+}
+
+.report-box.second {
+    background-image: linear-gradient(to right, rgb(255 192 0 / 80%), rgb(255 202 39 / 80%));
+}
+
+.report-box.third {
+    background-image: linear-gradient(to right, #99CC94, #CEF6C9);
+}
+
+.report-sec {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.report-box:after {
+    content: "";
+    position: absolute;
+    right: -20px;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(/assets/images/blood-test.svg);
+    background-size: 120px;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.report-box.second:after {
+    background-image: url(/assets/images/pending.svg);
+    right: 20px;
+    background-size: 90px;
+}
+
+.report-box.third:after {
+    background-image: url(/assets/images/approval.svg);
+    right: 20px;
+    background-size: 80px;
+}
+
+.report-value {
+    font-size: 70px;
+    line-height: 60px;
+    padding-top: 25px;
+}
+
+.report-box h4 {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.first .report-value {
+    color: #fff;
+}
+
+.report-box.first h4 {
+    color: #fff;
 }
 
 // add css
@@ -455,10 +524,6 @@ datatable-scroller.datatable-scroll {
     color: #04A29B;
 }
 
-.tab-list-body {
-    padding: 30px 0;
-}
-
 span.date {
     background: rgba(46, 35, 103, 0.05);
     color: #2E2367;
@@ -469,6 +534,7 @@ span.date {
     align-items: center;
     justify-content: center;
     font-size: 12px;
+    width: 120px;
 }
 
 span.time {
@@ -480,8 +546,13 @@ span.time {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 5px;
     font-size: 12px;
+    width: max-content;
+}
+
+.datable-body span.time {
+    margin-top: 5px;
+    width: 120px;
 }
 
 .reg-span img {
@@ -507,7 +578,57 @@ span.time {
     flex-wrap: wrap;
 }
 
-.param-dtl div {
-    width: 33%;
+.param-dtl>div {
+    width: calc(33% - 20px);
     margin: 0 10px;
+}
+
+.edit-profile-form .custom-btn {
+    min-width: 100%;
+    margin-top: 20px;
+}
+
+.add-test-sec {
+    padding-bottom: 15px;
+    margin-top: 15px;
+    display: block;
+    overflow: auto;
+    max-height: 250px;
+}
+
+.add-para .custom-btn {
+    margin-left: auto;
+}
+
+.add-test-sec table {
+    width: 100%;
+    text-align: left;
+}
+
+.add-test-sec tbody tr {
+    border-bottom: 1px dashed #000;
+    padding: 10px 0;
+    height: 40px;
+}
+
+.add-test-sec th {
+    color: #04A29B;
+}
+
+.add-test-sec td,
+.add-test-sec th {
+    padding: 15px 0;
+}
+
+.add-test-sec td {
+    border-bottom: 1px dashed rgb(0 0 0 / 20%);
+}
+
+.add-test-sec tr:last-child td {
+    border-bottom: 0;
+}
+
+.add-test-btn .custom-btn {
+    width: 100%;
+    margin-top: 20px;
 }

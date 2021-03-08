@@ -1,0 +1,37 @@
+::ng-deep {
+    .ngx-datatable .datatable-body {
+        max-height: calc(100vh - 670px) !important;
+    }
+}
+
+@media(max-width:1500px) {
+     ::ng-deep {
+        .ngx-datatable .datatable-body {
+            max-height: calc(100vh - 550px) !important;
+        }
+    }
+}
+
+@media(max-width:1024px) {
+     ::ng-deep {
+        .ngx-datatable .datatable-body {
+            max-height: calc(100vh - 620px) !important;
+        }
+    }
+}
+
+@media(max-width:767px) {
+     ::ng-deep {
+        .ngx-datatable .datatable-body {
+            max-height: calc(100vh - 530px) !important;
+        }
+    }
+}
+
+// @media(max-width:640px) {
+//      ::ng-deep {
+//         .ngx-datatable .datatable-body {
+//             max-height: calc(100vh - 620px) !important;
+//         }
+//     }
+// }

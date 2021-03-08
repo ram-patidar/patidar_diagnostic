@@ -62,13 +62,14 @@ export class BillingComponent implements OnInit {
     this.eventsSubscription = this.events.subscribe((row) => this.billing_data(row));
     this.eventsSubscription = this.events.subscribe((row) => this.get_doctor());
 
-   
+    this.tests = [];
+    this.selectedTests = [];
     
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
       textField: 'test_name',
-      textField1: 'price',
+      price: 'test_price',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
@@ -78,7 +79,6 @@ export class BillingComponent implements OnInit {
   }
 
   onItemSelect(item: any) {
-   
     // this.selectedTests.push(item);
     
   this.testallData.forEach(element => {
