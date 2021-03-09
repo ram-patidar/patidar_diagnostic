@@ -53,7 +53,6 @@ editPatientChild(row:any){
 this.EditPatientForm =  this.fb.group({
   prefix:[this.receivedEditdata.prefix, [Validators.required]],
   first_name:[this.receivedEditdata.first_name, [Validators.required]],
-  last_name:[this.receivedEditdata.last_name, [Validators.required]],
   gender:[this.receivedEditdata.gender, [Validators.required]],
   age:[this.receivedEditdata.age, [Validators.required]],
   contact:[this.receivedEditdata.contact, [Validators.required]],

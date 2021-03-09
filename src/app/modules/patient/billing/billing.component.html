@@ -8,15 +8,16 @@
 
     <div class="page-inr">
         <div class="billing-form">
-            <form [formGroup]="billingForm">
+            <form [formGroup]="billingForm" (submit)="addBilling()">
                 <div class="patient-name-sec" *ngIf="receivedBillingData.length != 0">
                     <div class="name-sec-inr">
                         <div class="name-sec-left">
                             <div class="name-icon">
-                                <h3>{{receivedBillingData.first_name[0]+receivedBillingData.last_name[0]}}</h3>
+                                <h3>{{receivedBillingData.fl}}</h3>
+
                             </div>
                             <div class="patient-name">
-                                <h3>{{receivedBillingData.prefix+' '+receivedBillingData.first_name+' '+receivedBillingData.last_name}}</h3>
+                                <h3>{{receivedBillingData.prefix+' '+receivedBillingData.first_name}}</h3>
                                 <div class="patient-dtl">
                                     <p>
                                         <span>
@@ -57,15 +58,23 @@
                 <ul class="test-sec">
                     <li class="width-50">
                         <label class="inp-label">Referred By:</label>
-                        <select class="select">
+                        <select class="select" formControlName="name" name="name">
                             <option>Select Doctor</option>
                             <option *ngFor="let doctors of allDoctor">{{doctors.name}}</option>
                         </select>
+
                     </li>
+
+                    <input type="hidden" formControlName="patients_id" name="patients_id" />
                     <li class="width-50">
                         <label class="inp-label">Tests:</label>
-                        <ng-multiselect-dropdown [settings]="dropdownSettings" name="tests" [placeholder]="'Select Test'" [data]="tests" formControlName="tests" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">>
+                        <ng-multiselect-dropdown [settings]="dropdownSettings" name="tests" [placeholder]="'Select Test'" [data]="tests" formControlName="test" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">>
                         </ng-multiselect-dropdown>
+                        <div *ngIf="billingForm.controls['test'].errors && billingForm.controls['test'].invalid && (billingForm.controls['test'].dirty || billingForm.controls['test'].touched)" class="alert alert-danger">
+                            <div *ngIf="billingForm.controls['test'].errors.required">
+                                Test is required.
+                            </div>
+                        </div>
                     </li>
                 </ul>
                 <div class="select-test-sec">
@@ -85,10 +94,10 @@
                     <h4>Total: <span class="total">₹ {{total}}</span></h4>
                 </div>
                 <div class="billing-btn">
-                    <button type="submit" class="custom-btn" (click)="DisplayBilling()">Save</button>
+                    <button type="submit" class="custom-btn" [disabled]="billingForm.invalid">Save</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<app-billing-modal (onToggleBilling)="toggleDisplayBillingPopup($event)" class="custom-temp" [class.extra-sparkle1]="displayBillingPopup == true"></app-billing-modal>
+<app-billing-modal [events]="eventsSubject.asObservable()" (onToggleBilling)="toggleDisplayBillingPopup($event)" class="custom-temp" [class.extra-sparkle1]="displayBillingPopup == true"></app-billing-modal>

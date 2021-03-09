@@ -7,7 +7,7 @@
     </div>
     <div class="page-inr">
         <div class="billing-modal-sec">
-            <div class="invoice-table">
+            <div class="invoice-table" *ngIf="AllbillingData != undefined">
                 <table class="invoice" width="100%">
                     <tr>
                         <td>
@@ -17,13 +17,13 @@
                                         Invoice:
                                     </th>
                                     <td colspan="2">
-                                        INV001
+                                        INV{{AllbillingData.id}}
                                     </td>
                                     <th align="left">
                                         Date:
                                     </th>
                                     <td colspan="2">
-                                        15 Feb, 2021
+                                        {{todaydate | date: 'MMM d, y'}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -31,13 +31,13 @@
                                         Name:
                                     </th>
                                     <td colspan="2">
-                                        Mr Ashrof Khan
+                                        {{AllbillingData.patientData.prefix + AllbillingData.patientData.first_name}}
                                     </td>
                                     <th align="left">
                                         Patient ID:
                                     </th>
                                     <td colspan="2">
-                                        TPL21000773
+                                        PDP{{AllbillingData.patientData.id}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -45,13 +45,13 @@
                                         Age:
                                     </th>
                                     <td colspan="2">
-                                        55 year (s) / Male
+                                        {{AllbillingData.patientData.age}} year (s) / {{AllbillingData.patientData.gender}}
                                     </td>
                                     <th align="left">
                                         Contact:
                                     </th>
                                     <td colspan="2">
-                                        9876543210
+                                        {{AllbillingData.patientData.contact}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -59,7 +59,7 @@
                                         Address:
                                     </th>
                                     <td colspan="4">
-                                        Bhopal
+                                        {{AllbillingData.patientData.address}}
                                     </td>
                                 </tr>
                             </table>
@@ -79,24 +79,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr style="border: 1px solid #70707033;">
+                                    <tr *ngFor="let sdata of AllbillingData.test; index as i" style="border: 1px solid #70707033;">
                                         <td>
-                                            1.
+                                            {{i+1}}
                                         </td>
-                                        <td colspan="2 ">Complete Blood Count (CBC)</td>
-                                        <td>100.00</td>
+                                        <td colspan="2 ">{{sdata.test_name}}</td>
+                                        <td>{{sdata.price}}</td>
                                     </tr>
-                                    <tr style="border: 1px solid #70707033;">
-                                        <td>2.</td>
-                                        <td colspan="2 ">Urine Alalysis</td>
-                                        <td>350.00</td>
-                                    </tr>
+
                                     <tr style="border: 1px solid #70707033;">
                                         <td colspan="3 " align="right ">
                                             <font color="#04A29B" style="font-weight: 700;">Total:</font>
                                         </td>
                                         <td>
-                                            <font color="#04A29B" style="font-weight: 700;">₹ 450.00</font>
+                                            <font color="#04A29B" style="font-weight: 700;">₹ {{total}}</font>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -106,7 +102,7 @@
                 </table>
             </div>
             <div class="print-btn">
-                <button class="custom-btn">Print</button>
+                <button class="custom-btn">Save</button><button class="custom-btn">and printPrint</button>
             </div>
         </div>
     </div>

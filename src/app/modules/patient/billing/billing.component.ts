@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { fromEvent, Observable, Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { DoctorserviceService } from 'src/app/services/doctorservice.service';
+import { ReportServiceService } from 'src/app/services/report-service.service';
 import { TestServiceService } from 'src/app/services/test-service.service';
 
 
@@ -13,9 +14,10 @@ import { TestServiceService } from 'src/app/services/test-service.service';
 })
 export class BillingComponent implements OnInit {
   todayDate = new Date();
-  
+  allreportData:any;
   @Input() events: Observable<void>;
   private eventsSubscription: Subscription;
+  eventsSubject: Subject<void> = new Subject<void>();
   @Input() receivedBillingData: any;
 
   @Output() onToggleBilling = new EventEmitter<boolean>();
@@ -40,6 +42,7 @@ export class BillingComponent implements OnInit {
   testallData:any;
   displayBillingPopup = false;
   total = 0;
+  patientid:any;
 
   // Billing Popup
   DisplayBilling() {
@@ -51,20 +54,24 @@ export class BillingComponent implements OnInit {
     console.log(v);
   }
 
-  constructor(private fb: FormBuilder, private docService: DoctorserviceService, private testService:TestServiceService) {
+  constructor(private fb: FormBuilder, private docService: DoctorserviceService, private testService:TestServiceService, private report:ReportServiceService) {
     this.billingForm = this.fb.group({
-      tests: [this.selectedTests]
+      test: [this.selectedTests,Validators.required],
+      patients_id:[this.patientid],
+      name:['']
     });
   }
 
   ngOnInit() {
+  
     this.testData();
     this.eventsSubscription = this.events.subscribe((row) => this.billing_data(row));
     this.eventsSubscription = this.events.subscribe((row) => this.get_doctor());
+  
 
     this.tests = [];
     this.selectedTests = [];
-    
+  
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -124,7 +131,17 @@ this.tests = data;
   }
 
   billing_data(row: any) {
+    let l = '';
+    if(row.first_name.split(" ").length == 2){
+ l = row.first_name.split(" ")[1][0];
+    }
+    row.fl = row.first_name.split(" ")[0][0]+l;
+
     this.receivedBillingData = row;
+    
+    this.billingForm.controls['patients_id'].setValue(row.id);
+
+    console.log(this.billingForm.value);
   }
 
   get_doctor() {
@@ -132,5 +149,23 @@ this.tests = data;
       this.allDoctor = data;
     });
   }
+
+  addBilling(){
+    this.billingForm.value.test = this.selectedTests;
+
+
+    this.report.addReport(this.billingForm.value).subscribe( data => {
+      this.allreportData = data;
+      if(this.allreportData.id != 0){
+      this.displayBillingPopup = true;
+    
+      this.billingForm.value.id = this.allreportData.id;
+   
+      this.eventsSubject.next(this.billingForm.value);
+      this.onToggle(false);
+    }
+    });
+  }
 }
+
 

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { ToastService } from 'angular-toastify';
 import { Subject } from 'rxjs';
 import { PatientServiceService } from 'src/app/services/patient-service.service';
+import { ReportServiceService } from 'src/app/services/report-service.service';
 
 
 
@@ -40,7 +41,7 @@ addPatientForm:FormGroup;
 
   ngOnInit(): void {
    
-    
+  
   }
 
   getPrefix(e){
@@ -60,8 +61,9 @@ addPatientForm:FormGroup;
       if(this.data.success == 1){
      
         this.displaytoast = true;
+        console.log()
       this._toastService.success('Patient added sucessfully!!');
-      this.onPatientAdded.emit(this.addPatientForm.value);
+      this.onPatientAdded.emit(this.data.pdata);
  
       this.addPatientForm.reset();
       
@@ -70,5 +72,6 @@ addPatientForm:FormGroup;
   
   }
 
+  
 
 }
