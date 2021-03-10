@@ -35,6 +35,9 @@
                             <div *ngIf="addDoctorForm.controls['contact'].errors.required">
                                 Contact is required.
                             </div>
+                            <div *ngIf="addDoctorForm.controls['contact'].errors.pattern">
+                                Please Enter 10 digit Mobile Number.
+                            </div>
                         </div>
                     </li>
                     <li>

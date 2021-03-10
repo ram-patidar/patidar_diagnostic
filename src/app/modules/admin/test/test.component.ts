@@ -13,13 +13,11 @@ export class TestComponent implements OnInit {
   displayEditTest = false;
   displayAddTest = false;
 
-  constructor(private testService:TestServiceService, private _toastService:ToastService) { }
-
-
+  constructor(private testService: TestServiceService, private _toastService: ToastService) { }
   eventsSubject: Subject<void> = new Subject<void>();
   displayEditDoctor = false;
   displayAddDoctor = false;
-  deletedData:any;
+  deletedData: any;
   mainDoctorToast = false;
   @ViewChild('search', { static: false }) search: any;
   public dataall: any;
@@ -32,12 +30,10 @@ export class TestComponent implements OnInit {
   public limit = 5;
   public offset = 0;
   public rowdata = [];
-  parameterAlldata:any;
+  parameterAlldata: any;
   billingData = [];
-  columns = [{ name: 'Test name', prop: 'test_name', width: 100 }, { name: 'Test price', prop: 'price', width: 100 } ];
-
-
-
+  loadingIndicator = true;
+  columns = [{ name: 'Test name', prop: 'test_name', width: 100 }, { name: 'Test price', prop: 'price', width: 100 }];
 
   ngOnInit(): void {
     this.get_data();
@@ -49,7 +45,6 @@ export class TestComponent implements OnInit {
 
   public changeLimit(event: any): void {
     this.limit = parseInt(event.target.value);
-
   }
 
   public onPage(event: any): void {
@@ -58,8 +53,6 @@ export class TestComponent implements OnInit {
     this.limit = event.limit;
     this.offset = event.offset;
   }
-
-
 
   ngAfterViewInit(): void {
     // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -109,17 +102,13 @@ export class TestComponent implements OnInit {
     this.selected.push(...selected);
   }
 
-  editTest(row:any,paradata:any){
+  editTest(row: any, paradata: any) {
     this.displayEditTest = true;
-    row.paradata = paradata.filter(t=>t.test_id === row.id);
-   
+    row.paradata = paradata.filter(t => t.test_id === row.id);
     this.eventsSubject.next(row);
- 
-  
   }
 
-  deleteTest(id:any){
-
+  deleteTest(id: any) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -135,43 +124,37 @@ export class TestComponent implements OnInit {
           this.mainDoctorToast = true;
           this._toastService.success('Doctor Deleted Sucessfully');
           this.get_data();
-      
         });
       }
     })
-
   }
 
   get_data() {
     this.testService.getTest().subscribe(data => {
       this.temp = data;
       this.dataall = [...this.temp];
-     this.testService.getParameter().subscribe( data => {
-       this.parameterAlldata = data;
-     })
+      this.testService.getParameter().subscribe(data => {
+        this.parameterAlldata = data;
+      });
+      this.loadingIndicator = false;
     });
   }
 
-
-
   // Edit test popup 
-  displayEditTests(){
+  displayEditTests() {
     this.displayEditTest = true;
   }
 
-  toggleDisplayEditTest(v){
-    this.displayEditTest = v ;
+  toggleDisplayEditTest(v) {
+    this.displayEditTest = v;
   }
 
   // Add test popup 
-  displayAddTests(){
+  displayAddTests() {
     this.displayAddTest = true;
   }
 
-  toggleDisplayAddTest(v){
-    this.displayAddTest = v ;
+  toggleDisplayAddTest(v) {
+    this.displayAddTest = v;
   }
-
-  
-
 }

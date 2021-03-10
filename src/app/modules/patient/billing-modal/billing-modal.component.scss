@@ -5,7 +5,8 @@
     top: 45%;
     left: 50%;
     background: #fff;
-    width: 535px;
+    max-width: 600px;
+    width: 100%;
     overflow: auto;
     border-radius: 20px;
     -webkit-font-smoothing: antialiased;
@@ -23,13 +24,14 @@
 }
 
 .dashboard-body.billing-modal {
-    height: auto;
+    min-height: 600px;
+    max-height: 600px;
 }
 
 .invoice-table {
     display: block;
     overflow: auto;
-    max-height: calc(100vh - 560px);
+    max-height: calc(600px - 230px);
 }
 
 .modal-head {
@@ -48,11 +50,20 @@
 }
 
 .print-btn .custom-btn {
+    margin-top: 20px !important;
     margin: auto;
 }
 
 @media(max-width:1500px) {
     .invoice-table {
-        max-height: calc(100vh - 510px);
+        max-height: calc(600px - 180px);
+    }
+}
+
+@media(max-width:767px) {
+     ::ng-deep {
+        .custom-temp.extra-sparkle1 .billing-modal {
+            width: calc(100% - 40px);
+        }
     }
 }

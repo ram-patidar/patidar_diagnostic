@@ -13,84 +13,70 @@ import Swal from 'sweetalert2'
 export class EditPatientComponent implements OnInit {
   @Input() events: Observable<void>;
   private eventsSubscription: Subscription;
-  @Input() receivedEditdata:any;
-  data:any;
-  id:any;
+  @Input() receivedEditdata: any;
+  data: any;
+  id: any;
   displaytoast = true;
 
   @Output() onToggleEditPatient = new EventEmitter<boolean>();
   @Output() displayPatientData = new EventEmitter<boolean>();
-  
-  onToggle(editPatient: boolean){
-   this.onToggleEditPatient.emit(editPatient);
 
-}
+  onToggle(editPatient: boolean) {
+    this.onToggleEditPatient.emit(editPatient);
+  }
 
-EditPatientForm:FormGroup;
-
-  constructor(private fb:FormBuilder, private patService:PatientServiceService, private _toastService: ToastService) { 
+  EditPatientForm: FormGroup;
+  constructor(private fb: FormBuilder, private patService: PatientServiceService, private _toastService: ToastService) {
   }
 
   ngOnInit(): void {
     this.eventsSubscription = this.events.subscribe((row) => this.editPatientChild(row));
-    this.EditPatientForm =  this.fb.group({
-      prefix:['', [Validators.required]],
-      first_name:['', [Validators.required]],
-      gender:['', [Validators.required]],
-      age:['', [Validators.required]],
-      contact:['', [Validators.required]],
-      address:['', [Validators.required]]
-    
+    this.EditPatientForm = this.fb.group({
+      prefix: ['', [Validators.required]],
+      first_name: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      age: ['', [Validators.required]],
+      contact: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      address: ['', [Validators.required]]
     });
-   
-
   }
 
 
-
-editPatientChild(row:any){
-  this.receivedEditdata = row;
-this.EditPatientForm =  this.fb.group({
-  prefix:[this.receivedEditdata.prefix, [Validators.required]],
-  first_name:[this.receivedEditdata.first_name, [Validators.required]],
-  gender:[this.receivedEditdata.gender, [Validators.required]],
-  age:[this.receivedEditdata.age, [Validators.required]],
-  contact:[this.receivedEditdata.contact, [Validators.required]],
-  address:[this.receivedEditdata.address, [Validators.required]]
-
-});
-this.id = row.id;
-
+  editPatientChild(row: any) {
+    this.receivedEditdata = row;
+    this.EditPatientForm = this.fb.group({
+      prefix: [this.receivedEditdata.prefix, [Validators.required]],
+      first_name: [this.receivedEditdata.first_name, [Validators.required]],
+      gender: [this.receivedEditdata.gender, [Validators.required]],
+      age: [this.receivedEditdata.age, [Validators.required]],
+      contact: [this.receivedEditdata.contact, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      address: [this.receivedEditdata.address, [Validators.required]]
+    });
+    this.id = row.id;
   }
 
-  UpdatePatient(id:any){
-    this.patService.updatePatient(id,this.EditPatientForm.value).subscribe(data => {
+  UpdatePatient(id: any) {
+    this.patService.updatePatient(id, this.EditPatientForm.value).subscribe(data => {
       this.data = data;
-   
-      if(this.data.success == 1){
+      if (this.data.success == 1) {
         this.displaytoast = true;
         this._toastService.success('Patient Updated sucessfully !!');
         this.onToggle(false);
         this.displayPatientData.emit();
       }
-      
-     
     })
-  
-   
   }
 
-  getPrefix(e){
-    if(e.EditPatientForm.value.prefix == 'Mr.'){
+  getPrefix(e) {
+    if (e.EditPatientForm.value.prefix == 'Mr.') {
       this.EditPatientForm.controls['gender'].setValue('M');
     }
-    if(e.EditPatientForm.value.prefix == 'Mrs.'){
+    if (e.EditPatientForm.value.prefix == 'Mrs.') {
       this.EditPatientForm.controls['gender'].setValue('F');
     }
   }
- 
-  deletePatient(id:any){
 
+  deletePatient(id: any) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -109,5 +95,5 @@ this.id = row.id;
         });
       }
     })
-}
+  }
 }

@@ -13,10 +13,10 @@
                     <li>
                         <label class="inp-label">Prefix<span class="required">*</span></label>
                         <select class="select" formControlName="prefix" name="prefix" (change)="getPrefix(this)">
-                            <option selected value="">Select</option>
-                            <option value="Mr.">Mr.</option>
-                            <option value="Mrs.">Mrs.</option>
-                       </select>
+<option selected value="">Select</option>
+<option value="Mr.">Mr.</option>
+<option value="Mrs.">Mrs.</option>
+</select>
                         <div *ngIf="addPatientForm.controls['prefix'].errors && addPatientForm.controls['prefix'].invalid && (addPatientForm.controls['prefix'].dirty || addPatientForm.controls['prefix'].touched)" class="alert alert-danger">
                             <div *ngIf="addPatientForm.controls['prefix'].errors.required">
                                 Prefix is required.
@@ -36,10 +36,10 @@
                     <li class="width-50">
                         <label class="inp-label">Gender<span class="required" >*</span></label>
                         <select class="select" formControlName="gender" name="gender" (change)="getPrefix(this)">
-                            <option selected value="">Select Gender</option>
-                             <option value="M">Male</option>
-                            <option value="F">Female</option>
-                        </select>
+<option selected value="">Select Gender</option>
+<option value="M">Male</option>
+<option value="F">Female</option>
+</select>
                         <div *ngIf="addPatientForm.controls['gender'].errors && addPatientForm.controls['gender'].invalid && (addPatientForm.controls['gender'].dirty || addPatientForm.controls['gender'].touched)" class="alert alert-danger">
                             <div *ngIf="addPatientForm.controls['gender'].errors.required">
                                 Gender is required.
@@ -57,10 +57,13 @@
                     </li>
                     <li>
                         <label class="inp-label">Contact No.</label>
-                        <input type="text" placeholder="Enter Contact No." class="input" formControlName="contact" name="contact">
+                        <input type="number" placeholder="Enter Contact No." class="input" formControlName="contact" name="contact">
                         <div *ngIf="addPatientForm.controls['contact'].errors && addPatientForm.controls['contact'].invalid && (addPatientForm.controls['contact'].dirty || addPatientForm.controls['contact'].touched)" class="alert alert-danger">
                             <div *ngIf="addPatientForm.controls['contact'].errors.required">
                                 Contact is required.
+                            </div>
+                            <div *ngIf="addPatientForm.controls['contact'].errors.pattern">
+                                Please Enter 10 digit Mobile Number.
                             </div>
                         </div>
                     </li>

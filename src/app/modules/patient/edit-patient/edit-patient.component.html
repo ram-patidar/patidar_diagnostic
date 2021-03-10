@@ -1,5 +1,4 @@
 <lib-toastify-toast-container *ngIf="displaytoast"></lib-toastify-toast-container>
-
 <div class="dashboard-body page-body patient-inr-page">
     <div class="page-head">
         <h2>Edit <b>Patient</b></h2>
@@ -13,17 +12,15 @@
             <form [formGroup]="EditPatientForm" (submit)="UpdatePatient(id)">
                 <ul>
                     <li>
-
                         <label class="inp-label">Prefix<span class="required">*</span></label>
                         <select class="select" (change)="getPrefix(this)" formControlName="prefix" name="prefix">
-                           <option value="Mr.">Mr</option>
-                           <option value="Mrs.">Mrs</option>
-                       </select>
+                            <option value="Mr.">Mr</option>
+                            <option value="Mrs.">Mrs</option>
+                        </select>
                         <div *ngIf="EditPatientForm.controls['prefix'].invalid && (EditPatientForm.controls['prefix'].dirty || EditPatientForm.controls['prefix'].touched)" class="alert alert-danger">
                             <div *ngIf="EditPatientForm.controls['prefix'].errors && EditPatientForm.controls['prefix'].errors.required">
                                 Prefix is required.
                             </div>
-
                         </div>
                     </li>
                     <li class="width-85">
@@ -33,10 +30,8 @@
                             <div *ngIf="EditPatientForm.controls['first_name'].errors && EditPatientForm.controls['first_name'].errors.required">
                                 Full Name is required.
                             </div>
-
                         </div>
                     </li>
-
                     <li class="width-50">
                         <label class="inp-label">Gender<span class="required">*</span></label>
                         <select class="select" formControlName="gender" name="gender">
@@ -47,27 +42,27 @@
                             <div *ngIf="EditPatientForm.controls['gender'].errors && EditPatientForm.controls['gender'].errors.required">
                                 Gender is required.
                             </div>
-
                         </div>
                     </li>
                     <li class="width-50">
                         <label class="inp-label">Age<span class="required">*</span></label>
-                        <input type="text" class="input" formControlName="age" name="age">
+                        <input type="number" class="input" formControlName="age" name="age">
                         <div *ngIf="EditPatientForm.controls['age'].invalid && (EditPatientForm.controls['age'].dirty || EditPatientForm.controls['age'].touched)" class="alert alert-danger">
                             <div *ngIf="EditPatientForm.controls['age'].errors && EditPatientForm.controls['age'].errors.required">
                                 Age is required.
                             </div>
-
                         </div>
                     </li>
                     <li>
                         <label class="inp-label ">Contact No.</label>
-                        <input type="text" placeholder="Enter Contact No." class="input" formControlName="contact" name="contact">
+                        <input type="number" placeholder="Enter Contact No." class="input" formControlName="contact" name="contact">
                         <div *ngIf="EditPatientForm.controls['contact'].invalid && (EditPatientForm.controls['contact'].dirty || EditPatientForm.controls['contact'].touched)" class="alert alert-danger">
                             <div *ngIf="EditPatientForm.controls['contact'].errors && EditPatientForm.controls['contact'].errors.required">
                                 Contact is required.
                             </div>
-
+                            <div *ngIf="EditPatientForm.controls['contact'].errors.pattern">
+                                Please Enter 10 digit Mobile Number.
+                            </div>
                         </div>
                     </li>
                     <li>
@@ -77,7 +72,6 @@
                             <div *ngIf="EditPatientForm.controls['address'].errors && EditPatientForm.controls['address'].errors.required">
                                 Address is required.
                             </div>
-
                         </div>
                     </li>
                     <li class="btn-grp ">

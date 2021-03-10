@@ -13,8 +13,6 @@ export class PatientListComponent implements OnInit {
   public dataall: any;
   eventsSubject: Subject<void> = new Subject<void>();
   eventsBilling: Subject<void> = new Subject<void>();
- 
-  
 
   @ViewChild('search', { static: false }) search: any;
   public temp: any;
@@ -27,17 +25,15 @@ export class PatientListComponent implements OnInit {
   public offset = 0;
   public rowdata = [];
   billingData = [];
+  loadingIndicator = true;
   columns = [{ name: 'Prefix', prop: 'prefix', width: 100 }, { name: 'fName', prop: 'first_name', width: 100 }, { name: 'LName', prop: 'last_name', width: 100 }, { name: 'Gender/age', prop: 'gender', width: 100 }, { name: 'age', prop: 'age', width: 100 }, { name: 'Registered On', prop: 'created_at', width: 100 }, { name: 'Patient Id', prop: 'id', width: 100 }, { name: 'Contact No', prop: 'contact', width: 100 }];
   displayAddPatient = false;
   displayEditPatient = false;
   displayBillingPatient = false;
   displayBillingPopup = false;
   data: any;
-
-
   myOptions = {
     'show-delay': 300,
-    // 'theme': 'light'
   }
 
   // Add Patient
@@ -51,7 +47,7 @@ export class PatientListComponent implements OnInit {
   }
 
   // Billing 
-  DisplayBillingPatient(row:any) {
+  DisplayBillingPatient(row: any) {
     console.log(row);
     this.displayBillingPatient = true;
     this.eventsBilling.next(row);
@@ -64,7 +60,6 @@ export class PatientListComponent implements OnInit {
   constructor(private patService: PatientServiceService) { }
 
   ngOnInit(): void {
-
     this.get_data(false);
   }
 
@@ -74,7 +69,6 @@ export class PatientListComponent implements OnInit {
 
   public changeLimit(event: any): void {
     this.limit = parseInt(event.target.value);
-
   }
 
   public onPage(event: any): void {
@@ -132,17 +126,21 @@ export class PatientListComponent implements OnInit {
     this.selected.push(...selected);
   }
 
-  get_data(rb:any) {
+  get_data(rb: any) {
+    // this.SpinnerService.show();
     this.patService.getPatient().subscribe(data => {
       this.temp = data;
       this.dataall = [...this.temp];
-     
-      if(rb){
+      if (rb) {
         this.displayBillingPatient = true;
         this.displayAddPatient = false;
         this.billingData = rb;
         this.eventsBilling.next(rb);
       }
+      // this.SpinnerService.hide();
+      setTimeout(() => {
+        this.loadingIndicator = false;
+      });
     });
   }
 
@@ -151,7 +149,6 @@ export class PatientListComponent implements OnInit {
     this.displayEditPatient = true;
     this.editData = row;
     this.eventsSubject.next(row);
-   
   }
 
   toggleeditPatient(e: boolean) {

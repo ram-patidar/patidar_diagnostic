@@ -22,6 +22,7 @@ li {
 
 a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 *:hover {
@@ -131,6 +132,7 @@ select {
     min-width: 150px;
     max-width: 100%;
     transition: 300ms all;
+    cursor: pointer;
 }
 
 .custom-btn:hover {

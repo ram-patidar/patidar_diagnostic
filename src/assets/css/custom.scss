@@ -334,6 +334,7 @@ li.btn-grp {
     border-radius: 5px;
     border: 1px solid #F7A000;
     margin: 5px;
+    cursor: pointer;
 }
 
 .billing-icon {
@@ -346,6 +347,7 @@ li.btn-grp {
     border-radius: 5px;
     border: 1px solid #1CA200;
     margin: 5px;
+    cursor: pointer;
 }
 
 .delete-icon {
@@ -358,6 +360,25 @@ li.btn-grp {
     border-radius: 5px;
     border: 1px solid #E85343;
     margin: 5px;
+    cursor: pointer;
+}
+
+.remove-icon {
+    display: block;
+    border: 1px solid #04a09a;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: transparent;
+    color: #059d98;
+    cursor: pointer;
+    transition: 300ms all;
+}
+
+.remove-icon:hover {
+    background: #059e99;
+    color: #fff;
 }
 
 .table-filter {
@@ -598,6 +619,7 @@ span.time {
 
 .add-para .custom-btn {
     margin-left: auto;
+    min-width: 150px;
 }
 
 .add-test-sec table {

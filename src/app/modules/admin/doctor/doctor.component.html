@@ -32,7 +32,7 @@
                                         <div class="datatable-inr">
                                             <div class="table-filter">
                                                 <div class="col-md-8">
-                                                    <input #search id="search" type="text" class="input" placeholder="Search Patient" />
+                                                    <input #search id="search" type="text" class="input" placeholder="Search Doctor" />
                                                 </div>
                                                 <div class="col-md-4">
                                                     Show
@@ -41,12 +41,12 @@
                                                         <option [value]="10">10</option>
                                                         <option [value]="20">20</option>
                                                         <option [value]="50">50</option>
-                                                      </select> Patient
+                                                    </select> Patient
                                                 </div>
                                             </div>
                                             <div class="datable-body">
                                                 <ngx-datatable [rows]="dataall" [columnMode]="'force'" class="material expandable res-datatable" [headerHeight]="80" [footerHeight]="80" [rowHeight]="'auto'" [limit]="limit" [offset]="offset" [selected]="selected" [scrollbarH]="true" [selectAllRowsOnPage]="false"
-                                                    (activate)="onActivate($event)" (select)='onSelect($event)' (page)="onPage($event)">
+                                                    (activate)="onActivate($event)" (select)='onSelect($event)' (page)="onPage($event)" [loadingIndicator]="loadingIndicator">
                                                     <ngx-datatable-column name="#" [width]="30">
                                                         <ng-template let-row="row" ngx-datatable-cell-template>
                                                             {{dataall.indexOf(row)+1}}
@@ -73,11 +73,9 @@
                                                             Contact
                                                         </ng-template>
                                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                                            {{row.contact}}
+                                                            +91 {{row.contact}}
                                                         </ng-template>
                                                     </ngx-datatable-column>
-
-
                                                     <ngx-datatable-column>
                                                         <ng-template let-column="column" ngx-datatable-header-template>
                                                             Actions
@@ -105,5 +103,6 @@
     </div>
 </main>
 
-<app-edit-doctor [events]="eventsSubject.asObservable()" class="custom-temp" (onToggleDoctor)="toggleDisplayEditDoctor($event)" [class.extra-sparkle]="displayEditDoctor == true"></app-edit-doctor>
+<app-edit-doctor [events]="eventsSubject.asObservable()" class="custom-temp" (onToggleDoctor)="toggleDisplayEditDoctor($event)" [class.extra-sparkle]="displayEditDoctor == true">
+</app-edit-doctor>
 <app-add-new-doctor class="custom-temp" (onToggleDoctor)="toggleDisplayAddDoctor($event)" [class.extra-sparkle]="displayAddDoctor == true"></app-add-new-doctor>

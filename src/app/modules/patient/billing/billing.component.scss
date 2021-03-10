@@ -2,7 +2,7 @@
     background: rgb(4 162 155 / 5%);
     border: 1px dashed #04A29B;
     border-radius: 10px;
-    padding: 15px 20px;
+    padding: 0px 20px 15px;
 }
 
 .name-sec-inr {
@@ -26,6 +26,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    margin-top: 15px;
 }
 
 .name-icon h3 {
@@ -36,20 +37,24 @@
 
 .patient-name h3 {
     color: #04A29B;
-    line-height: 32px;
     font-weight: 600;
 }
 
 .patient-name {
-    padding: 0 10px;
+    padding: 15px 10px 0;
 }
 
 .patient-dtl {
     display: flex;
+    padding-top: 8px;
 }
 
 .patient-dtl p {
     margin-right: 15px;
+}
+
+.name-sec-right div {
+    padding-top: 15px;
 }
 
 .name-sec-right p {
@@ -155,7 +160,6 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
-        margin-top: 15px;
     }
     .name-sec-right div {
         margin-right: 8px;

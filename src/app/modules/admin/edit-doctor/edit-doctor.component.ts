@@ -22,10 +22,9 @@ export class EditDoctorComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder, private docService: DoctorserviceService, private _toastService: ToastService) {
-
     this.editDoctorForm = this.fb.group({
       name: ['', Validators.required],
-      contact: ['', Validators.required],
+      contact: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       ocupation: ['', Validators.required]
     });
   }
@@ -39,7 +38,7 @@ export class EditDoctorComponent implements OnInit {
     this.Editdata = row;
     this.editDoctorForm = this.fb.group({
       name: [this.Editdata.name, Validators.required],
-      contact: [this.Editdata.contact, Validators.required],
+      contact: [this.Editdata.contact, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       ocupation: [this.Editdata.ocupation, Validators.required]
     });
   }

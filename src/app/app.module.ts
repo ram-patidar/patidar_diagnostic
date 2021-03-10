@@ -16,7 +16,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { EditReportComponent } from './modules/report/edit-report/edit-report.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileComponent } from './modules/admin/profile/profile.component';
 import { DoctorComponent } from './modules/admin/doctor/doctor.component';
 import { TestComponent } from './modules/admin/test/test.component';
@@ -28,6 +28,8 @@ import { EditTestComponent } from './modules/admin/edit-test/edit-test.component
 import { AngularToastifyModule, ToastService } from 'angular-toastify';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { BillingModalComponent } from './modules/patient/billing-modal/billing-modal.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { BillingModalComponent } from './modules/patient/billing-modal/billing-m
     NgMultiSelectDropDownModule,
     NgbModule,
     AngularToastifyModule,
-    TooltipModule
+    TooltipModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

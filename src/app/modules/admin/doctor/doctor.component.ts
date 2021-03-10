@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastService } from 'angular-toastify';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { fromEvent, Subject } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { DoctorserviceService } from 'src/app/services/doctorservice.service';
@@ -28,8 +29,9 @@ export class DoctorComponent implements OnInit {
   public offset = 0;
   public rowdata = [];
   billingData = [];
+  loadingIndicator = true;
   columns = [{ name: 'Doctor', prop: 'name', width: 100 }, { name: 'Occupation', prop: 'ocupation', width: 100 }, { name: 'Contact', prop: 'contact', width: 100 }];
-  constructor(private docService:DoctorserviceService, private _toastService:ToastService) { }
+  constructor(private docService:DoctorserviceService, private _toastService:ToastService, private SpinnerService: NgxSpinnerService) { }
 
    // Edit doctor popup
   displayDoctor(){
@@ -153,6 +155,7 @@ export class DoctorComponent implements OnInit {
     this.docService.getDoctor().subscribe(data => {
       this.temp = data;
       this.dataall = [...this.temp];
+      this.loadingIndicator = false;
     });
   }
 

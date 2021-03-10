@@ -10,7 +10,6 @@ export class ProfileComponent implements OnInit {
   displayEditProfile = false;
 
   constructor(private location: Location) { }
-
   // Edit profile popup 
   displayProfile(){
     this.displayEditProfile = true;
@@ -19,7 +18,6 @@ export class ProfileComponent implements OnInit {
   toggleDisplayEditProfile(v){
     this.displayEditProfile = v ;
   }
-
 
   ngOnInit(): void {
   }

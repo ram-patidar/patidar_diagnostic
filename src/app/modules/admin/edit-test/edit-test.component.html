@@ -20,7 +20,7 @@
                     </li>
                     <li>
                         <label class="inp-label">Test Price</label>
-                        <input type="text" formControlName="price" placeholder="Test Price" class="input">
+                        <input type="number" formControlName="price" placeholder="Test Price" class="input">
                         <div *ngIf="editTestForm.controls['price'].errors && editTestForm.controls['price'].invalid && (editTestForm.controls['price'].dirty || editTestForm.controls['price'].touched)" class="alert alert-danger">
                             <div *ngIf="editTestForm.controls['price'].errors.required">
                                 Test Price is required.
@@ -40,7 +40,7 @@
                         <div class="param-dtl">
                             <div>
                                 <select class="select" formControlName="unit">
-                                    <option>Unit</option>
+                                    <option selected value="">Unit</option>
                                     <option>mg/dl</option>
                                     <option>IU/L</option>
                                 </select>
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div>
-                                <input type="text" placeholder="Min" class="input" formControlName="min">
+                                <input type="number" placeholder="Min" class="input" formControlName="min">
                                 <div *ngIf="editTestForm.controls['min'].errors && editTestForm.controls['min'].invalid && (editTestForm.controls['min'].dirty || editTestForm.controls['min'].touched)" class="alert alert-danger">
                                     <div *ngIf="editTestForm.controls['min'].errors.required">
                                         Min is required.
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div>
-                                <input type="text" placeholder="Max" class="input" formControlName="max">
+                                <input type="number" placeholder="Max" class="input" formControlName="max">
                                 <div *ngIf="editTestForm.controls['max'].errors && editTestForm.controls['max'].invalid && (editTestForm.controls['max'].dirty || editTestForm.controls['max'].touched)" class="alert alert-danger">
                                     <div *ngIf="editTestForm.controls['max'].errors.required">
                                         Max is required.
@@ -69,7 +69,6 @@
                         </div>
                     </li>
                 </ul>
-
                 <div class="add-para">
                     <button type="button" (click)="addParameter()" [disabled]="editTestForm.invalid" class="custom-btn">Add Parameter</button>
                 </div>
@@ -95,15 +94,15 @@
                                     {{datapara.min_range}}-{{datapara.max_range}}
                                 </td>
                                 <td>
-                                    <span (click)="removeParameter(i,datapara)">X</span>
+                                    <span (click)="removeParameter(i,datapara)" class="remove-icon">X</span>
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
                 <div class="add-test-btn">
-                    <button type="submit" class="custom-btn" [disabled]="editTestForm.controls['test_name'].errors || editTestForm.controls['price'].errors">Update Test</button>
+                    <button type="submit" class="custom-btn" [disabled]="editTestForm.controls['test_name'].errors || editTestForm.controls['price'].errors">Update
+                        Test</button>
                 </div>
             </form>
         </div>

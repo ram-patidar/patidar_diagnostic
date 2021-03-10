@@ -24,11 +24,9 @@ export class SidebarComponent implements OnInit {
       });
     });
     // jquery end
-
   }
 
   logout() {
     this.authservice.logout();
-
   }
 }
