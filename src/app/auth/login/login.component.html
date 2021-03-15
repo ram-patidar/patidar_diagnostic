@@ -34,7 +34,7 @@
                                 <label class="inp-label">Password</label>
                                 <input type="password" formControlName="password" name="password" placeholder="******" class="input">
                                 <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="alert alert-danger">
-                                    <!-- <div *ngIf="loginForm.controls['username'].errors.required"> -->
+                                    <!-- <div *ngIf="loginForm.controls['password'].errors.required"> -->
                                     Password is required.
                                     <!-- </div> -->
                                 </div>

@@ -366,14 +366,16 @@ li.btn-grp {
 .remove-icon {
     display: block;
     border: 1px solid #04a09a;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 13px;
     text-align: center;
     background: transparent;
     color: #059d98;
     cursor: pointer;
     transition: 300ms all;
+    border-radius: 5px;
 }
 
 .remove-icon:hover {

@@ -148,6 +148,10 @@ body.open {
     overflow: hidden;
 }
 
+.alert {
+    font-size: 12px;
+}
+
 @media(max-width:1500px) {
     .custom-btn {
         padding: 12px 25px;
@@ -186,5 +190,13 @@ body.open {
     }
     form li {
         padding-bottom: 10px;
+    }
+}
+
+@media(max-width:575px) {
+    .custom-btn {
+        font-size: 12px;
+        min-width: 90px;
+        padding: 10px;
     }
 }

@@ -84,7 +84,7 @@
         height: calc(100% - 100px);
     }
     .dashboard-body {
-        padding: 20px;
+        padding: 20px 15px;
     }
     .param-dtl>div {
         width: 100%;
@@ -137,7 +137,14 @@
         margin-top: 20px;
         justify-content: center;
     }
-    .page-head .custom-btn {
-        margin-top: 20px;
+    .ngx-datatable.material .datatable-footer .datatable-pager a {
+        height: 25px;
+        min-width: 25px;
+        line-height: 25px;
+        font-size: 14px;
+    }
+    .custom-btn img {
+        width: 10px;
+        height: 8px;
     }
 }
