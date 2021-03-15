@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { AuthserviceService } from 'src/app/services/authservice.service';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-register',
@@ -10,10 +11,10 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm:FormGroup;
-  data = {};
+  data:any;
   message = '';
 
-  constructor(private fb:FormBuilder, private authService:AuthserviceService, private router:Router) {
+  constructor(private fb:FormBuilder, private authService:AuthserviceService, private router:Router, private SpinnerService: NgxSpinnerService) {
     if (this.authService.loggedIn) {  
       this.router.navigate(['/dashboard']);
     } 
@@ -56,13 +57,21 @@ checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
 
         register(){
 
-       
-          console.log(this.registerForm.value);
-          this.authService.registerUser(this.registerForm.value).subscribe(data => {
+          this.SpinnerService.show();
+    
+          this.authService.registerUser(this.registerForm.value).subscribe((data) => {
             this.data = data;
+        
             localStorage.setItem('token', data.access_token);
+            localStorage.setItem('uid', data.user.id);
+    localStorage.setItem('name', data.user.name);
             this.router.navigate(['/dashboard']);
+            this.SpinnerService.hide();
+          }, (error)=>{
+            this.message = error[0];
+            this.SpinnerService.hide();
           });
+      
           
         }
 

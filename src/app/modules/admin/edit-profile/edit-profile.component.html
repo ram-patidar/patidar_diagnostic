@@ -1,3 +1,4 @@
+<lib-toastify-toast-container></lib-toastify-toast-container>
 <div class="dashboard-body page-body patient-inr-page">
     <div class="page-head">
         <h2>Edit <b>Profile</b></h2>
@@ -7,26 +8,44 @@
     </div>
     <div class="page-inr">
         <div class="edit-profile-form">
-            <form>
+            <form [formGroup]="userform" (submit)="updateUser()">
                 <ul>
                     <li>
                         <label class="inp-label">Name</label>
-                        <input type="text" placeholder="Enter Your Name" class="input">
+                        <input type="text" formControlName="name" name="name" placeholder="Enter Your Name" class="input">
+                        <div *ngIf="userform.controls['name'].errors && userform.controls['name'].invalid && (userform.controls['name'].dirty || userform.controls['name'].touched)" class="alert alert-danger">
+                            <div *ngIf="userform.controls['name'].errors.required">
+                                Name is required.
+                            </div>
+                        </div>
                     </li>
                     <li>
                         <label class="inp-label">Occupation</label>
-                        <input type="text" placeholder="Your Occupation" class="input">
+                        <input type="text" formControlName="occupation" name="occupation" placeholder="Your Occupation" class="input">
+
                     </li>
                     <li>
                         <label class="inp-label">Contact No.</label>
-                        <input placeholder="Enter Your Number" class="input">
+                        <input formControlName="contact_no" name="contact_no" placeholder="Enter Your Number" class="input">
+                    </li>
+                    <li>
+                        <label class="inp-label">Date of Birth</label>
+                        <input type="date" formControlName="dob" name="dob" placeholder="Enter Your date of birth" class="input">
                     </li>
                     <li>
                         <label class="inp-label">Email</label>
-                        <input placeholder="Enter Your Email" class="input">
+                        <input formControlName="email" name="email" placeholder="Enter Your Email" class="input">
+                        <div *ngIf="userform.controls['email'].errors && userform.controls['email'].invalid && (userform.controls['email'].dirty || userform.controls['email'].touched)" class="alert alert-danger">
+                            <div *ngIf="userform.controls['email'].errors.required">
+                                Email is required.
+                            </div>
+                            <div *ngIf="userform.controls['email'].errors.email">
+                                Email is invalid.
+                            </div>
+                        </div>
                     </li>
                     <li>
-                        <button type="submit" class="custom-btn">Update</button>
+                        <button type="submit" [disabled]="userform.invalid" class="custom-btn">Update</button>
                     </li>
                 </ul>
             </form>

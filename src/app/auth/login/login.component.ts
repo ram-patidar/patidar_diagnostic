@@ -35,7 +35,9 @@ export class LoginComponent implements OnInit {
       this.message = data.message;
       console.log(this.message);
       if (data.success == 1) {
-        this.authService.login(data.access_token);
+        this.authService.login(data.access_token,data.user.id,data.user.name);
+       
+    
       }
       this.SpinnerService.hide();
     });

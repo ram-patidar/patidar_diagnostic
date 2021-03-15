@@ -28,30 +28,30 @@
                             <div class="tab-list-body">
                                 <div class="tab-body-inr">
                                     <form class="profile-form">
-                                        <ul>
+                                        <ul *ngFor="let u of udata">
                                             <li>
                                                 <label class="inp-label">Name</label>
-                                                <input type="text" placeholder="Name" value="Ashrof Khan" class="input" disabled>
+                                                <input type="text" placeholder="Name" value="{{u.name}}" class="input" disabled>
                                             </li>
                                             <li>
                                                 <label class="inp-label">Occupation</label>
-                                                <input type="text" placeholder="Occupation" value="Radiologist" class="input" disabled>
+                                                <input type="text" placeholder="Occupation" value="{{u.occupation}}" class="input" disabled>
                                             </li>
                                             <li>
                                                 <label class="inp-label">Contact No.</label>
-                                                <input type="text" placeholder="Enter Contact No." value="9876543210" class="input" disabled>
+                                                <input type="text" placeholder="Enter Contact No." value="{{u.contact_no}}" class="input" disabled>
                                             </li>
                                             <li>
                                                 <label class="inp-label">Date of Birth</label>
-                                                <input type="date" class="input" disabled>
+                                                <input type="text" class="input" value="{{u.dob}}" disabled>
                                             </li>
                                             <li>
                                                 <label class="inp-label">Email</label>
-                                                <input type="email" class="input" placeholder="patidarnilesh@gmail.com" disabled>
+                                                <input type="email" class="input" placeholder="patidarnilesh@gmail.com" value="{{u.email}}" disabled>
                                             </li>
                                         </ul>
                                         <div class="save-btn">
-                                            <input type="submit" value="Edit" class="custom-btn" (click)="displayProfile()">
+                                            <input type="submit" value="Edit" class="custom-btn" (click)="displayProfile(udata)">
                                         </div>
                                     </form>
                                 </div>
@@ -64,4 +64,4 @@
     </div>
 </main>
 
-<app-edit-profile class="custom-temp" (onToggleProfile)="toggleDisplayEditProfile($event)" [class.extra-sparkle]="displayEditProfile == true"></app-edit-profile>
+<app-edit-profile [events]="eventsSubject.asObservable()" class="custom-temp" (onToggleProfile)="toggleDisplayEditProfile($event)" [class.extra-sparkle]="displayEditProfile == true"></app-edit-profile>

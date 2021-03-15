@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" color="#04A29B" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
 <section>
     <div class="login-main register-main">
         <div class="container">
@@ -16,7 +19,7 @@
                             </div>
                             <li>
                                 <label class="inp-label">Name</label>
-                                <input type="text" formControlName="name" name="name" placeholder="Enter your username" class="input" required>
+                                <input type="text" formControlName="name" name="name" placeholder="Enter your Name" class="input" required>
                                 <div *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)" class="alert alert-danger">
                                     <div *ngIf="registerForm.controls['name'].errors && registerForm.controls['name'].errors.required">
                                         Name is required
@@ -25,7 +28,7 @@
                             </li>
                             <li>
                                 <label class="inp-label">Email</label>
-                                <input type="email" formControlName="email" name="email" placeholder="Enter your username" class="input" required>
+                                <input type="email" formControlName="email" name="email" placeholder="Enter your Email" class="input" required>
                                 <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)" class="alert alert-danger">
                                     <div *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].errors.required">
                                         Email is required.

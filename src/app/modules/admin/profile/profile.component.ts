@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { AuthserviceService } from 'src/app/services/authservice.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -8,10 +10,12 @@ import { Location } from '@angular/common';
 })
 export class ProfileComponent implements OnInit {
   displayEditProfile = false;
-
-  constructor(private location: Location) { }
+  udata:any;
+  eventsSubject: Subject<void> = new Subject<void>();
+  constructor(private location: Location, private authService:AuthserviceService) { }
   // Edit profile popup 
-  displayProfile(){
+  displayProfile(data:any){
+    this.eventsSubject.next(data);
     this.displayEditProfile = true;
   }
 
@@ -20,10 +24,20 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.getUser();
   }
 
   // back function
   goBack() {
     this.location.back();
+  }
+
+  getUser(){
+    this.authService.getLoggedInuser(localStorage.getItem('uid')).subscribe( data => {
+  this.udata = data;
+
+  
+    });
   }
 }

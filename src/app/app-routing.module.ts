@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'patient', component:PatientListComponent,  canActivate: [AuthserviceService], pathMatch: 'full' },
   { path: 'billing', component:BillingComponent, canActivate: [AuthserviceService], pathMatch: 'full' },
   { path: 'report', component:ReportListComponent, canActivate: [AuthserviceService], pathMatch: 'full' },
-  { path: 'edit-report', component:EditReportComponent, canActivate: [AuthserviceService], pathMatch: 'full' },
+  { path: 'edit-report/:id', component:EditReportComponent, canActivate: [AuthserviceService], pathMatch: 'full' },
   { path: 'profile', component:ProfileComponent, canActivate: [AuthserviceService], pathMatch: 'full' },
   { path: 'doctor', component:DoctorComponent, canActivate: [AuthserviceService], pathMatch: 'full' },
   { path: 'test', component:TestComponent, canActivate: [AuthserviceService], pathMatch: 'full' },

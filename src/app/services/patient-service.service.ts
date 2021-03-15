@@ -26,5 +26,9 @@ export class PatientServiceService {
   deletePatient(id: any) {
     return this.http.delete(this.PatientApi + id + '?APP_KEY=' + this.appKey);
   }
+  
+  getPatientbyid(id:any){
+    return this.http.get(this.PatientApi + id + '?APP_KEY=' + this.appKey);
+  }
 
 }
