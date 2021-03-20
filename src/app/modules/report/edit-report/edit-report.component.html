@@ -13,7 +13,7 @@
             </div>
             <div class="page-inr page-border">
                 <div class="report-list-sec">
-                    <div class="report-list-head">
+                    <div class="report-list-head" *ngIf="patientData != undefined">
                         <div class="patient-name-sec">
                             <div class="name-sec-inr" *ngFor="let pdata of patientData">
                                 <div class="name-sec-left">

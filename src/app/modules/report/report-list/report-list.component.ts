@@ -165,7 +165,7 @@ export class ReportListComponent implements OnInit {
                     if (uniqueNames.includes(element) != true) uniqueNames.push(element);
                   });
                 }
-                this.reportList.push({ 'rid': repo.id, 'pname': patientdata.prefix + ' ' + patientdata.first_name, 'pid': 'PDP' + patientdata.id, 'doctor': repo.name, 'register': repo.created_at, 'test': stest, 'para': uniqueNames, patientId: patientdata.id });
+                this.reportList.push({ 'rid': repo.id, 'pname': patientdata.prefix + ' ' + patientdata.first_name, 'pid': 'PDP' + patientdata.id, 'doctor': repo.name, 'register': repo.created_at, 'test': stest, 'para': uniqueNames, 'testauth': uniqueNames, patientId: patientdata.id });
                 console.log(this.reportList);
               }
             });
