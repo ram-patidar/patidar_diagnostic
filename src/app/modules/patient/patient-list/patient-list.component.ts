@@ -1,4 +1,5 @@
 import { Component, ViewChild, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { fromEvent, Subject } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { PatientServiceService } from 'src/app/services/patient-service.service';
@@ -57,7 +58,7 @@ export class PatientListComponent implements OnInit {
     this.displayBillingPatient = v;
   }
 
-  constructor(private patService: PatientServiceService) { }
+  constructor(private patService: PatientServiceService, private SpinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.get_data(false);
@@ -97,7 +98,6 @@ export class PatientListComponent implements OnInit {
     // get the key names of each column in the dataset
     const keys = Object.keys(this.temp[0]);
     // assign filtered matches to the active datatable
-
     this.dataall = this.temp.filter(item => {
       // iterate through each row's column data
       for (let i = 0; i < count; i++) {
@@ -115,11 +115,9 @@ export class PatientListComponent implements OnInit {
         }
       }
     });
-
     // Whenever the filter changes, always go back to the first page
     // this.table.offset = 0;
   }
-
 
   onSelect({ selected }) {
     this.selected.splice(0, this.selected.length);
@@ -154,5 +152,4 @@ export class PatientListComponent implements OnInit {
   toggleeditPatient(e: boolean) {
     this.displayEditPatient = e;
   }
-
 }

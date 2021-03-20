@@ -19,11 +19,11 @@ export class ReportListComponent implements OnInit {
   public selected = [];
   public testdata = [];
   public editData = [];
- uniqueNames = [];
- parameterData:any;
-  patientData:any;
-  allreportData:any;
-  loopData:any;
+  uniqueNames = [];
+  parameterData: any;
+  patientData: any;
+  allreportData: any;
+  loopData: any;
   reportList = [];
   public count = 100;
   public pageSize = 1;
@@ -38,10 +38,10 @@ export class ReportListComponent implements OnInit {
   myOptions = {
     'show-delay': 300,
   }
-  constructor(private reportService:ReportServiceService, private patientservice:PatientServiceService, private router:Router, private _toastService:ToastService) { }
+  constructor(private reportService: ReportServiceService, private patientservice: PatientServiceService, private router: Router, private _toastService: ToastService) { }
 
   ngOnInit(): void {
- 
+
     this.reportList = [];
     this.get_data();
   }
@@ -64,7 +64,6 @@ export class ReportListComponent implements OnInit {
   ngAfterViewInit(): void {
     // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     // Add 'implements AfterViewInit' to the class.
-
     fromEvent(this.search.nativeElement, 'keydown').pipe(
       debounceTime(100),
       map(x => x['target']['value'])
@@ -98,11 +97,9 @@ export class ReportListComponent implements OnInit {
         }
       }
     });
-
     // Whenever the filter changes, always go back to the first page
     // this.table.offset = 0;
   }
-
 
   onSelect({ selected }) {
     this.selected.splice(0, this.selected.length);
@@ -110,131 +107,114 @@ export class ReportListComponent implements OnInit {
   }
 
   get_data() {
-    this.reportService.getParameter().subscribe( data=> {
+    this.reportService.getParameter().subscribe(data => {
       this.parameterData = data;
     });
     this.uniqueNames = [];
     // this.SpinnerService.show();
     this.reportService.getReport().subscribe(data => {
       this.allreportData = data;
-     
       this.patientservice.getPatient().subscribe(data => {
         this.patientData = data;
-        
-  if(this.allreportData.length > this.patientData.length){
-    this.allreportData.forEach((repo,i) => {
-     this.patientData.forEach(patientdata => {
-      if(repo.patients_id == patientdata.id){
-        let authData:any;
-        let selctTest =[];
-        let uniqueNames = []
-        let stest = JSON.parse(repo.test);
-        if(repo.authorised != null){
-          authData = JSON.parse(repo.authorised);
-          stest.forEach(t => {
-            authData.forEach(p => {
-           if(p.auth != false && p.tid == t.id){
-            selctTest.push(t.id);
-           }
-             
-           });
-         });
-         selctTest.forEach(element => {
-          if(uniqueNames.includes(element) != true) uniqueNames.push(element);
-         });
-    
+        if (this.allreportData.length > this.patientData.length) {
+          this.allreportData.forEach((repo, i) => {
+            this.patientData.forEach(patientdata => {
+              if (repo.patients_id == patientdata.id) {
+                let authData: any;
+                let selctTest = [];
+                let uniqueNames = []
+                let stest = JSON.parse(repo.test);
+                if (repo.authorised != null) {
+                  authData = JSON.parse(repo.authorised);
+                  stest.forEach(t => {
+                    authData.forEach(p => {
+                      if (p.auth != false && p.tid == t.id) {
+                        selctTest.push(t.id);
+                      }
+                    });
+                  });
+                  selctTest.forEach(element => {
+                    if (uniqueNames.includes(element) != true) uniqueNames.push(element);
+                  });
+                }
+                this.reportList.push({ 'rid': repo.id, 'pname': patientdata.prefix + ' ' + patientdata.first_name, 'pid': 'PDP' + patientdata.id, 'doctor': repo.name, 'register': repo.created_at, 'test': JSON.parse(repo.test), 'para': uniqueNames, 'testauth': uniqueNames, patientId: patientdata.id });
+              }
+            });
+
+          });
+        } else {
+          this.patientData.forEach((patientdata, i) => {
+            this.allreportData.forEach(repo => {
+              this.uniqueNames = [];
+              if (repo.patients_id == patientdata.id) {
+                let stest = JSON.parse(repo.test);
+                let authData: any;
+                let selctTest = [];
+                let uniqueNames = [];
+                if (repo.authorised != null) {
+                  authData = JSON.parse(repo.authorised);
+                  stest.forEach(t => {
+                    authData.forEach(p => {
+                      if (p.tid == t.id) {
+                        selctTest.push(t.id);
+                        t.testauth = p.auth;
+                      }
+                    });
+                  });
+                  selctTest.forEach(element => {
+                    if (uniqueNames.includes(element) != true) uniqueNames.push(element);
+                  });
+                }
+                this.reportList.push({ 'rid': repo.id, 'pname': patientdata.prefix + ' ' + patientdata.first_name, 'pid': 'PDP' + patientdata.id, 'doctor': repo.name, 'register': repo.created_at, 'test': stest, 'para': uniqueNames, patientId: patientdata.id });
+                console.log(this.reportList);
+              }
+            });
+          });
         }
-        this.reportList.push({'rid':repo.id,'pname':patientdata.prefix+' '+patientdata.first_name,'pid':'PDP'+patientdata.id, 'doctor':repo.name, 'register':repo.created_at, 'test':JSON.parse(repo.test), 'testauth':uniqueNames, patientId:patientdata.id});
-        
-      }
-     });
-    
-    });
-  }else{
-    this.patientData.forEach((patientdata,i) => {
-      this.allreportData.forEach(repo => {
-        this.uniqueNames = [];
-
-       if(repo.patients_id == patientdata.id){
-        let stest = JSON.parse(repo.test);
-        let authData:any;
-        let selctTest =[];
-        let uniqueNames = [];
-        if(repo.authorised != null){
-          authData = JSON.parse(repo.authorised);
-      
-          stest.forEach(t => {
-            authData.forEach(p => {
-              
-           if(p.tid == t.id){
-            selctTest.push(t.id);
-            t.testauth = p.auth;
-           }
-             
-           });
-         });
-         selctTest.forEach(element => {
-          if(uniqueNames.includes(element) != true) uniqueNames.push(element);
-         });
-      
-        }
-         this.reportList.push({'rid':repo.id, 'pname':patientdata.prefix+' '+patientdata.first_name,'pid':'PDP'+patientdata.id, 'doctor':repo.name, 'register':repo.created_at, 'test':stest, 'para':uniqueNames, patientId:patientdata.id});
-         console.log(this.reportList);
-       }
-      });
-     
-     });
-
-  }
-
-  this.temp = this.reportList;
-  this.dataall = [...this.temp];
-  });
-});
-     
-     
-      // this.SpinnerService.hide();
+        this.temp = this.reportList;
+        this.dataall = [...this.temp];
+      });// this.SpinnerService.hide();
       setTimeout(() => {
         this.loadingIndicator = false;
       });
- 
+    });
   }
 
-  editReport(id:any){
+  editReport(id: any) {
     this.router.navigate(['edit-report', id]);
   }
-generatePdf(repoid,patid){
-  let repodata = [];
-let patdata = [];
-this.allreportData.forEach(element => {
-  if(element.id == repoid){
-    repodata.push(element);
+  generatePdf(repoid, patid) {
+    let repodata = [];
+    let patdata = [];
+    this.allreportData.forEach(element => {
+      if (element.id == repoid) {
+        repodata.push(element);
+      }
+    });
+    this.patientData.forEach(element => {
+      if (element.id == patid) {
+        patdata.push(element);
+      }
+    });
+    this.reportService.generatePDF(repodata[0], this.parameterData, patdata[0]);
   }
-});
-this.patientData.forEach(element => {
-  if(element.id == patid){
-    patdata.push(element);
+  deleteRepo(id) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.reportService.deleteRepo(id).subscribe(data => {
+          this._toastService.success('Report Deleted Sucessfully');
+          this.reportList = [];
+          this.get_data();
+        });
+      }
+    });
   }
-});
-  this.reportService.generatePDF(repodata[0],this.parameterData,patdata[0]);
-}
-deleteRepo(id){
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      this.reportService.deleteRepo(id).subscribe(data => {
-        this._toastService.success('Report Deleted Sucessfully');
-        this.reportList = [];
-        this.get_data();
-      });
-    }
-  })
-}
 }

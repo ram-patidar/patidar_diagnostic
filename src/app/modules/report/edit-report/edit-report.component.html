@@ -1,4 +1,7 @@
 <lib-toastify-toast-container></lib-toastify-toast-container>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" color="#04A29B" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
 <main class="wrapper-main">
     <div class="sidebar">
         <app-sidebar></app-sidebar>
@@ -55,13 +58,11 @@
                         <div class="test-list-inr">
                             <div class="tab-list-head">
                                 <form [formGroup]="testForm">
-
                                     <ul ngbNav #nav="ngbNav" class="nav-tabs">
                                         <li *ngFor="let testData of finalAlldata" ngbNavItem>
                                             <a ngbNavLink>{{testData.name}}</a>
                                             <ng-template ngbNavContent>
                                                 <div class="tab-body-inr">
-
                                                     <div class="authorised-sec">
                                                         <div class="auth-inp">
                                                             <input type="checkbox" name="authorised" formControlName="authorised,{{testData.id}}" id="check-box">
@@ -80,22 +81,23 @@
                                                             <tbody>
                                                                 <tr *ngFor="let parameter of testData.para">
                                                                     <td>{{parameter.parameter_name}}</td>
-                                                                    <td><span class="result-value"><input type="text" name="{{parameter.test_id+','+parameter.id}}" formControlName="{{parameter.test_id+','+parameter.id}}"
-                                                                        placeholder="0.00"></span> {{parameter.unit}}</td>
-                                                                    <td>{{parameter.min_range+'-'+parameter.max_range}}</td>
+                                                                    <td><span class="result-value"><input type="text"
+                                                                                name="{{parameter.test_id+','+parameter.id}}"
+                                                                                formControlName="{{parameter.test_id+','+parameter.id}}"
+                                                                                placeholder="0.00"></span> {{parameter.unit}}
+                                                                    </td>
+                                                                    <td>{{parameter.min_range+'-'+parameter.max_range}}
+                                                                    </td>
                                                                 </tr>
-
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                     <div class="save-btn">
                                                         <button type="button" (click)="testSubmit()" class="custom-btn">Save</button>
                                                     </div>
-
                                                 </div>
                                             </ng-template>
                                         </li>
-
                                     </ul>
                                 </form>
                             </div>

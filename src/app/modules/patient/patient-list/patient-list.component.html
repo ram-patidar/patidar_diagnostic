@@ -28,6 +28,9 @@
                             </div>
                             <!-- [loadingIndicator]="loading" -->
                             <div class="datable-body">
+                                <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" placement="SPINNER_PLACEMENT.inplace" size="default" color="#04A29B" type="ball-spin-clockwise">
+                                    <p style="color: white">Please Wait. </p>
+                                </ngx-spinner>
                                 <ngx-datatable [rows]="dataall" [columnMode]="'force'" class="material expandable res-datatable" [headerHeight]="80" [footerHeight]="80" [rowHeight]="'auto'" [limit]="limit" [offset]="offset" [selected]="selected" [scrollbarH]="true" [selectAllRowsOnPage]="false"
                                     [loadingIndicator]="loadingIndicator" (activate)="onActivate($event)" (select)='onSelect($event)' (page)="onPage($event)">
                                     <ngx-datatable-column name="#" [width]="15" [sortable]="true">
