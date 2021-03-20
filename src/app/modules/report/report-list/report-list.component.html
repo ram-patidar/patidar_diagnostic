@@ -1,3 +1,4 @@
+<lib-toastify-toast-container></lib-toastify-toast-container>
 <main class="wrapper-main">
     <div class="sidebar">
         <app-sidebar></app-sidebar>
@@ -66,7 +67,7 @@
                                             Test Name
                                         </ng-template>
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            <p class="test" *ngFor="let t of row.test">{{t.test_name}}</p>
+                                            <p class="test" [class.green]="t.testauth == true" [class.orange]="t.testauth != true" *ngFor="let t of row.test; index as i">{{t.test_name}}</p>
                                         </ng-template>
                                     </ngx-datatable-column>
 
@@ -78,8 +79,11 @@
                                             <span class="edit-icon" tooltip="Edit Patient" placement="top" [options]="myOptions" (click)="editReport(row.rid)">
                                                 <img src="../../../../assets/images/pencil.svg" alt="">
                                             </span>
-                                            <span class="billing-icon" tooltip="Billing" placement="top" [options]="myOptions">
+                                            <span *ngIf="row.para.length != 0" class="print-report" tooltip="Print report" placement="top" [options]="myOptions" (click)="generatePdf(row.rid,row.patientId)">
                                                 <img src="../../../../assets/images/billing.svg" alt="">
+                                            </span>
+                                            <span class="delete-icon" (click)="deleteRepo(row.rid)">
+                                                <img src="../../../../assets/images/trash.svg" alt="">
                                             </span>
                                         </ng-template>
                                     </ngx-datatable-column>

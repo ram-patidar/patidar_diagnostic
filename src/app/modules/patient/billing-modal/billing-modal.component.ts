@@ -11,6 +11,7 @@ export class BillingModalComponent implements OnInit {
   @Input() events: Observable<void>;
   private eventsSubscription: Subscription;
   patientData:any;
+  billPrint = true;
   todaydate = new Date();
   AllbillingData:any;
   total = 0;
@@ -48,5 +49,11 @@ this.patientService.getPatient().subscribe( data => {
 })
 
 
+  }
+
+  printBill(){
+    this.billPrint = false;
+    window.print();
+    this.billPrint = true;
   }
 }

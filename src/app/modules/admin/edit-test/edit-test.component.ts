@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { TestServiceService } from 'src/app/services/test-service.service';
 import { ToastService } from 'angular-toastify';
+import pdfMake from "pdfmake/build/pdfmake";  
+import pdfFonts from "pdfmake/build/vfs_fonts"; 
+pdfMake.vfs = pdfFonts.pdfMake.vfs; 
 
 
 @Component({
@@ -94,4 +97,6 @@ export class EditTestComponent implements OnInit {
     });
     this.parameterAllData = row.paradata;
   }
+
+
 }

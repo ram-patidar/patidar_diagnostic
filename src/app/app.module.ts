@@ -30,6 +30,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { BillingModalComponent } from './modules/patient/billing-modal/billing-modal.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxSpinnerModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

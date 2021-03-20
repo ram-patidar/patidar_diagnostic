@@ -160,7 +160,7 @@ if(this.allreportData.id != 0){
 this.displayBillingPopup = true;
 
 this.billingForm.value.id = this.allreportData.id;
-
+console.log(this.allreportData);
 this.eventsSubject.next(this.billingForm.value);
 this.onToggle(false);
 }

@@ -32,6 +32,7 @@
         "ng-multiselect-dropdown": "^0.2.14",
         "ng2-tooltip-directive": "^2.9.22",
         "ngx-spinner": "^10.0.1",
+        "pdfmake": "^0.1.70",
         "rxjs": "~6.6.0",
         "sweetalert2": "^10.15.5",
         "tslib": "^2.0.0",

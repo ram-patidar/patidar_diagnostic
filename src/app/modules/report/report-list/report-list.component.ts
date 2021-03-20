@@ -1,9 +1,11 @@
 import { Component, ViewChild, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastService } from 'angular-toastify';
 import { fromEvent, Subject } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { PatientServiceService } from 'src/app/services/patient-service.service';
 import { ReportServiceService } from 'src/app/services/report-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-report-list',
@@ -17,6 +19,8 @@ export class ReportListComponent implements OnInit {
   public selected = [];
   public testdata = [];
   public editData = [];
+ uniqueNames = [];
+ parameterData:any;
   patientData:any;
   allreportData:any;
   loopData:any;
@@ -34,9 +38,10 @@ export class ReportListComponent implements OnInit {
   myOptions = {
     'show-delay': 300,
   }
-  constructor(private reportService:ReportServiceService, private patientservice:PatientServiceService, private router:Router) { }
+  constructor(private reportService:ReportServiceService, private patientservice:PatientServiceService, private router:Router, private _toastService:ToastService) { }
 
   ngOnInit(): void {
+ 
     this.reportList = [];
     this.get_data();
   }
@@ -105,17 +110,41 @@ export class ReportListComponent implements OnInit {
   }
 
   get_data() {
-   
+    this.reportService.getParameter().subscribe( data=> {
+      this.parameterData = data;
+    });
+    this.uniqueNames = [];
     // this.SpinnerService.show();
     this.reportService.getReport().subscribe(data => {
       this.allreportData = data;
+     
       this.patientservice.getPatient().subscribe(data => {
         this.patientData = data;
+        
   if(this.allreportData.length > this.patientData.length){
     this.allreportData.forEach((repo,i) => {
      this.patientData.forEach(patientdata => {
       if(repo.patients_id == patientdata.id){
-        this.reportList.push({'rid':repo.id,'pname':patientdata.prefix+' '+patientdata.first_name,'pid':'PDP'+patientdata.id, 'doctor':repo.name, 'register':repo.created_at, 'test':JSON.parse(repo.test)});
+        let authData:any;
+        let selctTest =[];
+        let uniqueNames = []
+        let stest = JSON.parse(repo.test);
+        if(repo.authorised != null){
+          authData = JSON.parse(repo.authorised);
+          stest.forEach(t => {
+            authData.forEach(p => {
+           if(p.auth != false && p.tid == t.id){
+            selctTest.push(t.id);
+           }
+             
+           });
+         });
+         selctTest.forEach(element => {
+          if(uniqueNames.includes(element) != true) uniqueNames.push(element);
+         });
+    
+        }
+        this.reportList.push({'rid':repo.id,'pname':patientdata.prefix+' '+patientdata.first_name,'pid':'PDP'+patientdata.id, 'doctor':repo.name, 'register':repo.created_at, 'test':JSON.parse(repo.test), 'testauth':uniqueNames, patientId:patientdata.id});
         
       }
      });
@@ -124,15 +153,40 @@ export class ReportListComponent implements OnInit {
   }else{
     this.patientData.forEach((patientdata,i) => {
       this.allreportData.forEach(repo => {
+        this.uniqueNames = [];
+
        if(repo.patients_id == patientdata.id){
-         this.reportList.push({'rid':repo.id, 'pname':patientdata.prefix+' '+patientdata.first_name,'pid':'PDP'+patientdata.id, 'doctor':repo.name, 'register':repo.created_at, 'test':JSON.parse(repo.test)});
-     
+        let stest = JSON.parse(repo.test);
+        let authData:any;
+        let selctTest =[];
+        let uniqueNames = [];
+        if(repo.authorised != null){
+          authData = JSON.parse(repo.authorised);
+      
+          stest.forEach(t => {
+            authData.forEach(p => {
+              
+           if(p.tid == t.id){
+            selctTest.push(t.id);
+            t.testauth = p.auth;
+           }
+             
+           });
+         });
+         selctTest.forEach(element => {
+          if(uniqueNames.includes(element) != true) uniqueNames.push(element);
+         });
+      
+        }
+         this.reportList.push({'rid':repo.id, 'pname':patientdata.prefix+' '+patientdata.first_name,'pid':'PDP'+patientdata.id, 'doctor':repo.name, 'register':repo.created_at, 'test':stest, 'para':uniqueNames, patientId:patientdata.id});
+         console.log(this.reportList);
        }
       });
      
      });
- 
+
   }
+
   this.temp = this.reportList;
   this.dataall = [...this.temp];
   });
@@ -149,5 +203,38 @@ export class ReportListComponent implements OnInit {
   editReport(id:any){
     this.router.navigate(['edit-report', id]);
   }
-
+generatePdf(repoid,patid){
+  let repodata = [];
+let patdata = [];
+this.allreportData.forEach(element => {
+  if(element.id == repoid){
+    repodata.push(element);
+  }
+});
+this.patientData.forEach(element => {
+  if(element.id == patid){
+    patdata.push(element);
+  }
+});
+  this.reportService.generatePDF(repodata[0],this.parameterData,patdata[0]);
+}
+deleteRepo(id){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.reportService.deleteRepo(id).subscribe(data => {
+        this._toastService.success('Report Deleted Sucessfully');
+        this.reportList = [];
+        this.get_data();
+      });
+    }
+  })
+}
 }

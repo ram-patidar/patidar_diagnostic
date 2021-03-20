@@ -60,9 +60,9 @@ this.PatService.addPatient(this.addPatientForm.value).subscribe(data => {
 this.data = data;
 if(this.data.success == 1){
 
-this.displaytoast = true;
-console.log()
-this._toastService.success('Patient added sucessfully!!');
+// this.displaytoast = true;
+
+// this._toastService.success('Patient added sucessfully!!');
 this.onPatientAdded.emit(this.data.pdata);
 
 this.addPatientForm.reset();
