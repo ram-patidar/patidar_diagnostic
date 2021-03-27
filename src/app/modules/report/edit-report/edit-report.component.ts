@@ -46,7 +46,7 @@ export class EditReportComponent implements OnInit {
           let pa = property.split(',');
           let tid = pa[0];
           let pid = pa[1]
-          if (tid == 'authorised') {
+          if(tid == 'authorised') {
             let avalue = this.testForm.value[property];
             let authorised = { 'tid': pid, 'auth': avalue };
             authData.push(authorised);
@@ -112,7 +112,7 @@ export class EditReportComponent implements OnInit {
           });
           this.createGroup();
           if (this.authorised) {
-            this.reposervice.generatePDF(this.reportAlldata[0], this.allparameter, this.patientData[0]);
+            // this.reposervice.generatePDF(this.reportAlldata[0], this.allparameter, this.patientData[0]);
           }
         })
       })

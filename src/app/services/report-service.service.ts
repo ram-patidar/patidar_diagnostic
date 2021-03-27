@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import pdfMake from "pdfmake/build/pdfmake";  
 import pdfFonts from "pdfmake/build/vfs_fonts"; 
 import { DatePipe } from '@angular/common';
+import { TestServiceService } from './test-service.service';
+import { NavigationExtras, Router } from '@angular/router';
 pdfMake.vfs = pdfFonts.pdfMake.vfs; 
 
 @Injectable({
@@ -10,13 +12,14 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 })
 export class ReportServiceService {
-
+  finalData = [];
   todayDate =  new Date();
-  constructor(private http:HttpClient, private datepipe:DatePipe) { }
+  constructor(private http:HttpClient, private datepipe:DatePipe, private testservice:TestServiceService, private router:Router) { }
   appKey = '?APP_KEY=ABCDEFGHJK';
-reportApi = 'http://nextige.com/patidarlab/api/reports?APP_KEY=ABCDEFGHJK';
-reportMainApi = 'http://nextige.com/patidarlab/api/reports/';
-parameterApi = 'http://nextige.com/patidarlab/api/parameter?APP_KEY=ABCDEFGHJK';
+reportApi = 'https://nextige.com/patidarlab/api/reports?APP_KEY=ABCDEFGHJK';
+reportMainApi = 'https://nextige.com/patidarlab/api/reports/';
+parameterApi = 'https://nextige.com/patidarlab/api/parameter?APP_KEY=ABCDEFGHJK';
+
 
 
 addReport(data:any){
@@ -41,112 +44,53 @@ updateReport(id,data){
 }
 
 
-generatePDF(repoData,paraData,patientData) {
-  
-    
+generatePDF(repoData,paraData,patientData, testdata, testArr) {
+ let testData = testdata;
+ this.finalData = [];
   let parafinalData = [];
   let paradata = [];
   if(repoData.parameter_data != null){
 paradata = JSON.parse(repoData.parameter_data);
 
   }
+testData.forEach(test => {
 
+
+  if(testArr.includes(test.id.toString())){
+   
+    let objData = {tdata:null, paramData:null };
+  
+    let paraAllfinalDatas = [];
   paraData.forEach(input_template=>{
- 
+  
+    if(test.id == input_template.test_id){
     if(paradata.length != 0){
-    paradata.forEach(element => {
-      if(element.pid == input_template.id && element.testId == input_template.test_id){
-        if(element.value != ''){
-        parafinalData.push({paraname:input_template.parameter_name, paravalue:element.value, paraMax:input_template.max_range, paraMin:input_template.min_range, paraUnit:input_template.unit});
+    paradata.forEach(para => {
+      if(para.pid == input_template.id && para.testId == input_template.test_id && test.id == para.testId){
+        if(para.value != ''){
+          paraAllfinalDatas.push({paraName:input_template.parameter_name,paraValue:para.value,range:input_template.min_range, paraUnit:input_template.unit});
       }
 }
 
  });
-  }else{
-
   }
-  });
-
-  let row  = patientData;
-
-  let docDefinition = {
-    
-    content: [
-      {
-        columns: [
-          [
-            {
-              text: 'Name: '+row.prefix +" "+ row.first_name
-            
-            },
-            { text: 'Contact:'+row.contact },
-            { text: 'Patient id: PDP'+row.id }
-            
-           
-          ],
-          [
-            {
-              text: 'Age/Sex: '+row.age+' Years/'+row.gender,
-              alignment: 'right'
-            },
-            { 
-              text: 'Date: '+this.datepipe.transform(this.todayDate, 'd MMM, y'),
-              alignment: 'right'
-            },
-            { 
-              text: 'Address: '+row.address,
-              alignment: 'right'
-            },
-          
-           
-          ]
-        ]
-      },
-      {
-        text: 'HEAMATOLOGY REPORT',
-        alignment: 'center',
-        style: 'sectionHeader'
-      },
-      
-     
-      {
-        style: 'tableExample',
-        table: {
-          headerRows: 1,
-          widths: ['*', '*', '*'],
-          body: [
-            [{text:'Parameter name', bold:true}, {text:'Result', bold:true}, {text:'Normal range', bold:true }  ],
-            ...parafinalData.map(p => ([p.paraname, p.paravalue+" "+p.paraUnit, p.paraMin+'-'+p.paraMax])),
-           
-          ]
  
-        }
-       
-    
-      }
-     
-    ],
-    styles: {
-      sectionHeader: {
-        bold: true,
-        decoration: 'underline',
-        fontSize: 14,
-        margin: [0, 15,0, 15]          
-      },
-      tableExample: { 
-      border:'none !important'
-        
-      }
-    
-      
-    }
-  };
+}
+
+  });
+  if(paraAllfinalDatas.length != 0){
+  objData.tdata = test;
+  objData.paramData = paraAllfinalDatas;
+  this.finalData.push(objData);
+  }
+}
+});
 
 
-    
+  console.log(this.finalData);  
 
-
-    pdfMake.createPdf(docDefinition).print();      
+  const navigationExtras: NavigationExtras = {state: {patientData: JSON.stringify([patientData]), finalData:JSON.stringify(this.finalData) }};
+  this.router.navigate(["printreport"], navigationExtras  );
  
 }
 

@@ -29,10 +29,10 @@ export class EditTestComponent implements OnInit {
     this.editTestForm = this.fb.group({
       test_name: ['', Validators.required],
       price: ['', Validators.required],
-      parameter_name: ['', Validators.required],
-      unit: ['', Validators.required],
-      min: ['', Validators.required],
-      max: ['', Validators.required]
+      parameter_name: [''],
+      unit: [''],
+      interval: [''],
+   
     });
   }
 
@@ -70,11 +70,11 @@ export class EditTestComponent implements OnInit {
   }
 
   addParameter() {
-    this.parameterAllData.push({ 'id': '', 'parameter_name': this.editTestForm.value.parameter_name, 'unit': this.editTestForm.value.unit, 'min_range': this.editTestForm.value.min, 'max_range': this.editTestForm.value.max, 'test_id': this.editTestid });
+    this.parameterAllData.push({ 'id': '', 'parameter_name': this.editTestForm.value.parameter_name, 'unit': this.editTestForm.value.unit, 'min_range': this.editTestForm.value.interval, 'max_range': this.editTestForm.value.max, 'test_id': this.editTestid });
     this.editTestForm.controls['parameter_name'].reset();
     this.editTestForm.controls['unit'].reset();
-    this.editTestForm.controls['min'].reset();
-    this.editTestForm.controls['max'].reset();
+    this.editTestForm.controls['interval'].reset();
+    
     console.log(this.parameterAllData);
   }
 
@@ -90,10 +90,10 @@ export class EditTestComponent implements OnInit {
     this.editTestForm = this.fb.group({
       test_name: [row.test_name, Validators.required],
       price: [row.price, Validators.required],
-      parameter_name: ['', Validators.required],
-      unit: ['', Validators.required],
-      min: ['', Validators.required],
-      max: ['', Validators.required]
+      parameter_name: [''],
+      unit: [''],
+      interval:[''],
+
     });
     this.parameterAllData = row.paradata;
   }

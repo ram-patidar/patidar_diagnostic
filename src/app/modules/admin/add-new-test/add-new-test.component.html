@@ -45,33 +45,18 @@
                                     <option>mg/dl</option>
                                     <option>IU/L</option>
                                 </select>
-                                <div *ngIf="addTestForm.controls['unit'].errors && addTestForm.controls['unit'].invalid && (addTestForm.controls['unit'].dirty || addTestForm.controls['unit'].touched)" class="alert alert-danger">
-                                    <div *ngIf="addTestForm.controls['unit'].errors.required">
-                                        Unit is required.
-                                    </div>
-                                </div>
+
                             </div>
                             <div>
-                                <input type="number" placeholder="Min" class="input" formControlName="min">
-                                <div *ngIf="addTestForm.controls['min'].errors && addTestForm.controls['min'].invalid && (addTestForm.controls['min'].dirty || addTestForm.controls['min'].touched)" class="alert alert-danger">
-                                    <div *ngIf="addTestForm.controls['min'].errors.required">
-                                        Min is required.
-                                    </div>
-                                </div>
+                                <textarea placeholder="Biological Reference Interval" class="input" formControlName="interval"></textarea>
+
                             </div>
-                            <div>
-                                <input type="number" placeholder="Max" class="input" formControlName="max">
-                                <div *ngIf="addTestForm.controls['max'].errors && addTestForm.controls['max'].invalid && (addTestForm.controls['max'].dirty || addTestForm.controls['max'].touched)" class="alert alert-danger">
-                                    <div *ngIf="addTestForm.controls['max'].errors.required">
-                                        Max is required.
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </li>
                 </ul>
                 <div class="add-para">
-                    <button type="button" (click)="addParameter()" [disabled]="addTestForm.invalid" class="custom-btn">Add Parameter</button>
+                    <button type="button" (click)="addParameter()" class="custom-btn">Add Parameter</button>
                 </div>
                 <div class="add-test-sec">
                     <table>

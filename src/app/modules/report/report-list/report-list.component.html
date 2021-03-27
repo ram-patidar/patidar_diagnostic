@@ -67,7 +67,7 @@
                                             Test Name
                                         </ng-template>
                                         <ng-template let-row="row" ngx-datatable-cell-template>
-                                            <p class="test" [class.green]="t.testauth == true" [class.orange]="t.testauth != true" *ngFor="let t of row.test; index as i">{{t.test_name}}</p>
+                                            <p class="test" [class.green]="t.testauth == true" [class.red]="t.valueEntered && t.testauth != true" *ngFor="let t of row.test; index as i">{{t.test_name}}</p>
                                         </ng-template>
                                     </ngx-datatable-column>
 
@@ -77,19 +77,46 @@
                                         </ng-template>
                                         <ng-template let-row="row" ngx-datatable-cell-template>
                                             <span class="edit-icon" tooltip="Edit Patient" placement="top" [options]="myOptions" (click)="editReport(row.rid)">
-                                                <img src="../../../../assets/images/pencil.svg" alt="">
+                                                <img src="assets/images/pencil.svg" alt="">
                                             </span>
-                                            <span *ngIf="row.para.length != 0" class="print-report" tooltip="Print report" placement="top" [options]="myOptions" (click)="generatePdf(row.rid,row.patientId)">
-                                                <img src="../../../../assets/images/billing.svg" alt="">
+                                            <span *ngIf="row.para.length != 0" class="print-report" tooltip="Print report" placement="top" [options]="myOptions" (click)="generatePdf(row.rid,row.patientId, row.test)">
+                                                <img src="assets/images/billing.svg" alt="">
                                             </span>
                                             <span class="delete-icon" (click)="deleteRepo(row.rid)">
-                                                <img src="../../../../assets/images/trash.svg" alt="">
+                                                <img src="assets/images/trash.svg" alt="">
                                             </span>
                                         </ng-template>
                                     </ngx-datatable-column>
                                 </ngx-datatable>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="test" [class.extra-sparkle1]="display" [class.custom-temp]="display">
+            <div class="dashboard-body billing-modal">
+                <div class="modal-head">
+                    <h2>
+                        Include Test
+                    </h2>
+                    <a>
+                        <img src="assets/images/remove.svg" alt="">
+                    </a>
+                </div>
+                <div class="page-inr">
+                    <div class="billing-modal-sec">
+                        <div class="invoice-table">
+                            <form #testForm="ngForm" (submit)="testSubmit(testForm.value)">
+                                <ul>
+                                    <li *ngFor="let testData of test"><label *ngIf="testData.testauth == true" for="test-{{testData.id}}">{{testData.test_name}}<input type="checkbox" name="test-{{testData.id}}" id="test-{{testData.id}}" class="" ngModel></label></li>
+                                </ul>
+                                <div class="print-btn">
+                                    <button type="submit" class="custom-btn">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>

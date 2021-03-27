@@ -151,8 +151,8 @@ this.allDoctor = data;
 }
 
 addBilling(){
+  
 this.billingForm.value.test = this.selectedTests;
-
 
 this.report.addReport(this.billingForm.value).subscribe( data => {
 this.allreportData = data;

@@ -7,10 +7,10 @@ import { Injectable } from '@angular/core';
 })
 export class TestServiceService {
   appKey = 'ABCDEFGHJK';
-  testMainapi = 'http://nextige.com/patidarlab/api/tests/';
-  testApi = 'http://nextige.com/patidarlab/api/tests?APP_KEY=' + this.appKey;
-  parameterApi = 'http://nextige.com/patidarlab/api/parameter?APP_KEY=' + this.appKey;
-  parametermainApi = 'http://nextige.com/patidarlab/api/parameter/';
+  testMainapi = 'https://nextige.com/patidarlab/api/tests/';
+  testApi = 'https://nextige.com/patidarlab/api/tests?APP_KEY=' + this.appKey;
+  parameterApi = 'https://nextige.com/patidarlab/api/parameter?APP_KEY=' + this.appKey;
+  parametermainApi = 'https://nextige.com/patidarlab/api/parameter/';
 
   constructor(private http: HttpClient) { }
 

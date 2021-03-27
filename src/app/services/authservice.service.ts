@@ -13,8 +13,8 @@ export class AuthserviceService {
   constructor(private http: HttpClient, private router: Router) { }
 apiKey = '?APP_KEY=ABCDEFGHJK';
   authApi = 'https://nextige.com/patidarlab/api/login?APP_KEY=ABCDEFGHJK';
-  regApi = 'http://nextige.com/patidarlab/api/register?APP_KEY=ABCDEFGHJK';
-  userApi = 'http://nextige.com/patidarlab/api/user/';
+  regApi = 'https://nextige.com/patidarlab/api/register?APP_KEY=ABCDEFGHJK';
+  userApi = 'https://nextige.com/patidarlab/api/user/';
 
   authUser(u: any) {
     return this.http.post<any>(this.authApi, u);

@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 export class PatientServiceService {
   constructor(private http: HttpClient) { }
   appKey = 'ABCDEFGHJK';
-  PatientmainApi = 'http://nextige.com/patidarlab/api/patients?APP_KEY=';
-  PatientApi = 'http://nextige.com/patidarlab/api/patients/';
+  PatientmainApi = 'https://nextige.com/patidarlab/api/patients?APP_KEY=';
+  PatientApi = 'https://nextige.com/patidarlab/api/patients/';
 
   getPatient() {
     return this.http.get(this.PatientmainApi + this.appKey);

@@ -99,6 +99,10 @@ input[type=checkbox]:checked+label:before {
     color: #ffa500;
 }
 
+.red {
+    color: #ff0800;
+}
+
 .login-form h2 {
     color: #2c2a6a;
     text-align: center;
@@ -212,20 +216,20 @@ input[type=checkbox]:checked+label:before {
     top: 0;
     width: 100%;
     height: 100%;
-    background-image: url(/assets/images/blood-test.svg);
+    background-image: url(../images/blood-test.svg);
     background-size: 120px;
     background-repeat: no-repeat;
     background-position: right;
 }
 
 .report-box.second:after {
-    background-image: url(/assets/images/pending.svg);
+    background-image: url(../images/pending.svg);
     right: 20px;
     background-size: 90px;
 }
 
 .report-box.third:after {
-    background-image: url(/assets/images/approval.svg);
+    background-image: url(../images/approval.svg);
     right: 20px;
     background-size: 80px;
 }

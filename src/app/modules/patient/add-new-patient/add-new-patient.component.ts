@@ -34,8 +34,8 @@ prefix:['', [Validators.required]],
 first_name:['', [Validators.required]],
 gender:['', [Validators.required]],
 age:['', [Validators.required]],
-contact:['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-address:['', [Validators.required]]
+contact:[''],
+address:['']
 })
 }
 

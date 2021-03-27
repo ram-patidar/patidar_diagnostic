@@ -30,7 +30,9 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { BillingModalComponent } from './modules/patient/billing-modal/billing-modal.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
-import { DatePipe } from '@angular/common';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ɵROUTER_PROVIDERS } from '@angular/router';
+import { PrintReportComponent } from './modules/report/print-report/print-report.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { DatePipe } from '@angular/common';
     AddNewDoctorComponent,
     AddNewTestComponent,
     EditTestComponent,
-    BillingModalComponent
+    BillingModalComponent,
+    PrintReportComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { DatePipe } from '@angular/common';
     NgxSpinnerModule,
     BrowserAnimationsModule
   ],
+  
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent ]
 })
 export class AppModule { }

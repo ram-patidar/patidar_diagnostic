@@ -25,10 +25,9 @@ export class AddNewTestComponent implements OnInit {
     this.addTestForm = this.fb.group({
       test_name: ['', Validators.required],
       price: ['', Validators.required],
-      parameter_name: ['', Validators.required],
-      unit: ['', Validators.required],
-      min: ['', Validators.required],
-      max: ['', Validators.required]
+      parameter_name: [''],
+      unit: [''],
+      interval: ['']
     })
   }
 
@@ -59,11 +58,11 @@ export class AddNewTestComponent implements OnInit {
   }
 
   addParameter() {
-    this.parameterAllData.push({ 'parameter_name': this.addTestForm.value.parameter_name, 'unit': this.addTestForm.value.unit, 'min_range': this.addTestForm.value.min, 'max_range': this.addTestForm.value.max });
+    this.parameterAllData.push({ 'parameter_name': this.addTestForm.value.parameter_name, 'unit': this.addTestForm.value.unit, 'min_range': this.addTestForm.value.interval});
     this.addTestForm.controls['parameter_name'].reset();
     this.addTestForm.controls['unit'].reset();
-    this.addTestForm.controls['min'].reset();
-    this.addTestForm.controls['max'].reset();
+    this.addTestForm.controls['interval'].reset();
+    
     console.log(this.parameterAllData);
   }
 

@@ -1,4 +1,4 @@
-<lib-toastify-toast-container></lib-toastify-toast-container>
+<lib-toastify-toast-container [autoClose]='1000'></lib-toastify-toast-container>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" color="#04A29B" type="ball-spin-clockwise">
     <p style="color: white">Please Wait. </p>
 </ngx-spinner>
@@ -66,11 +66,11 @@
                                                     <div class="authorised-sec">
                                                         <div class="auth-inp">
                                                             <input type="checkbox" name="authorised" formControlName="authorised,{{testData.id}}" id="check-box">
-                                                            <label for="check-box"> Authorised</label>
+                                                            <label for="check-box">Authorised</label>
                                                         </div>
                                                     </div>
-                                                    <div class="test-list" *ngIf="testData.para.length != 0">
-                                                        <table>
+                                                    <div class="test-list">
+                                                        <table *ngIf="testData.para.length != 0">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Parameter Name</th>
@@ -86,11 +86,12 @@
                                                                                 formControlName="{{parameter.test_id+','+parameter.id}}"
                                                                                 placeholder="0.00"></span> {{parameter.unit}}
                                                                     </td>
-                                                                    <td>{{parameter.min_range+'-'+parameter.max_range}}
+                                                                    <td>{{parameter.min_range}}
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
+
                                                     </div>
                                                     <div class="save-btn">
                                                         <button type="button" (click)="testSubmit()" class="custom-btn">Save</button>

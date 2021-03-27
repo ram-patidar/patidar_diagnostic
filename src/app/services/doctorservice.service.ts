@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class DoctorserviceService {
   appKey = 'ABCDEFGHJK';
-  docMainapi = 'http://nextige.com/patidarlab/api/doctors/';
-  doctorApi = 'http://nextige.com/patidarlab/api/doctors?APP_KEY=' + this.appKey;
+  docMainapi = 'https://nextige.com/patidarlab/api/doctors/';
+  doctorApi = 'https://nextige.com/patidarlab/api/doctors?APP_KEY=' + this.appKey;
 
   constructor(private http: HttpClient) { }
 

@@ -31,11 +31,7 @@
                         <div class="para-name">
                             <label class="inp-label">Parameter Name</label>
                             <input type="text" formControlName="parameter_name" placeholder="Enter Test Parameter" class="input">
-                            <div *ngIf="editTestForm.controls['parameter_name'].errors && editTestForm.controls['parameter_name'].invalid && (editTestForm.controls['parameter_name'].dirty || editTestForm.controls['parameter_name'].touched)" class="alert alert-danger">
-                                <div *ngIf="editTestForm.controls['parameter_name'].errors.required">
-                                    Parameter name is required.
-                                </div>
-                            </div>
+
                         </div>
                         <div class="param-dtl">
                             <div>
@@ -44,33 +40,18 @@
                                     <option>mg/dl</option>
                                     <option>IU/L</option>
                                 </select>
-                                <div *ngIf="editTestForm.controls['unit'].errors && editTestForm.controls['unit'].invalid && (editTestForm.controls['unit'].dirty || editTestForm.controls['unit'].touched)" class="alert alert-danger">
-                                    <div *ngIf="editTestForm.controls['unit'].errors.required">
-                                        Unit is required.
-                                    </div>
-                                </div>
+
                             </div>
                             <div>
-                                <input type="number" placeholder="Min" class="input" formControlName="min">
-                                <div *ngIf="editTestForm.controls['min'].errors && editTestForm.controls['min'].invalid && (editTestForm.controls['min'].dirty || editTestForm.controls['min'].touched)" class="alert alert-danger">
-                                    <div *ngIf="editTestForm.controls['min'].errors.required">
-                                        Min is required.
-                                    </div>
-                                </div>
+                                <textarea placeholder="Biological Reference Interval" class="input" formControlName="interval"></textarea>
+
                             </div>
-                            <div>
-                                <input type="number" placeholder="Max" class="input" formControlName="max">
-                                <div *ngIf="editTestForm.controls['max'].errors && editTestForm.controls['max'].invalid && (editTestForm.controls['max'].dirty || editTestForm.controls['max'].touched)" class="alert alert-danger">
-                                    <div *ngIf="editTestForm.controls['max'].errors.required">
-                                        Max is required.
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </li>
                 </ul>
                 <div class="add-para">
-                    <button type="button" (click)="addParameter()" [disabled]="editTestForm.invalid" class="custom-btn">Add Parameter</button>
+                    <button type="button" (click)="addParameter()" class="custom-btn">Add Parameter</button>
                 </div>
                 <div class="add-test-sec">
                     <table>
