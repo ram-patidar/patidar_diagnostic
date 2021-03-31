@@ -100,23 +100,25 @@
                     <h2>
                         Include Test
                     </h2>
-                    <a>
+                    <a (click)="onToggle(false)">
                         <img src="assets/images/remove.svg" alt="">
                     </a>
                 </div>
                 <div class="page-inr">
                     <div class="billing-modal-sec">
-                        <div class="invoice-table">
+                        <div class="include-test-list">
                             <form #testForm="ngForm" (submit)="testSubmit(testForm.value)">
                                 <ul>
-                                    <li *ngFor="let testData of test"><label *ngIf="testData.testauth == true" for="test-{{testData.id}}">{{testData.test_name}}<input type="checkbox" name="test-{{testData.id}}" id="test-{{testData.id}}" class="" ngModel></label></li>
+                                    <li *ngFor="let testData of test">
+                                        <input type="checkbox" name="test-{{testData.id}}" id="test-{{testData.id}}" class="" ngModel>
+                                        <label *ngIf="testData.testauth == true" for="test-{{testData.id}}">{{testData.test_name}}</label>
+                                    </li>
                                 </ul>
                                 <div class="print-btn">
                                     <button type="submit" class="custom-btn">Submit</button>
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>

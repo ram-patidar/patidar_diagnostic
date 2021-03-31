@@ -18,6 +18,10 @@ export class ReportListComponent implements OnInit {
   public dataall: any;
   @ViewChild('search', { static: false }) search: any;
   @ViewChild('testForm') testform: NgForm;
+  @Output() onToggleBilling = new EventEmitter<boolean>();
+  onToggle(addBilling: boolean){
+    this.display = false;
+   }
   public temp: any;
   public selected = [];
   public testdata:any;
@@ -46,8 +50,6 @@ test = [];
     'show-delay': 300,
   }
   constructor(private reportService: ReportServiceService, private patientservice: PatientServiceService, private router: Router, private _toastService: ToastService, private testservice:TestServiceService) {
- 
-
    }
 
 
@@ -176,10 +178,7 @@ test = [];
                     });
                   });
                 }
-
-               
-                
-            
+           
                 this.reportList.push({ 'rid': repo.id, 'pname': patientdata.prefix + ' ' + patientdata.first_name, 'pid': 'PDP' + patientdata.id, 'doctor': repo.name, 'register': repo.created_at, 'test': stest, 'para': uniqueNames, patientId: patientdata.id });
              
               }

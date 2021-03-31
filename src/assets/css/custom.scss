@@ -30,12 +30,15 @@ input[type=checkbox] {
     display: none;
 }
 
+input+label {
+    position: relative;
+}
+
 input[type=checkbox]+label:before {
     content: "";
     -webkit-appearance: none;
     background-color: transparent;
-    border: 1px solid #707070;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 5%), inset 0 -15px 10px -12px rgb(0 0 0 / 5%);
+    border: 2px solid #04a29b;
     padding: 0;
     display: inline-block;
     position: relative;
@@ -43,7 +46,7 @@ input[type=checkbox]+label:before {
     cursor: pointer;
     height: 19px;
     top: -2px;
-    margin-right: 5px;
+    margin-right: 8px;
     border-radius: 2px;
     width: 20px;
     transition: 0.3s all;
@@ -53,8 +56,8 @@ input[type=checkbox]:checked+label:after {
     content: "";
     display: block;
     position: absolute;
-    top: 2px;
-    left: 7px;
+    top: 3px;
+    left: 9px;
     width: 5px;
     height: 10px;
     border: solid #fff;
@@ -63,7 +66,7 @@ input[type=checkbox]:checked+label:after {
 }
 
 input[type=checkbox]:checked+label:before {
-    background: #707070;
+    background: #04a29b;
 }
 
 .auth-inp label {

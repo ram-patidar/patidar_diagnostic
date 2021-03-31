@@ -1,10 +1,18 @@
 <div class="dashboard-body billing-modal">
     <div class="page-inr">
         <style>
-            th,
-            td {
-                max-width: 150px;
-                min-width: 150px;
+            @media print {
+                th,
+                td {
+                    max-width: 150px;
+                    min-width: 150px;
+                }
+                body {
+                    margin: 0;
+                }
+                * {
+                    font-family: 'Proxima Nova';
+                }
             }
         </style>
         <div class="billing-modal-sec">
@@ -12,77 +20,78 @@
                 <table class="invoice" width="100%">
                     <tr>
                         <td>
-                            <table width="100%" cellspacing="5" style="padding:25px 0;border-bottom: 1px dashed #04A29B;">
+                            <!-- style="padding:25px 0;border-bottom: 1px dashed #04A29B;" -->
+                            <table width="100%" cellspacing="5">
                                 <tr>
                                     <th align="left">
-                                        Name:
+                                        <h3> Name:</h3>
                                     </th>
                                     <td>
                                         {{PatData.prefix +' '+PatData.first_name}}
                                     </td>
                                     <th align="left">
-                                        Age/sex:
+                                        <h3> Age/sex:</h3>
                                     </th>
                                     <td>
                                         {{PatData.age}} years / {{PatData.gender}}
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <th align="left">
-                                        Contact:
+                                        <h3> Contact:</h3>
                                     </th>
                                     <td>
                                         {{PatData.contact}}
                                     </td>
                                     <th align="left">
-                                        Date:
+                                        <h3>Date</h3>
                                     </th>
                                     <td>
                                         {{todayDate | date:'mediumDate'}}
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <th align="left">
-                                        Patient id:
+                                        <h3>Patient id:</h3>
                                     </th>
                                     <td>
                                         PDP{{PatData.id}}
                                     </td>
                                     <th align="left">
-                                        Address:
+                                        <h3> Address:</h3>
                                     </th>
                                     <td>
                                         {{PatData.address}}
                                     </td>
-
                                 </tr>
-
-
                             </table>
                         </td>
                     </tr>
                     <tr cellspacing="12">
                         <td style="padding:25px 0;">
-                            <table width="100%" cellspacing="0">
+                            <table width="100%" cellspacing="5">
                                 <tr style="border: 1px solid #70707033;">
                                     <th colspan="3 ">
-                                        <p *ngFor="let fdatas of finalData">{{fdatas.tdata.department}}</p>
+                                        <h2 style="color: #04A29B;padding-bottom: 30px;" *ngFor="let fdatas of finalData">{{fdatas.tdata.department}}</h2>
                                     </th>
 
                                 </tr>
                                 <tr style="border: 1px solid #70707033;">
-                                    <th align="left ">Name of Test</th>
-                                    <th align="left ">Result</th>
-                                    <th align="left ">Normal range</th>
+                                    <th align="left" height="50">
+                                        <h3>Name of Test</h3>
+                                    </th>
+                                    <th align="left ">
+                                        <h3>Result</h3>
+                                    </th>
+                                    <th align="left ">
+                                        <h3>Normal range</h3>
+                                    </th>
                                 </tr>
                                 <tr *ngFor="let fdata of finalData" style="border: 1px solid #70707033;">
                                     <td colspan="3 ">
-                                        <table width="100%">
+                                        <table width="100%" cellspacing="0">
                                             <tr>
-
-                                                <th align="left" colspan="3">{{fdata.tdata.test_name}}</th>
+                                                <th align="left" colspan="3" height="20">{{fdata.tdata.test_name}}</th>
                                             </tr>
                                             <tr *ngFor="let paradata of fdata.paramData" style="border: 1px solid #70707033;">
                                                 <td>{{paradata.paraName}}</td>
@@ -97,7 +106,7 @@
                     </tr>
                 </table>
             </div>
-            <button (click)="print()">Print</button>
+            <button id="printBtn" (click)="print()">Print</button>
         </div>
     </div>
 </div>
