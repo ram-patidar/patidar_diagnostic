@@ -10,6 +10,7 @@ import { ProfileComponent } from './modules/admin/profile/profile.component';
 import { DoctorComponent } from './modules/admin/doctor/doctor.component';
 import { TestComponent } from './modules/admin/test/test.component';
 import { PrintReportComponent } from './modules/report/print-report/print-report.component';
+import { UprofileComponent } from './modules/uprofile/uprofile/uprofile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'doctor', component:DoctorComponent, canActivate: [AuthserviceService], pathMatch: 'full' },
   { path: 'test', component:TestComponent, canActivate: [AuthserviceService], pathMatch: 'full' },
   { path: 'printreport', component:PrintReportComponent, canActivate: [AuthserviceService], pathMatch: 'full' },
+  { path: 'uprofile/:id', component:UprofileComponent, canActivate: [AuthserviceService], pathMatch: 'full'}
 ];
 
 @NgModule({

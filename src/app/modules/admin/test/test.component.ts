@@ -137,6 +137,7 @@ export class TestComponent implements OnInit {
         this.parameterAlldata = data;
       });
       this.loadingIndicator = false;
+      console.log(data);
     });
   }
 

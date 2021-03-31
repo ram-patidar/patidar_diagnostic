@@ -26,6 +26,7 @@ export class AddNewTestComponent implements OnInit {
       test_name: ['', Validators.required],
       price: ['', Validators.required],
       parameter_name: [''],
+      department:[''],
       unit: [''],
       interval: ['']
     })

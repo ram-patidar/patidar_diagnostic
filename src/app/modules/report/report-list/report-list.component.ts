@@ -249,26 +249,41 @@ test = [];
     this.router.navigate(['edit-report', id]);
   }
   generatePdf(repoid, patid, test) {
-this.display = true;
-    this.test = test;
-    console.log(this.test);
-
     this.repoid = repoid;
     this.patid = patid;
+    this.test = test;
+    
+    if(this.test.length != 1){
+    this.display = true;
+    }else{
+this.testSubmit(null);
+    }
+
+
+ 
+  // this.reportService.generatePDF(repodata[0], this.parameterData, patdata[0], this.testdata,testArr=[]);
    
-    // this.reportService.generatePDF(repodata[0], this.parameterData, patdata[0], this.testdata);
+   
 
   }
 
   testSubmit(v){
   let testArr = [];
+ 
+  if(v == null){
+    this.test.forEach((t)=>{
+     
+      testArr.push(t.id.toString());
+    });
+  }
+
     for (const property in v) {
   
  if(v[property] == true){
   let tid = property.split('-')[1];
   testArr.push(tid);
  }
-    
+
      
     }
     let repoid = this.repoid;

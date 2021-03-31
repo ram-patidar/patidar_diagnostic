@@ -20,6 +20,11 @@
                         </div>
                     </li>
                     <li>
+                        <label class="inp-label">Department</label>
+                        <input type="text" formControlName="department" placeholder="Department Name" class="input">
+
+                    </li>
+                    <li>
                         <label class="inp-label">Test Price</label>
                         <input type="number" formControlName="price" placeholder="Test Price" class="input">
                         <div *ngIf="addTestForm.controls['price'].errors && addTestForm.controls['price'].invalid && (addTestForm.controls['price'].dirty || addTestForm.controls['price'].touched)" class="alert alert-danger">

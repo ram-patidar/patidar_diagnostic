@@ -33,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ɵROUTER_PROVIDERS } from '@angular/router';
 import { PrintReportComponent } from './modules/report/print-report/print-report.component';
+import { UprofileComponent } from './modules/uprofile/uprofile/uprofile.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { PrintReportComponent } from './modules/report/print-report/print-report
     AddNewTestComponent,
     EditTestComponent,
     BillingModalComponent,
-    PrintReportComponent
+    PrintReportComponent,
+    UprofileComponent
   ],
   imports: [
     BrowserModule,
